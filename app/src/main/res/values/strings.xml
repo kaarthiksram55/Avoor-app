@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">AvoorApp</string>
+
+    <string name="LandingScreenTitleEnglish">Avoor Pasupatheeswaram Pradosham Kaingariyam App</string>
+    <string name="AvoorAppDisplayNameEnglish">Avoor Pradosham App</string>
+    <string name="HomeScreenTitleEnglish">Avoor Pasupatheeswaram Temple</string>
+
+    <string name="LandingScreenTitleTamil">ஏவூர் பசுபதீஸ்வரம் பிரதோஷம் கைங்கரியம் செயலி</string>
+    <string name="AvoorAppDisplayNameTamil">ஆவூர் பிரதோஷம் செயலி</string>
+    <string name="HomeScreenTitleTamil">ஆவூர் பசுபதீஸ்வரம் கோவில்</string>
+
+    <string name="LandingScreenUsernameToolTipText">Mobile number</string>
+    <string name="LandingScreenPasswordToolTipText">Password</string>
+    <string name="LandingScreenIntentUserNameKey">LandingScreenIntentKey_Username</string>
 </resources>

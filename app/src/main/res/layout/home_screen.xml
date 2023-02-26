@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.drawerlayout.widget.DrawerLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+android:id="@+id/HomeScreenDrawLyt"
+android:layout_width="match_parent"
+android:layout_height="match_parent" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true" >
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/HomeScreenToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/HomeScreenImgViewLogo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                    <!--
+                    android:contentDescription="@string/logo"
+                    android:onClick="launchHome"
+                    android:src="@mipmap/logo" />
+                    -->
+
+                <TextView
+                    android:id="@+id/HomeScreenTxtViewAppName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="26sp"
+                    android:textSize="20sp" />
+            </RelativeLayout>
+        </androidx.appcompat.widget.Toolbar>
+
+        <TextView
+            android:id="@+id/HomeScreenTxtViewTitleMessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20sp"
+            android:textSize="35sp"
+            android:layout_below="@+id/HomeScreenToolbar"
+            />
+
+        <TextView
+            android:id="@+id/HomeScreenTxtViewUserInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20sp"
+            android:layout_below="@+id/HomeScreenTxtViewTitleMessage" />
+
+        <TextView
+            android:id="@+id/HomeScreenTxtViewPrdshPrtc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20sp"
+            android:layout_below="@+id/HomeScreenTxtViewUserInfo" />
+
+        <ListView
+            android:id="@+id/HomeScreenListViewMenuItems"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginVertical="20sp"
+            android:layout_below="@+id/HomeScreenTxtViewPrdshPrtc"/>
+
+    </RelativeLayout>
+
+</androidx.drawerlayout.widget.DrawerLayout>
