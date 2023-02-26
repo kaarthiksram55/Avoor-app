@@ -12,4 +12,10 @@
     <string name="LandingScreenUsernameToolTipText">Mobile number</string>
     <string name="LandingScreenPasswordToolTipText">Password</string>
     <string name="LandingScreenIntentUserNameKey">LandingScreenIntentKey_Username</string>
+    <string name="LandingScreenInvalidLogin">Invalid login credentials.</string>
+
+    <string name="MenuItemUsersList">List of participants</string>
+    <string name="MenuItemPradoshamDates">Pradosham dates</string>
+    <string name="MenuItemSankalpamDetails">Sankalpam Details</string>
+    <string name="MenuItemPhotosAndVideos">Photos and Videos</string>
 </resources>
