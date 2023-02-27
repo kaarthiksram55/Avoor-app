@@ -18,4 +18,7 @@
     <string name="MenuItemPradoshamDates">Pradosham dates</string>
     <string name="MenuItemSankalpamDetails">Sankalpam Details</string>
     <string name="MenuItemPhotosAndVideos">Photos and Videos</string>
+
+    <string name="ThreeDotsMenuLogoutName">Log out</string>
+    <string name="ThreeDotsMenuAboutName">About</string>
 </resources>

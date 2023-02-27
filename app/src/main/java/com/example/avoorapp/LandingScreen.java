@@ -42,7 +42,8 @@ public class LandingScreen extends AppCompatActivity
         if (strUserNameFieldValue.length() == 10)
         {
             /* Make an intent object with the below flags set to prevent coming back to the landing
-             * screen from home screen. Pass the mobile number information to the home screen. */
+             * screen from home screen by clicking the back button. Pass the mobile number
+             * information to the home screen. */
             Intent intent = new Intent(v.getContext(), HomeScreen.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             String strIntentMobileNumberKey = this.getResources().getString(R.string.LandingScreenIntentUserNameKey);

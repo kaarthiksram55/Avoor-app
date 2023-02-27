@@ -4,10 +4,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -55,8 +57,33 @@ public class HomeScreen extends AppCompatActivity
     /* This method has been implemented to generate the ellipsis (three dots) menu. */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        /* Here, menu has been created in xml and linked here. Menu items can also be directly
+         * specified as objects here directly, for e.g., menu.add("menu_name"). */
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.home_screen_ellipsis_menu, menu);
-        return true;
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item)
+    {
+        /* Check which menu item has been selected and accordingly direct to the desired page. */
+        if (item.getTitle().equals(this.getResources().getString(R.string.ThreeDotsMenuLogoutName)))
+        {
+            /* If the log out menu item is selected, open the landing screen again. */
+            openLandingScreen();
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    /* This method has been implemented for the Logout menu option. */
+    public void openLandingScreen()
+    {
+        /* Make an intent object with the below flags set to prevent going back to the application
+         * screens with the back button after opting to log out. */
+        Intent intent = new Intent(this.getApplicationContext(), LandingScreen.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
     }
 }
