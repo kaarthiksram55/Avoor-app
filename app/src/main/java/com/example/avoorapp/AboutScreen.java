@@ -33,7 +33,7 @@ public class AboutScreen extends AppCompatActivity
         setContentView(R.layout.about_screen);
 
         tvAboutScreenTxtViewAppInfo = findViewById(R.id.AboutScreenTxtViewAppInfo);
-        obtainRevisionHistory();
+        obtainRevisionHistoryFromFirebase();
 
         /* Revision history will eventually be obtained from firebase. Hence checking if the list
          * is empty in case nothing is downloaded due to some fault. */
@@ -67,7 +67,8 @@ public class AboutScreen extends AppCompatActivity
         }
     }
 
-    private void obtainRevisionHistory()
+    /* This method is used to obtain the version and revision history information from firebase. */
+    private void obtainRevisionHistoryFromFirebase()
     {
         /* Do nothing for now. To be implemented once firebase integration is done. */
     }

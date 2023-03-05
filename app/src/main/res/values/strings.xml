@@ -5,8 +5,9 @@
     <string name="LandingScreenLogoImgViewDescription">Holds the app logo</string>
     <string name="AboutScreenLogoImgViewDescription">Holds the app logo</string>
     <string name="HomeScreenLogoImgViewDescription">Holds the app logo</string>
+    <string name="SponsorsScreenLogoImgViewDescription">Holds the app logo</string>
 
-    <string name="LandingScreenTitleEnglish">Avoor Pasupatheeswaram Pradosham Kaingariyam App</string>
+    <string name="LandingScreenTitleEnglish">Avoor Pasupatheeswaram Pradosham Kainkariyam App</string>
     <string name="AvoorAppDisplayNameEnglish">Avoor Pradosham App</string>
     <string name="HomeScreenTitleEnglish">Avoor Pasupatheeswaram Temple</string>
 
@@ -20,11 +21,15 @@
     <string name="LandingScreenIntentUserNameKey">LandingScreenIntentKey_Username</string>
     <string name="LandingScreenInvalidLogin">Invalid login credentials.</string>
 
-    <string name="MenuItemUsersList">List of participants</string>
+    <string name="MenuItemSponsorsList">List of sponsors</string>
     <string name="MenuItemPradoshamDates">Pradosham dates</string>
     <string name="MenuItemSankalpamDetails">Sankalpam Details</string>
     <string name="MenuItemPhotosAndVideos">Photos and Videos</string>
 
     <string name="ThreeDotsMenuLogoutName">Log out</string>
     <string name="ThreeDotsMenuAboutName">About</string>
+
+    <string name="SponsorScreenTableHeaderName">Name</string>
+    <string name="SponsorScreenTableHeaderMobileNumber">Mobile number</string>
+    <string name="SponsorScreenTableHeaderLocation">Location</string>
 </resources>

@@ -2,9 +2,12 @@ package com.example.avoorapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -22,10 +25,10 @@ public class HomeScreen extends AppCompatActivity
     {
         TextView tvHomeScreenTxtViewAppName, tvHomeScreenTxtViewTitleMessage, tvHomeScreenTxtViewUserInfo, tvHomeScreenTxtViewPrdshPrtc;
         ListView lvHomeScreenListViewMenuItems;
-        Toolbar tbHomeScreenToolbar;
+        Toolbar tlbarHomeScreenToolbar;
         String[] strListViewMenuItemsNames =
         {
-            this.getResources().getString(R.string.MenuItemUsersList),
+            this.getResources().getString(R.string.MenuItemSponsorsList),
             this.getResources().getString(R.string.MenuItemPradoshamDates),
             this.getResources().getString(R.string.MenuItemSankalpamDetails),
             this.getResources().getString(R.string.MenuItemPhotosAndVideos)
@@ -39,19 +42,27 @@ public class HomeScreen extends AppCompatActivity
         tvHomeScreenTxtViewUserInfo = findViewById(R.id.HomeScreenTxtViewUserInfo);
         tvHomeScreenTxtViewPrdshPrtc = findViewById(R.id.HomeScreenTxtViewPrdshPrtc);
         lvHomeScreenListViewMenuItems = findViewById(R.id.HomeScreenListViewMenuItems);
-        tbHomeScreenToolbar = findViewById(R.id.HomeScreenToolbar);
+        tlbarHomeScreenToolbar = findViewById(R.id.HomeScreenToolbar);
 
         tvHomeScreenTxtViewAppName.setText(this.getResources().getString(R.string.AvoorAppDisplayNameEnglish));
         tvHomeScreenTxtViewTitleMessage.setText(this.getResources().getString(R.string.HomeScreenTitleEnglish));
         tvHomeScreenTxtViewPrdshPrtc.setText("Next on: 27th Feb 2023");
         lvHomeScreenListViewMenuItems.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, strListViewMenuItemsNames));
-        setSupportActionBar(tbHomeScreenToolbar);
+        setSupportActionBar(tlbarHomeScreenToolbar);
 
         /* The mobile number received from the previous screen will be valid as checks have been
          * performed there. Hence no need to check here once again. */
         Intent intent = getIntent();
         long longMobileNumber = intent.getLongExtra(this.getResources().getString(R.string.LandingScreenIntentUserNameKey), 0);
         tvHomeScreenTxtViewUserInfo.setText("Welcome, " + longMobileNumber);
+
+        lvHomeScreenListViewMenuItems.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                String strListItemName = adapterView.getItemAtPosition(position).toString();
+                selectScreenFromListOption(strListItemName);
+            }
+        });
     }
 
     /* This method has been implemented to generate the ellipsis (three dots) menu. */
@@ -82,8 +93,70 @@ public class HomeScreen extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-    /* This method has been implemented for the Logout menu option. */
-    public void openLandingScreen()
+    /* This method has been implemented to go to the desired screen on clicking a menu item from
+     * the list of menu items. */
+    private void selectScreenFromListOption(String strListItemName)
+    {
+        if (strListItemName.equals(getResources().getString(R.string.MenuItemSponsorsList)))
+        {
+            openSponsorsScreen();
+        }
+        else if (strListItemName.equals(getResources().getString(R.string.MenuItemPradoshamDates)))
+        {
+            openPradoshamScreen();
+        }
+        else if (strListItemName.equals(getResources().getString(R.string.MenuItemSankalpamDetails)))
+        {
+            openSankalpamScreen();
+        }
+        else if (strListItemName.equals(getResources().getString(R.string.MenuItemPhotosAndVideos)))
+        {
+            openGalleryScreen();
+        }
+        else
+        {
+            Log.d("Error: ", "invalid menu item selected");
+        }
+    }
+
+    /* This method has been implemented for the Sponsors list menu option from the list view. */
+    private void openSponsorsScreen()
+    {
+        /* Make an intent object to go to the Sponsors list screen. User should be able to get back
+         * to the home screen, so do not set any intent flags. */
+        Intent intent = new Intent(this.getApplicationContext(), SponsorsScreen.class);
+        startActivity(intent);
+    }
+
+    /* This method has been implemented for the Sponsors list menu option from the list view. */
+    private void openPradoshamScreen()
+    {
+        /* Make an intent object to go to the Sponsors list screen. User should be able to get back
+         * to the home screen, so do not set any intent flags. */
+//         Intent intent = new Intent(this.getApplicationContext(), SponsorsScreen.class);
+//         startActivity(intent);
+    }
+
+    /* This method has been implemented for the Sponsors list menu option from the list view. */
+    private void openSankalpamScreen()
+    {
+        /* Make an intent object to go to the Sponsors list screen. User should be able to get back
+         * to the home screen, so do not set any intent flags. */
+//        Intent intent = new Intent(this.getApplicationContext(), SponsorsScreen.class);
+//        startActivity(intent);
+    }
+
+    /* This method has been implemented for the Sponsors list menu option from the list view. */
+    private void openGalleryScreen()
+    {
+        /* Make an intent object to go to the Sponsors list screen. User should be able to get back
+         * to the home screen, so do not set any intent flags. */
+//        Intent intent = new Intent(this.getApplicationContext(), SponsorsScreen.class);
+//        startActivity(intent);
+    }
+
+    /* This method has been implemented for the Logout menu option from the ellpisis menu. */
+    private void openLandingScreen()
     {
         /* Make an intent object with the below flags set to prevent going back to the application
          * screens with the back button after opting to log out. */
@@ -92,13 +165,12 @@ public class HomeScreen extends AppCompatActivity
         startActivity(intent);
     }
 
-    /* This method has been implemented for the about menu option. */
-    public void openAboutScreen()
+    /* This method has been implemented for the about menu option from the ellpisis menu. */
+    private void openAboutScreen()
     {
         /* Make an intent object to go to the about screen. User should be able to get back to the
          * home screen, so do not set any intent flags. */
         Intent intent = new Intent(this.getApplicationContext(), AboutScreen.class);
-        // intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
     }
 }

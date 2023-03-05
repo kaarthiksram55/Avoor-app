@@ -21,6 +21,7 @@
 
         <activity android:name=".HomeScreen" />
         <activity android:name=".AboutScreen" />
+        <activity android:name=".SponsorsScreen" />
 
     </application>
 
