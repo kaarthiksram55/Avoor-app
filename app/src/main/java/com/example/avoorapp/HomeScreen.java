@@ -13,7 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-/* This class represents the home screen which appears when the app is just opened. */
+/* This class represents the home screen which appears after logging in via the Landing screen. */
 public class HomeScreen extends AppCompatActivity
 {
     /* This method is called in the background. Set the screen (xml layout) this class is supposed
@@ -44,7 +44,7 @@ public class HomeScreen extends AppCompatActivity
         tvHomeScreenTxtViewAppName.setText(this.getResources().getString(R.string.AvoorAppDisplayNameEnglish));
         tvHomeScreenTxtViewTitleMessage.setText(this.getResources().getString(R.string.HomeScreenTitleEnglish));
         tvHomeScreenTxtViewPrdshPrtc.setText("Next on: 27th Feb 2023");
-        lvHomeScreenListViewMenuItems.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, strListViewMenuItemsNames));
+        lvHomeScreenListViewMenuItems.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, strListViewMenuItemsNames));
         setSupportActionBar(tbHomeScreenToolbar);
 
         /* The mobile number received from the previous screen will be valid as checks have been
@@ -70,8 +70,13 @@ public class HomeScreen extends AppCompatActivity
         /* Check which menu item has been selected and accordingly direct to the desired page. */
         if (item.getTitle().equals(this.getResources().getString(R.string.ThreeDotsMenuLogoutName)))
         {
-            /* If the log out menu item is selected, open the landing screen again. */
+            /* If the 'log out' menu item is selected, open the landing screen again. */
             openLandingScreen();
+        }
+        else if (item.getTitle().equals(this.getResources().getString(R.string.ThreeDotsMenuAboutName)))
+        {
+            /* If the 'about' menu item is selected, open the landing screen again. */
+            openAboutScreen();
         }
 
         return super.onOptionsItemSelected(item);
@@ -84,6 +89,16 @@ public class HomeScreen extends AppCompatActivity
          * screens with the back button after opting to log out. */
         Intent intent = new Intent(this.getApplicationContext(), LandingScreen.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+    }
+
+    /* This method has been implemented for the about menu option. */
+    public void openAboutScreen()
+    {
+        /* Make an intent object to go to the about screen. User should be able to get back to the
+         * home screen, so do not set any intent flags. */
+        Intent intent = new Intent(this.getApplicationContext(), AboutScreen.class);
+        // intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
     }
 }
