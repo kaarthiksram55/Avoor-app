@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "182535006333",
+    "project_id": "avoorapp",
+    "storage_bucket": "avoorapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:182535006333:android:8daab7fbcb369202b22914",
+        "android_client_info": {
+          "package_name": "com.example.avoorapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "182535006333-l3ej7difhom55fo00k11eqnq7096i56j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-rvigXPRa4Ev3TAC-yOfOXsdQnN0wdLQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "182535006333-l3ej7difhom55fo00k11eqnq7096i56j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
