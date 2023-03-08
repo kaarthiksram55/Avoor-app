@@ -1,10 +1,11 @@
 package com.example.avoorapp;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+
+import com.example.avoorapp.support.SponsorsInfo;
 
 import androidx.appcompat.widget.Toolbar;
 
@@ -14,13 +15,13 @@ import androidx.appcompat.app.AppCompatActivity;
 public class SponsorsScreen extends AppCompatActivity
 {
     /* Create a class whose objects act like a struct to hold information about sponsors. */
-    public static class SponsorsInfo
-    {
-        /* Member variables. */
-        public String strSponsorName = "";
-        public String strSponsorNumber = "";
-        public String strSponsorLocation = "";
-    }
+//    public static class SponsorsInfo
+//    {
+//        /* Member variables. */
+//        public String strSponsorName = "";
+//        public String strSponsorNumber = "";
+//        public String strSponsorLocation = "";
+//    }
 
     /* member variables */
     private TableLayout tblSponsorsScreenSponsorsInfoTable;

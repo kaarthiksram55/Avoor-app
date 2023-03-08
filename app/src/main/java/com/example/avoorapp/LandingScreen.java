@@ -6,9 +6,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
+import com.example.avoorapp.support.FirebaseWrapper;
+import com.example.avoorapp.support.SponsorsInfo;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.database.annotations.NotNull;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -34,27 +35,33 @@ public class LandingScreen extends AppCompatActivity
         etLandingScreenEditTxtUsername = findViewById(R.id.LandingScreenEditTxtUsername);
         etLandingScreenEditTxtPassword = findViewById(R.id.LandingScreenEditTxtPassword);
 
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection("Sponsors")
-            .get()
-            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>()
-            {
-                @Override
-                public void onComplete(@NonNull Task<QuerySnapshot> task)
-                {
-                    if (task.isSuccessful())
-                    {
-                        for (QueryDocumentSnapshot document : task.getResult())
-                        {
-                            Log.d("firebase", document.getId() + " => " + document.getData());
-                        }
-                    }
-                    else
-                    {
-                        Log.w("firebase", "Error getting documents.", task.getException());
-                    }
-                }
-            });
+        FirebaseWrapper tempWrapper = new FirebaseWrapper();
+        tempWrapper.showSponsorsInfo();
+//        SponsorsInfo[] sponsorsInfoArr = new SponsorsInfo[2];
+//        int i = 0;
+//        FirebaseFirestore db = FirebaseFirestore.getInstance();
+//        db.collection("Sponsors")
+//            .get()
+//            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>()
+//            {
+//                @Override
+//                public void onComplete(@NonNull Task<QuerySnapshot> task)
+//                {
+//                    if (task.isSuccessful())
+//                    {
+//                        for (QueryDocumentSnapshot document : task.getResult())
+//                        {
+//                            sponsorsInfoArr[i] = document.toObject(SponsorsInfo.class);
+//                            Log.d("firebase", document.getId() + " => " + document.getData());
+//                            Log.d("firebase", sponsorsInfoArr[i].strSponsorName);
+//                        }
+//                    }
+//                    else
+//                    {
+//                        Log.w("firebase", "Error getting documents.", task.getException());
+//                    }
+//                }
+//            });
     }
 
     /* This method is called when the button to jump to home screen is clicked. This is for debug
