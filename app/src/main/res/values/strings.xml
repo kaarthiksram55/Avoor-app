@@ -18,7 +18,7 @@
     <string name="LandingScreenUsernameHintText">Mobile number</string>
     <string name="LandingScreenPasswordHintText">Password</string>
     <string name="LandingScreenLoginButtonText">Login</string>
-    <string name="LandingScreenIntentUserNameKey">LandingScreenIntentKey_Username</string>
+    <string name="LandingScreenIntentSponsorInfoKey">LandingScreenIntentKey_Username</string>
 
     <string name="LandingScreenLoginStatusInvalidCredentials">Invalid username or password.</string>
     <string name="LandingScreenLoginStatusCredentialsMismatch">Username and Password do not match.</string>

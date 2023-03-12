@@ -6,13 +6,12 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
+import com.example.avoorapp.support.SponsorsInfo;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -50,18 +49,15 @@ public class HomeScreen extends AppCompatActivity
         lvHomeScreenListViewMenuItems.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, strListViewMenuItemsNames));
         setSupportActionBar(tlbarHomeScreenToolbar);
 
-        /* The mobile number received from the previous screen will be valid as checks have been
+        /* The Sponsor info received from the previous screen will be valid as checks have been
          * performed there. Hence no need to check here once again. */
         Intent intent = getIntent();
-        long longMobileNumber = intent.getLongExtra(this.getResources().getString(R.string.LandingScreenIntentUserNameKey), 0);
-        tvHomeScreenTxtViewUserInfo.setText("Welcome, " + longMobileNumber);
+        final SponsorsInfo currentSponsorInfo = (SponsorsInfo)intent.getSerializableExtra(this.getResources().getString(R.string.LandingScreenIntentSponsorInfoKey));
+        tvHomeScreenTxtViewUserInfo.setText("Welcome, " + currentSponsorInfo.getStrSponsorName());
 
-        lvHomeScreenListViewMenuItems.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                String strListItemName = adapterView.getItemAtPosition(position).toString();
-                selectScreenFromListOption(strListItemName);
-            }
+        lvHomeScreenListViewMenuItems.setOnItemClickListener((adapterView, view, position, id) -> {
+            String strListItemName = adapterView.getItemAtPosition(position).toString();
+            selectScreenFromListOption(strListItemName);
         });
     }
 
@@ -75,8 +71,10 @@ public class HomeScreen extends AppCompatActivity
         return super.onCreateOptionsMenu(menu);
     }
 
+    /* This method has been overridden and implemented to go to the desired screen on clicking a
+     * menu item from the ellipsis menu. */
     @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item)
+    public boolean onOptionsItemSelected(MenuItem item)
     {
         /* Check which menu item has been selected and accordingly direct to the desired page. */
         if (item.getTitle().equals(this.getResources().getString(R.string.ThreeDotsMenuLogoutName)))

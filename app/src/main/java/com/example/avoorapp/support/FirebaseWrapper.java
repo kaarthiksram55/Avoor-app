@@ -9,7 +9,6 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import org.checkerframework.checker.nullness.qual.NonNull;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class FirebaseWrapper
@@ -23,7 +22,7 @@ public class FirebaseWrapper
     {
         /* Initialize member variables. */
         firestoreDatabase = FirebaseFirestore.getInstance();
-        sponsorInfo = new SponsorsInfo(); // ArrayList<>();
+        sponsorInfo = new SponsorsInfo();
         Log.d("debugaaa", "aaa");
     }
 
@@ -50,7 +49,6 @@ public class FirebaseWrapper
                     {
                         downloadCompletion.onDownloadFailureCallback();
                     }
-
                 }
                 else
                 {

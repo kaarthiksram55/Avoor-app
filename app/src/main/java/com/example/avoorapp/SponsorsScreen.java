@@ -14,15 +14,6 @@ import androidx.appcompat.app.AppCompatActivity;
 /* This class represents the Sponsors screen which displays the details of all pradosham sponsors. */
 public class SponsorsScreen extends AppCompatActivity
 {
-    /* Create a class whose objects act like a struct to hold information about sponsors. */
-//    public static class SponsorsInfo
-//    {
-//        /* Member variables. */
-//        public String strSponsorName = "";
-//        public String strSponsorNumber = "";
-//        public String strSponsorLocation = "";
-//    }
-
     /* member variables */
     private TableLayout tblSponsorsScreenSponsorsInfoTable;
 
@@ -74,9 +65,9 @@ public class SponsorsScreen extends AppCompatActivity
         for (int index=0; index<sponsorsInfoArr.length; index++)
         {
             sponsorsInfoArr[index] = new SponsorsInfo();
-            sponsorsInfoArr[index].strSponsorName = strSponsorName[index];
-            // sponsorsInfoArr[index].strSponsorNumber = strSponsorNumber[index];
-            sponsorsInfoArr[index].strSponsorLocation = strSponsorLocation[index];
+            sponsorsInfoArr[index].setStrSponsorName(strSponsorName[index]);
+            sponsorsInfoArr[index].setStrSponsorNumber(strSponsorNumber[index]);
+            sponsorsInfoArr[index].setStrSponsorLocation(strSponsorLocation[index]);
         }
     }
 
@@ -89,17 +80,17 @@ public class SponsorsScreen extends AppCompatActivity
             TextView tvSponsorInfoCell;
 
             tvSponsorInfoCell = new TextView(this);
-            tvSponsorInfoCell.setText(sponsorsInfo.strSponsorName);
+            tvSponsorInfoCell.setText(sponsorsInfo.getStrSponsorName());
             tvSponsorInfoCell.setPadding(10, 10, 10, 10);
             tblrowSponsorInfoRow.addView(tvSponsorInfoCell);
-
-//            tvSponsorInfoCell = new TextView(this);
-//            tvSponsorInfoCell.setText(sponsorsInfo.strSponsorNumber);
-//            tvSponsorInfoCell.setPadding(10, 10, 10, 10);
-//            tblrowSponsorInfoRow.addView(tvSponsorInfoCell);
-
+//
             tvSponsorInfoCell = new TextView(this);
-            tvSponsorInfoCell.setText(sponsorsInfo.strSponsorLocation);
+            tvSponsorInfoCell.setText(sponsorsInfo.getStrSponsorNumber());
+            tvSponsorInfoCell.setPadding(10, 10, 10, 10);
+            tblrowSponsorInfoRow.addView(tvSponsorInfoCell);
+//
+            tvSponsorInfoCell = new TextView(this);
+            tvSponsorInfoCell.setText(sponsorsInfo.getStrSponsorLocation());
             tvSponsorInfoCell.setPadding(10, 10, 10, 10);
             tblrowSponsorInfoRow.addView(tvSponsorInfoCell);
 

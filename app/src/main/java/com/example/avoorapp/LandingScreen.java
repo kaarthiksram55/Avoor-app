@@ -10,8 +10,6 @@ import com.example.avoorapp.support.FirebaseDownloadStatus;
 import com.example.avoorapp.support.FirebaseWrapper;
 import com.example.avoorapp.support.SponsorsInfo;
 
-import java.util.ArrayList;
-
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -20,7 +18,6 @@ public class LandingScreen extends AppCompatActivity
 {
     /* member variables */
     private EditText etLandingScreenEditTxtUsername, etLandingScreenEditTxtPassword;
-    private SponsorsInfo singleSponsorInfo;
     private FirebaseWrapper tempWrapper;
 
     /* This method is called in the background. Set the screen (xml layout) this class is supposed
@@ -49,21 +46,19 @@ public class LandingScreen extends AppCompatActivity
         if (strUsernameFieldValue.length() == 10 && strUsernameFieldValue.matches("[0-9]+") && !(strPasswordFieldValue.isEmpty())) {
             tempWrapper.downloadSingleSponsorInfo(strUsernameFieldValue, new FirebaseDownloadStatus() {
                 @Override
-                public void onDownloadCompleteCallback() {
-                    singleSponsorInfo = tempWrapper.getSingleSponsorInfo();
-                    boolean boolLoginValidityStatus = prvVerifyLoginCredentials(strPasswordFieldValue);
+                public void onDownloadCompleteCallback()
+                {
+                    final SponsorsInfo singleSponsorInfo = tempWrapper.getSingleSponsorInfo();
 
-                    if (boolLoginValidityStatus) {
-                        /* Make an intent object with the below flags set to prevent coming back to the landing
-                         * screen from home screen by clicking the back button. Pass the mobile number
-                         * information to the home screen. */
-                        singleSponsorInfo.strSponsorNumber = strUsernameFieldValue;
+                    if (singleSponsorInfo.getStrSponsorPassword().equals(strPasswordFieldValue)) {
+                        /* Make an intent object with the below flags set to prevent coming back to
+                         * the landing screen from home screen by clicking the back button. Pass the
+                         * mobile number information to the home screen. */
+                        singleSponsorInfo.setStrSponsorNumber(strUsernameFieldValue);
                         Intent intent = new Intent(v.getContext(), HomeScreen.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        String strIntentMobileNumberKey = getApplicationContext().getResources().getString(R.string.LandingScreenIntentUserNameKey);
-                        long longMobileNumberValue = Long.parseLong(strUsernameFieldValue);
-                        intent.putExtra(strIntentMobileNumberKey, longMobileNumberValue);
-                        // checkout serializable to pass entire sponsor info to next activity.
+                        String strIntentSponsorInfoKey = getApplicationContext().getResources().getString(R.string.LandingScreenIntentSponsorInfoKey);
+                        intent.putExtra(strIntentSponsorInfoKey, singleSponsorInfo);
                         startActivity(intent);
                     }
                     else
@@ -74,7 +69,8 @@ public class LandingScreen extends AppCompatActivity
                 }
 
                 @Override
-                public void onDownloadFailureCallback() {
+                public void onDownloadFailureCallback()
+                {
                     /* display an alert to the user indicating that download of information failed. */
                     prvDisplayStatusUsingAlert(getApplicationContext().getResources().getString(R.string.LandingScreenLoginStatusDownloadFailed));
                 }
@@ -85,17 +81,6 @@ public class LandingScreen extends AppCompatActivity
             /* display an alert to the user indicating that the username entered is invalid. */
             prvDisplayStatusUsingAlert(getApplicationContext().getResources().getString(R.string.LandingScreenLoginStatusInvalidCredentials));
         }
-    }
-
-    /* This function verifies if the entered user name and password are a correct pair and returns
-     * the verification status. 'true' implies valid and 'false' implies invalid. */
-    private boolean prvVerifyLoginCredentials(String strPassword)
-    {
-        /* Verification of login credentials:
-         *
-         * Check if password entered matches with the value in firebase. If yes, then status should
-         * be returned as true. Else, it should be returned as false. */
-        return ((singleSponsorInfo.strSponsorPassword.equals(strPassword)));
     }
 
     /* This method displays an alert box with the desired status message. */
