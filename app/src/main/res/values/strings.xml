@@ -19,7 +19,10 @@
     <string name="LandingScreenPasswordHintText">Password</string>
     <string name="LandingScreenLoginButtonText">Login</string>
     <string name="LandingScreenIntentUserNameKey">LandingScreenIntentKey_Username</string>
-    <string name="LandingScreenInvalidLogin">Invalid login credentials.</string>
+
+    <string name="LandingScreenLoginStatusInvalidCredentials">Invalid username or password.</string>
+    <string name="LandingScreenLoginStatusCredentialsMismatch">Username and Password do not match.</string>
+    <string name="LandingScreenLoginStatusDownloadFailed">Unable to verify. Check if username is invalid or internet is unavailable.</string>
 
     <string name="MenuItemSponsorsList">List of sponsors</string>
     <string name="MenuItemPradoshamDates">Pradosham dates</string>
@@ -32,4 +35,6 @@
     <string name="SponsorScreenTableHeaderName">Name</string>
     <string name="SponsorScreenTableHeaderMobileNumber">Mobile number</string>
     <string name="SponsorScreenTableHeaderLocation">Location</string>
+
+    <string name="SponsorInfoBasicInfoDocumentName">SponsorInfo</string>
 </resources>

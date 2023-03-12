@@ -75,7 +75,7 @@ public class SponsorsScreen extends AppCompatActivity
         {
             sponsorsInfoArr[index] = new SponsorsInfo();
             sponsorsInfoArr[index].strSponsorName = strSponsorName[index];
-            sponsorsInfoArr[index].strSponsorNumber = strSponsorNumber[index];
+            // sponsorsInfoArr[index].strSponsorNumber = strSponsorNumber[index];
             sponsorsInfoArr[index].strSponsorLocation = strSponsorLocation[index];
         }
     }
@@ -93,10 +93,10 @@ public class SponsorsScreen extends AppCompatActivity
             tvSponsorInfoCell.setPadding(10, 10, 10, 10);
             tblrowSponsorInfoRow.addView(tvSponsorInfoCell);
 
-            tvSponsorInfoCell = new TextView(this);
-            tvSponsorInfoCell.setText(sponsorsInfo.strSponsorNumber);
-            tvSponsorInfoCell.setPadding(10, 10, 10, 10);
-            tblrowSponsorInfoRow.addView(tvSponsorInfoCell);
+//            tvSponsorInfoCell = new TextView(this);
+//            tvSponsorInfoCell.setText(sponsorsInfo.strSponsorNumber);
+//            tvSponsorInfoCell.setPadding(10, 10, 10, 10);
+//            tblrowSponsorInfoRow.addView(tvSponsorInfoCell);
 
             tvSponsorInfoCell = new TextView(this);
             tvSponsorInfoCell.setText(sponsorsInfo.strSponsorLocation);
