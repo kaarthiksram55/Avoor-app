@@ -37,4 +37,6 @@
     <string name="SponsorScreenTableHeaderLocation">Location</string>
 
     <string name="SponsorInfoBasicInfoDocumentName">SponsorInfo</string>
+    <string name="SponsorScreenInfoCollectionName">SponsorsScreenInfo</string>
+    <string name="SponsorScreenAllInfoStatusDownloadFailed">Unable to download data of all sponsors.</string>
 </resources>
