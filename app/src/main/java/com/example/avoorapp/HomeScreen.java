@@ -12,6 +12,10 @@ import android.widget.TextView;
 
 import com.example.avoorapp.support.SponsorsInfo;
 
+import org.checkerframework.checker.units.qual.A;
+
+import java.util.ArrayList;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -25,13 +29,9 @@ public class HomeScreen extends AppCompatActivity
         TextView tvHomeScreenTxtViewAppName, tvHomeScreenTxtViewTitleMessage, tvHomeScreenTxtViewUserInfo, tvHomeScreenTxtViewPrdshPrtc;
         ListView lvHomeScreenListViewMenuItems;
         Toolbar tlbarHomeScreenToolbar;
-        String[] strListViewMenuItemsNames =
-        {
-            this.getResources().getString(R.string.MenuItemSponsorsList),
-            this.getResources().getString(R.string.MenuItemPradoshamDates),
-            this.getResources().getString(R.string.MenuItemSankalpamDetails),
-            this.getResources().getString(R.string.MenuItemPhotosAndVideos)
-        };
+        ArrayList<String> strListViewMenuItemsNamesList = new ArrayList<String>();
+        Intent intent = getIntent();
+        final SponsorsInfo currentSponsorInfo = (SponsorsInfo)intent.getSerializableExtra(this.getResources().getString(R.string.LandingScreenIntentSponsorInfoKey));
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_screen);
@@ -43,18 +43,21 @@ public class HomeScreen extends AppCompatActivity
         lvHomeScreenListViewMenuItems = findViewById(R.id.HomeScreenListViewMenuItems);
         tlbarHomeScreenToolbar = findViewById(R.id.HomeScreenToolbar);
 
+        tvHomeScreenTxtViewUserInfo.setText("Welcome, " + currentSponsorInfo.getStrSponsorName());
         tvHomeScreenTxtViewAppName.setText(this.getResources().getString(R.string.AvoorAppDisplayNameEnglish));
         tvHomeScreenTxtViewTitleMessage.setText(this.getResources().getString(R.string.HomeScreenTitleEnglish));
         tvHomeScreenTxtViewPrdshPrtc.setText("Next on: 27th Feb 2023");
-        lvHomeScreenListViewMenuItems.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, strListViewMenuItemsNames));
         setSupportActionBar(tlbarHomeScreenToolbar);
 
-        /* The Sponsor info received from the previous screen will be valid as checks have been
-         * performed there. Hence no need to check here once again. */
-        Intent intent = getIntent();
-        final SponsorsInfo currentSponsorInfo = (SponsorsInfo)intent.getSerializableExtra(this.getResources().getString(R.string.LandingScreenIntentSponsorInfoKey));
-        tvHomeScreenTxtViewUserInfo.setText("Welcome, " + currentSponsorInfo.getStrSponsorName());
+        if(currentSponsorInfo.getIntAccessLevel() == SponsorsInfo.ACCESS_LEVEL_ADMIN)
+        {
+            strListViewMenuItemsNamesList.add(this.getResources().getString(R.string.MenuItemSponsorsList));
+        }
+        strListViewMenuItemsNamesList.add(this.getResources().getString(R.string.MenuItemPradoshamDates));
+        strListViewMenuItemsNamesList.add(this.getResources().getString(R.string.MenuItemSankalpamDetails));
+        strListViewMenuItemsNamesList.add(this.getResources().getString(R.string.MenuItemPhotosAndVideos));
 
+        lvHomeScreenListViewMenuItems.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, strListViewMenuItemsNamesList));
         lvHomeScreenListViewMenuItems.setOnItemClickListener((adapterView, view, position, id) -> {
             String strListItemName = adapterView.getItemAtPosition(position).toString();
             selectScreenFromListOption(strListItemName);

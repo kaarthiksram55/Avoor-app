@@ -13,9 +13,14 @@ public class SponsorsInfo implements Serializable {
     private String strSponsorNumber;
     private String strSponsorLocation;
     private String strSponsorPassword;
-    private boolean boolAdminRights;
-    private boolean boolAdminRightsSetOnceStatus = false;
+    private int intAccessLevel;
 
+    public static final int ACCESS_LEVEL_NONE = 0;
+    public static final int ACCESS_LEVEL_BASE = 1;
+    public static final int ACCESS_LEVEL_ADMIN = 2;
+
+    /* Make public methods for firebase to access the pirvate members and write their values. Write
+     * them such that the object info can be updated only once and never again. */
     public void setStrSponsorName(String strSponsorName)
     {
         this.strSponsorName = (this.strSponsorName == null) ? strSponsorName : this.strSponsorName;
@@ -36,10 +41,9 @@ public class SponsorsInfo implements Serializable {
         this.strSponsorPassword = (this.strSponsorPassword == null) ? strSponsorPassword : this.strSponsorPassword;
     }
 
-    public void setStrSponsorAdminRights(Boolean boolAdminRights)
+    public void setIntAccessLevel(int intAccessLevel)
     {
-        this.boolAdminRights = (!this.boolAdminRightsSetOnceStatus) ? boolAdminRights : this.boolAdminRights;
-        this.boolAdminRightsSetOnceStatus = true;
+        this.intAccessLevel = (this.intAccessLevel == this.ACCESS_LEVEL_NONE) ? intAccessLevel : this.intAccessLevel;
     }
 
     public String getStrSponsorName()
@@ -62,8 +66,8 @@ public class SponsorsInfo implements Serializable {
         return strSponsorPassword;
     }
 
-    public Boolean getStrSponsorAdminRights()
+    public int getIntAccessLevel()
     {
-        return boolAdminRights;
+        return intAccessLevel;
     }
 }
