@@ -4,13 +4,8 @@ import android.content.Context;
 import android.util.Log;
 
 import com.example.avoorapp.R;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QuerySnapshot;
-
-import org.checkerframework.checker.nullness.qual.NonNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,8 +16,7 @@ public class FirebaseWrapper
     private final FirebaseFirestore firestoreDatabase;
     private SponsorsInfo sponsorInfo;
     private ArrayList<SponsorsInfo> sponsorsInfoList;
-    private int intNrOfSponsorsInfoRequested;
-    private int intNrOfSponsorsInfoDownloaded = 0;
+    private ArrayList<PradoshamInfo> pradoshamInfoList;
     private Context appContext;
 
     /* constructor. */
@@ -32,60 +26,31 @@ public class FirebaseWrapper
         firestoreDatabase = FirebaseFirestore.getInstance();
         sponsorInfo = new SponsorsInfo();
         sponsorsInfoList = new ArrayList<SponsorsInfo>();
+        pradoshamInfoList = new ArrayList<PradoshamInfo>();
         appContext = context;
         Log.d("debugaaa", "aaa");
     }
 
     /* This function initiates download of data of single sponsor. */
-    public void downloadSingleSponsorInfo(String SponsorMobileNumber, FirebaseDownloadListener downloadCompletion)
+    public void downloadSingleSponsorInfo(String sponsorMobileNumber, FirebaseDownloadListener downloadListener)
     {
-        /* Set no. of requested downloads to 1 as this function is for a single sponsor. Then
-         * initiate download. */
-        prvResetSponsorsIndexVariables();
-        intNrOfSponsorsInfoRequested = 1;
-        prvDownloadSingleSponsorInfo(SponsorMobileNumber, downloadCompletion);
-    }
-
-    /* This function initiates download of data of all sponsors. */
-    public void downloadAllSponsorsInfo(FirebaseDownloadListener downloadListener)
-    {
-        /* Initiate download of the collection in which number of all sponsors is stored. Once this
-         * is downloaded, initiate download of information of each individual sponsor further using
-         * firebase again. */
-        prvResetSponsorsIndexVariables();
-        firestoreDatabase.collection(appContext.getResources().getString(R.string.SponsorScreenInfoCollectionName))
+        /* Download all sponsor information asynchronously using the firestore class get() method. */
+        firestoreDatabase.collection(appContext.getResources().getString(R.string.FirebaseSponsorsInfoCollectionName))
+        .document(sponsorMobileNumber)
         .get()
         .addOnCompleteListener(task -> {
             if (task.isSuccessful())
             {
-                List<DocumentSnapshot> documentSnapshotList = task.getResult().getDocuments();
-                if(documentSnapshotList.size() > 0)
+                sponsorInfo = task.getResult().toObject(SponsorsInfo.class);
+
+                if(sponsorInfo != null)
                 {
-                    intNrOfSponsorsInfoRequested = documentSnapshotList.size();
-
-                    for (int i=0; i<documentSnapshotList.size(); i++)
+                    sponsorInfo.setNumber(sponsorMobileNumber);
+                    for (int i=0; i<sponsorInfo.getFamilyDetails().size(); i++)
                     {
-                        prvDownloadSingleSponsorInfo(documentSnapshotList.get(i).getId(), new FirebaseDownloadListener()
-                        {
-                            @Override
-                            public void onDownloadCompleteCallback()
-                            {
-                                sponsorsInfoList.add(sponsorInfo);
-                                intNrOfSponsorsInfoDownloaded++;
-
-                                if(intNrOfSponsorsInfoDownloaded >= intNrOfSponsorsInfoRequested)
-                                {
-                                    downloadListener.onDownloadCompleteCallback();
-                                }
-                            }
-
-                            @Override
-                            public void onDownloadFailureCallback()
-                            {
-                                downloadListener.onDownloadFailureCallback();
-                            }
-                        });
+                        Log.d("debugFirebase", sponsorInfo.getFamilyDetails().get(i).toString());
                     }
+                    downloadListener.onDownloadCompleteCallback();
                 }
                 else
                 {
@@ -95,6 +60,75 @@ public class FirebaseWrapper
             else
             {
                 Log.w("firebase", "Error getting documents.", task.getException());
+                downloadListener.onDownloadFailureCallback();
+            }
+        });
+    }
+
+    /* This function initiates download of data of all sponsors. */
+    public void downloadAllSponsorsInfo(FirebaseDownloadListener downloadListener)
+    {
+        /* Initiate download of the collection in which info of all sponsors is stored. Once this
+         * is downloaded, assign the information of each individual sponsor to the Arraylist object
+         * to enable the caller to use the corresponding getter method. */
+        firestoreDatabase.collection(appContext.getResources().getString(R.string.FirebaseSponsorsInfoCollectionName))
+        .get()
+        .addOnCompleteListener(task -> {
+            if (task.isSuccessful())
+            {
+                List<DocumentSnapshot> documentSnapshotList = task.getResult().getDocuments();
+
+                if(documentSnapshotList.size() > 0)
+                {
+                    for (int i=0; i<documentSnapshotList.size(); i++)
+                    {
+                        SponsorsInfo tempInfo = documentSnapshotList.get(i).toObject(SponsorsInfo.class);
+                        tempInfo.setNumber(documentSnapshotList.get(i).getId());
+                        sponsorsInfoList.add(tempInfo);
+                    }
+
+                    downloadListener.onDownloadCompleteCallback();
+                }
+                else
+                {
+                    downloadListener.onDownloadFailureCallback();
+                }
+            }
+            else
+            {
+                Log.w("firebase", "Error getting documents.", task.getException());
+                downloadListener.onDownloadFailureCallback();
+            }
+        });
+    }
+
+    /* This function will download all the pradosham details from firebase. */
+    public void downloadPradoshamDetails(FirebaseDownloadListener downloadListener)
+    {
+        /* Initiate download of the collection in which info of all pradoshams is stored. Once this
+         * is downloaded, assign it to the ArrayList object for the same to enable the caller to use
+         * the corresponding getter method. */
+        firestoreDatabase.collection(appContext.getResources().getString(R.string.FirebasePradoshamDetailsCollectionName))
+        .get()
+        .addOnCompleteListener(task -> {
+            if (task.isSuccessful())
+            {
+                List<DocumentSnapshot> documentSnapshotList = task.getResult().getDocuments();
+
+                if(documentSnapshotList.size() > 0)
+                {
+                    for (int i=0; i<documentSnapshotList.size(); i++)
+                    {
+                        PradoshamInfo tempInfo = documentSnapshotList.get(i).toObject(PradoshamInfo.class);
+                        tempInfo.setYearName(documentSnapshotList.get(i).getId());
+                        pradoshamInfoList.add(tempInfo);
+                    }
+
+                    downloadListener.onDownloadCompleteCallback();
+                }
+            }
+            else
+            {
                 downloadListener.onDownloadFailureCallback();
             }
         });
@@ -114,38 +148,8 @@ public class FirebaseWrapper
         return sponsorsInfoList;
     }
 
-    /* This function downloads information of a single sponsor info using firebase APIs. */
-    private void prvDownloadSingleSponsorInfo(String SponsorMobileNumber, FirebaseDownloadListener downloadListener)
+    public ArrayList<PradoshamInfo> getPradoshamDetails()
     {
-        /* Download all sponsor information asynchronously using the firestore class get() method. */
-        firestoreDatabase.collection(SponsorMobileNumber)
-        .get()
-        .addOnCompleteListener(task -> {
-            if (task.isSuccessful())
-            {
-                List<SponsorsInfo> sponsorInfoList = task.getResult().toObjects(SponsorsInfo.class);
-                if(sponsorInfoList.size() > 0)
-                {
-                    sponsorInfo = sponsorInfoList.get(0);
-                    sponsorInfo.setStrSponsorNumber(SponsorMobileNumber);
-                    downloadListener.onDownloadCompleteCallback();
-                }
-                else
-                {
-                    downloadListener.onDownloadFailureCallback();
-                }
-            }
-            else
-            {
-                Log.w("firebase", "Error getting documents.", task.getException());
-                downloadListener.onDownloadFailureCallback();
-            }
-        });
-    }
-
-    private void prvResetSponsorsIndexVariables()
-    {
-        intNrOfSponsorsInfoRequested = 0;
-        intNrOfSponsorsInfoDownloaded = 0;
+        return pradoshamInfoList;
     }
 }

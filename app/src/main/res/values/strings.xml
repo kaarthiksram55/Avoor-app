@@ -6,10 +6,15 @@
     <string name="AboutScreenLogoImgViewDescription">Holds the app logo</string>
     <string name="HomeScreenLogoImgViewDescription">Holds the app logo</string>
     <string name="SponsorsScreenLogoImgViewDescription">Holds the app logo</string>
+    <string name="GalleryScreenLogoImgViewDescription">Holds the app logo</string>
+    <string name="PradoshamDatesScreenLogoImgViewDescription">Holds the app logo</string>
 
     <string name="LandingScreenTitleEnglish">Avoor Pasupatheeswaram Pradosham Kainkariyam App</string>
     <string name="AvoorAppDisplayNameEnglish">Avoor Pradosham App</string>
     <string name="HomeScreenTitleEnglish">Avoor Pasupatheeswaram Temple</string>
+    <string name="SponsorsScreenTitleEnglish">List of Sponsors</string>
+    <string name="GalleryScreenTitleEnglish">Gallery</string>
+    <string name="PradoshamDatesScreenTitleEnglish">Pradosham Dates</string>
 
     <string name="LandingScreenTitleTamil">ஏவூர் பசுபதீஸ்வரம் பிரதோஷம் கைங்கரியம் செயலி</string>
     <string name="AvoorAppDisplayNameTamil">ஆவூர் பிரதோஷம் செயலி</string>
@@ -39,4 +44,20 @@
     <string name="SponsorInfoBasicInfoDocumentName">SponsorInfo</string>
     <string name="SponsorScreenInfoCollectionName">SponsorsScreenInfo</string>
     <string name="SponsorScreenAllInfoStatusDownloadFailed">Unable to download data of all sponsors.</string>
+
+    <string name="FirebaseSponsorsInfoCollectionName">Sponsors</string>
+    <string name="FirebasePradoshamDetailsCollectionName">Pradosham</string>
+
+    <string name="PradoshamDatesScreenTableHeaderSNo">SNo</string>
+    <string name="PradoshamDatesScreenTableHeaderId">Id</string>
+    <string name="PradoshamDatesScreenTableHeaderTamilDate">TamilDate</string>
+    <string name="PradoshamDatesScreenTableHeaderEnglishDate">EnglishDate</string>
+    <string name="PradoshamDatesScreenTableHeaderDay">Day</string>
+
+    <string name="PradoshamScreenAllInfoStatusDownloadFailed">Unable to download data of all sponsors.</string>
+
+    <string name="PradoshamInfoAttributeNameId">id</string>
+    <string name="PradoshamInfoAttributeNameEnglishDate">englishDate</string>
+    <string name="PradoshamInfoAttributeNameTamilDate">tamilDate</string>
+    <string name="PradoshamInfoAttributeNameDay">day</string>
 </resources>

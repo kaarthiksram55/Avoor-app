@@ -30,17 +30,25 @@ public class SponsorsScreen extends AppCompatActivity
      * to display and initialize class variables and screen items as desired. */
     public void onCreate(Bundle savedInstanceState) {
         Toolbar tlbarSponsorsScreenToolbar;
-        TextView tvSponsorScreenTxtViewAppName;
+        TextView tvSponsorScreenTxtViewAppName, tvSponsorsScreenTxtViewTitleMessage;
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sponsors_screen);
 
         tblSponsorsScreenSponsorsInfoTable = findViewById(R.id.SponsorsScreenSponsorsInfoTable);
         tvSponsorScreenTxtViewAppName = findViewById(R.id.SponsorsScreenTxtViewAppName);
+        tvSponsorsScreenTxtViewTitleMessage = findViewById(R.id.SponsorsScreenTxtViewTitleMessage);
         tlbarSponsorsScreenToolbar = findViewById(R.id.SponsorsScreenToolbar);
         setSupportActionBar(tlbarSponsorsScreenToolbar);
 
-        tvSponsorScreenTxtViewAppName.setText(getResources().getString(R.string.AvoorAppDisplayNameEnglish));
+        tvSponsorScreenTxtViewAppName.setText(
+            getResources()
+            .getString(R.string.AvoorAppDisplayNameEnglish)
+        );
+        tvSponsorsScreenTxtViewTitleMessage.setText(
+            getResources()
+            .getString(R.string.SponsorsScreenTitleEnglish)
+        );
         alertDialog = new CustomAlertDialog(this);
         tempWrapper = new FirebaseWrapper(getApplicationContext());
         prvObtainSponsorsInfoFromFirebase();
@@ -56,7 +64,6 @@ public class SponsorsScreen extends AppCompatActivity
             public void onDownloadCompleteCallback()
             {
                 sponsorsInfoList = tempWrapper.getAllSponsorsInfo();
-                Log.d("debug----------", sponsorsInfoList.get(0).getStrSponsorName() + ", " + sponsorsInfoList.get(1).getStrSponsorName());
                 loadSponsorsInfoTableWithInfo(sponsorsInfoList);
             }
 
@@ -78,17 +85,17 @@ public class SponsorsScreen extends AppCompatActivity
             TextView tvSponsorInfoCell;
 
             tvSponsorInfoCell = new TextView(this);
-            tvSponsorInfoCell.setText(sponsorsInfoList.get(i).getStrSponsorName());
+            tvSponsorInfoCell.setText(sponsorsInfoList.get(i).getName());
             tvSponsorInfoCell.setPadding(10, 10, 10, 10);
             tblrowSponsorInfoRow.addView(tvSponsorInfoCell);
 
             tvSponsorInfoCell = new TextView(this);
-            tvSponsorInfoCell.setText(sponsorsInfoList.get(i).getStrSponsorNumber());
+            tvSponsorInfoCell.setText(sponsorsInfoList.get(i).getNumber());
             tvSponsorInfoCell.setPadding(10, 10, 10, 10);
             tblrowSponsorInfoRow.addView(tvSponsorInfoCell);
 
             tvSponsorInfoCell = new TextView(this);
-            tvSponsorInfoCell.setText(sponsorsInfoList.get(i).getStrSponsorLocation());
+            tvSponsorInfoCell.setText(sponsorsInfoList.get(i).getLocation());
             tvSponsorInfoCell.setPadding(10, 10, 10, 10);
             tblrowSponsorInfoRow.addView(tvSponsorInfoCell);
 

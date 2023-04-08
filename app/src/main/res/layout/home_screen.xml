@@ -26,19 +26,18 @@ android:layout_height="match_parent" >
                 <ImageView
                     android:id="@+id/HomeScreenImgViewLogo"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:contentDescription="@string/HomeScreenLogoImgViewDescription" />
-                    <!--
+                    android:layout_height="40sp"
+                    android:layout_margin="10sp"
+                    android:contentDescription="@string/HomeScreenLogoImgViewDescription"
                     android:onClick="launchHome"
-                    android:src="@mipmap/logo" />
-                    -->
+                    android:src="@mipmap/ic_launcher_round" />
 
                 <TextView
                     android:id="@+id/HomeScreenTxtViewAppName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10sp"
-                    android:layout_alignParentStart="true"
+                    android:layout_toRightOf="@+id/HomeScreenImgViewLogo"
                     android:textSize="20sp" />
 
             </RelativeLayout>
@@ -50,8 +49,7 @@ android:layout_height="match_parent" >
             android:layout_height="wrap_content"
             android:layout_margin="20sp"
             android:textSize="35sp"
-            android:layout_below="@+id/HomeScreenToolbar"
-            />
+            android:layout_below="@+id/HomeScreenToolbar" />
 
         <TextView
             android:id="@+id/HomeScreenTxtViewUserInfo"

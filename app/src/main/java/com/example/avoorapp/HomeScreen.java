@@ -32,6 +32,7 @@ public class HomeScreen extends AppCompatActivity
         ArrayList<String> strListViewMenuItemsNamesList = new ArrayList<String>();
         Intent intent = getIntent();
         final SponsorsInfo currentSponsorInfo = (SponsorsInfo)intent.getSerializableExtra(this.getResources().getString(R.string.LandingScreenIntentSponsorInfoKey));
+//        Log.d("debugHome", String.valueOf(currentSponsorInfo.tempDate.getDate()) + " " + String.valueOf(currentSponsorInfo.tempDate.getMonth()) + " " + String.valueOf(currentSponsorInfo.tempDate.getYear()+1900) + " " + String.valueOf(currentSponsorInfo.tempDate.getDay()));
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_screen);
@@ -43,13 +44,13 @@ public class HomeScreen extends AppCompatActivity
         lvHomeScreenListViewMenuItems = findViewById(R.id.HomeScreenListViewMenuItems);
         tlbarHomeScreenToolbar = findViewById(R.id.HomeScreenToolbar);
 
-        tvHomeScreenTxtViewUserInfo.setText("Welcome, " + currentSponsorInfo.getStrSponsorName());
+        tvHomeScreenTxtViewUserInfo.setText("Welcome, " + currentSponsorInfo.getName());
         tvHomeScreenTxtViewAppName.setText(this.getResources().getString(R.string.AvoorAppDisplayNameEnglish));
         tvHomeScreenTxtViewTitleMessage.setText(this.getResources().getString(R.string.HomeScreenTitleEnglish));
         tvHomeScreenTxtViewPrdshPrtc.setText("Next on: 27th Feb 2023");
         setSupportActionBar(tlbarHomeScreenToolbar);
 
-        if(currentSponsorInfo.getIntAccessLevel() == SponsorsInfo.ACCESS_LEVEL_ADMIN)
+        if(currentSponsorInfo.getAccessLevel() == SponsorsInfo.ACCESS_LEVEL_ADMIN)
         {
             strListViewMenuItemsNamesList.add(this.getResources().getString(R.string.MenuItemSponsorsList));
         }
@@ -104,7 +105,7 @@ public class HomeScreen extends AppCompatActivity
         }
         else if (strListItemName.equals(getResources().getString(R.string.MenuItemPradoshamDates)))
         {
-            openPradoshamScreen();
+            openPradoshamDatesScreen();
         }
         else if (strListItemName.equals(getResources().getString(R.string.MenuItemSankalpamDetails)))
         {
@@ -130,12 +131,12 @@ public class HomeScreen extends AppCompatActivity
     }
 
     /* This method has been implemented for the Sponsors list menu option from the list view. */
-    private void openPradoshamScreen()
+    private void openPradoshamDatesScreen()
     {
         /* Make an intent object to go to the Sponsors list screen. User should be able to get back
          * to the home screen, so do not set any intent flags. */
-//         Intent intent = new Intent(this.getApplicationContext(), SponsorsScreen.class);
-//         startActivity(intent);
+         Intent intent = new Intent(this.getApplicationContext(), PradoshamDatesScreen.class);
+         startActivity(intent);
     }
 
     /* This method has been implemented for the Sponsors list menu option from the list view. */
@@ -152,8 +153,8 @@ public class HomeScreen extends AppCompatActivity
     {
         /* Make an intent object to go to the Sponsors list screen. User should be able to get back
          * to the home screen, so do not set any intent flags. */
-//        Intent intent = new Intent(this.getApplicationContext(), SponsorsScreen.class);
-//        startActivity(intent);
+        Intent intent = new Intent(this.getApplicationContext(), GalleryScreen.class);
+        startActivity(intent);
     }
 
     /* This method has been implemented for the Logout menu option from the ellpisis menu. */

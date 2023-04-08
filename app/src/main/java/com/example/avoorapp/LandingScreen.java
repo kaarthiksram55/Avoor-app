@@ -53,7 +53,9 @@ public class LandingScreen extends AppCompatActivity
                 {
                     final SponsorsInfo singleSponsorInfo = tempWrapper.getSingleSponsorInfo();
 
-                    if (singleSponsorInfo.getStrSponsorPassword().equals(strPasswordFieldValue)) {
+//                    if (singleSponsorInfo.getStrSponsorPassword().equals(strPasswordFieldValue)) {
+                    if (singleSponsorInfo.getPassword().equals(strPasswordFieldValue))
+                    {
                         /* Make an intent object with the below flags set to prevent coming back to
                          * the landing screen from home screen by clicking the back button. Pass the
                          * logged in sponsor information to the home screen. */

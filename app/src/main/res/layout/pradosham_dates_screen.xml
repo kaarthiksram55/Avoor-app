@@ -12,7 +12,7 @@
         android:layout_alignParentTop="true" >
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/SponsorsScreenToolbar"
+            android:id="@+id/PradoshamDatesScreenToolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary"
@@ -23,19 +23,19 @@
                 android:layout_height="match_parent">
 
                 <ImageView
-                    android:id="@+id/SponsorsScreenImgViewLogo"
+                    android:id="@+id/PradoshamDatesScreenImgViewLogo"
                     android:layout_width="wrap_content"
                     android:layout_height="40sp"
                     android:layout_margin="10sp"
-                    android:contentDescription="@string/SponsorsScreenLogoImgViewDescription"
+                    android:contentDescription="@string/PradoshamDatesScreenLogoImgViewDescription"
                     android:src="@mipmap/ic_launcher_round" />
 
                 <TextView
-                    android:id="@+id/SponsorsScreenTxtViewAppName"
+                    android:id="@+id/PradoshamDatesScreenTxtViewAppName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10sp"
-                    android:layout_toRightOf="@+id/SponsorsScreenImgViewLogo"
+                    android:layout_toRightOf="@+id/PradoshamDatesScreenImgViewLogo"
                     android:textSize="20sp" />
 
             </RelativeLayout>
@@ -43,38 +43,43 @@
         </androidx.appcompat.widget.Toolbar>
 
         <TextView
-            android:id="@+id/SponsorsScreenTxtViewTitleMessage"
+            android:id="@+id/PradoshamDatesScreenTxtViewTitleMessage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10sp"
             android:textSize="35sp"
-            android:layout_below="@+id/SponsorsScreenToolbar" />
+            android:layout_below="@+id/PradoshamDatesScreenToolbar" />
 
         <TableLayout
-            android:id="@+id/SponsorsScreenSponsorsInfoTable"
+            android:id="@+id/PradoshamDatesScreenPradoshamInfoTable"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="10sp"
             android:layout_centerHorizontal="true"
-            android:layout_below="@+id/SponsorsScreenTxtViewTitleMessage" >
+            android:layout_below="@+id/PradoshamDatesScreenTxtViewTitleMessage" >
 
             <TableRow
                 tools:ignore="UselessParent" >
 
                 <TextView
-                    android:text="@string/SponsorScreenTableHeaderName"
-                    android:textSize="20sp"
+                    android:text="@string/PradoshamDatesScreenTableHeaderSNo"
                     android:paddingHorizontal="10sp"/>
 
                 <TextView
-                    android:text="@string/SponsorScreenTableHeaderMobileNumber"
-                    android:textSize="20sp"
+                    android:text="@string/PradoshamDatesScreenTableHeaderId"
+                    android:paddingHorizontal="10sp"/>
+
+                <TextView
+                    android:text="@string/PradoshamDatesScreenTableHeaderTamilDate"
                     android:paddingHorizontal="10sp" />
 
                 <TextView
-                    android:text="@string/SponsorScreenTableHeaderLocation"
-                    android:textSize="20sp"
+                    android:text="@string/PradoshamDatesScreenTableHeaderEnglishDate"
                     android:paddingHorizontal="10sp" />
+
+                <TextView
+                    android:text="@string/PradoshamDatesScreenTableHeaderDay"
+                    android:paddingHorizontal="10sp"/>
 
             </TableRow>
 

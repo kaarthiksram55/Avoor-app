@@ -1,6 +1,11 @@
 package com.example.avoorapp.support;
 
+import com.google.firebase.Timestamp;
+
 import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 /* Create a class whose objects act like a struct to hold information about sponsors. Make it
  * implement serializable to enable passing to other activities via Intent class objects. */
@@ -9,11 +14,12 @@ public class SponsorsInfo implements Serializable {
     /* Make members private and implement getter/setter methods for firebase to be able to access
      * and update. Make members private and setters as one time usable so that sponsor info is not
      * modified elsewhere by anyone else. */
-    private String strSponsorName;
-    private String strSponsorNumber;
-    private String strSponsorLocation;
-    private String strSponsorPassword;
-    private int intAccessLevel;
+    private String name;
+    private String number;
+    private String location;
+    private String password;
+    private int accessLevel;
+    private List<Map<String, String>> familyMembersDetailsList;
 
     public static final int ACCESS_LEVEL_NONE = 0;
     public static final int ACCESS_LEVEL_BASE = 1;
@@ -21,53 +27,64 @@ public class SponsorsInfo implements Serializable {
 
     /* Make public methods for firebase to access the pirvate members and write their values. Write
      * them such that the object info can be updated only once and never again. */
-    public void setStrSponsorName(String strSponsorName)
+    public void setName(String name)
     {
-        this.strSponsorName = (this.strSponsorName == null) ? strSponsorName : this.strSponsorName;
+        this.name = (this.name == null) ? name : this.name;
+    }
+    
+    public void setNumber(String number)
+    {
+        this.number = (this.number == null) ? number : this.number;
     }
 
-    public void setStrSponsorNumber(String strSponsorNumber)
+    public void setLocation(String location)
     {
-        this.strSponsorNumber = (this.strSponsorNumber == null) ? strSponsorNumber : this.strSponsorNumber;
+        this.location = (this.location == null) ? location : this.location;
     }
 
-    public void setStrSponsorLocation(String strSponsorLocation)
+    public void setPassword(String password)
     {
-        this.strSponsorLocation = (this.strSponsorLocation == null) ? strSponsorLocation : this.strSponsorLocation;
+        this.password = (this.password == null) ? password : this.password;
     }
 
-    public void setStrSponsorPassword(String strSponsorPassword)
+    public void setAccessLevel(int accessLevel)
     {
-        this.strSponsorPassword = (this.strSponsorPassword == null) ? strSponsorPassword : this.strSponsorPassword;
+        this.accessLevel = (this.accessLevel == this.ACCESS_LEVEL_NONE) ? accessLevel : this.accessLevel;
     }
 
-    public void setIntAccessLevel(int intAccessLevel)
+    public void setFamilyDetails(List<Map<String, String>> familyMembersDetailsList)
     {
-        this.intAccessLevel = (this.intAccessLevel == this.ACCESS_LEVEL_NONE) ? intAccessLevel : this.intAccessLevel;
+        this.familyMembersDetailsList = (this.familyMembersDetailsList == null) ? familyMembersDetailsList : this.familyMembersDetailsList;
     }
 
-    public String getStrSponsorName()
+    /* define public getter methods as all class variables are private. */
+    public String getName()
     {
-        return strSponsorName;
+        return name;
     }
 
-    public String getStrSponsorNumber()
+    public String getNumber()
     {
-        return strSponsorNumber;
+        return number;
     }
 
-    public String getStrSponsorLocation()
+    public String getLocation()
     {
-        return strSponsorLocation;
+        return location;
     }
 
-    public String getStrSponsorPassword()
+    public String getPassword()
     {
-        return strSponsorPassword;
+        return password;
     }
 
-    public int getIntAccessLevel()
+    public int getAccessLevel()
     {
-        return intAccessLevel;
+        return accessLevel;
+    }
+
+    public List<Map<String, String>> getFamilyDetails()
+    {
+        return familyMembersDetailsList;
     }
 }

@@ -22,6 +22,8 @@
         <activity android:name=".HomeScreen" />
         <activity android:name=".AboutScreen" />
         <activity android:name=".SponsorsScreen" />
+        <activity android:name=".GalleryScreen" />
+        <activity android:name=".PradoshamDatesScreen" />
 
     </application>
 
