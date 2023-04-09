@@ -53,6 +53,7 @@
     <string name="PradoshamDatesScreenTableHeaderTamilDate">TamilDate</string>
     <string name="PradoshamDatesScreenTableHeaderEnglishDate">EnglishDate</string>
     <string name="PradoshamDatesScreenTableHeaderDay">Day</string>
+    <string name="PradoshamDatesScreenYearSelectLabelName">Select year:</string>
 
     <string name="PradoshamScreenAllInfoStatusDownloadFailed">Unable to download data of all sponsors.</string>
 
