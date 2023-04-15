@@ -26,6 +26,8 @@
         <activity android:name=".PradoshamDatesScreen" />
         <activity android:name=".SankalpamScreen" />
         <activity android:name=".PradoshamDatesSponsorsScreen" />
+        <activity android:name=".GalleryAboutTempleScreen" />
+        <activity android:name=".GalleryTemplePathigamScreen" />
 
     </application>
 

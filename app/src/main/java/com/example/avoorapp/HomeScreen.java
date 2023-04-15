@@ -64,7 +64,7 @@ public class HomeScreen extends AppCompatActivity
         lvHomeScreenListViewMenuItems.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, strListViewMenuItemsNamesList));
         lvHomeScreenListViewMenuItems.setOnItemClickListener((adapterView, view, position, id) -> {
             String strListItemName = adapterView.getItemAtPosition(position).toString();
-            selectScreenFromListOption(strListItemName);
+            prvSelectScreenFromListOption(strListItemName);
         });
     }
 
@@ -100,7 +100,7 @@ public class HomeScreen extends AppCompatActivity
 
     /* This method has been implemented to go to the desired screen on clicking a menu item from
      * the list of menu items. */
-    private void selectScreenFromListOption(String strListItemName)
+    private void prvSelectScreenFromListOption(String strListItemName)
     {
         if (strListItemName.equals(getResources().getString(R.string.MenuItemSponsorsList)))
         {

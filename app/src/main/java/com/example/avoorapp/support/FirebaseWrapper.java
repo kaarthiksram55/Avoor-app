@@ -18,6 +18,7 @@ public class FirebaseWrapper
     /* member variables. */
     private final FirebaseFirestore firestoreDatabase;
     private SponsorsInfo sponsorInfo;
+    private GalleryInfo galleryInfo;
     private ArrayList<SponsorsInfo> sponsorsInfoList;
     private ArrayList<PradoshamInfo> pradoshamInfoList;
     private Context appContext;
@@ -28,17 +29,17 @@ public class FirebaseWrapper
         /* Initialize member variables. */
         firestoreDatabase = FirebaseFirestore.getInstance();
         sponsorInfo = new SponsorsInfo();
+        galleryInfo = new GalleryInfo();
         sponsorsInfoList = new ArrayList<SponsorsInfo>();
         pradoshamInfoList = new ArrayList<PradoshamInfo>();
         appContext = context;
-        Log.d("debugaaa", "aaa");
     }
 
     /* This function initiates download of data of single sponsor. */
     public void downloadSingleSponsorInfo(String sponsorMobileNumber, FirebaseDownloadListener downloadListener)
     {
         /* Download all sponsor information asynchronously using the firestore class get() method. */
-        sponsorsInfoList = new ArrayList<SponsorsInfo>();
+        sponsorInfo = new SponsorsInfo();
         firestoreDatabase.collection(appContext.getResources().getString(R.string.FirebaseSponsorsInfoCollectionName))
         .document(sponsorMobileNumber)
         .get()
@@ -59,7 +60,6 @@ public class FirebaseWrapper
             }
             else
             {
-                Log.w("firebase", "Error getting documents.", task.getException());
                 downloadListener.onDownloadFailureCallback();
             }
         });
@@ -128,6 +128,41 @@ public class FirebaseWrapper
 
                     downloadListener.onDownloadCompleteCallback();
                 }
+                else
+                {
+                    downloadListener.onDownloadFailureCallback();
+                }
+            }
+            else
+            {
+                downloadListener.onDownloadFailureCallback();
+            }
+        });
+    }
+
+    /* This function will download all the gallery related information from firebase. */
+    public void downloadGalleryInformation(FirebaseDownloadListener downloadListener)
+    {
+        /* Initiate download of the collection in which gallery related info is stored. Once this
+         * is downloaded, assign it to the GalleryInfo object for the same to enable the caller to
+         * use the corresponding getter method. */
+        galleryInfo = new GalleryInfo();
+        firestoreDatabase.collection(appContext.getResources().getString(R.string.FirebaseGalleryInformationCollectionName))
+        .get()
+        .addOnCompleteListener(task -> {
+            if (task.isSuccessful())
+            {
+                List<DocumentSnapshot> documentSnapshotList = task.getResult().getDocuments();
+
+                if(documentSnapshotList.size() > 0)
+                {
+                    galleryInfo = documentSnapshotList.get(0).toObject(GalleryInfo.class);
+                    downloadListener.onDownloadCompleteCallback();
+                }
+                else
+                {
+                    downloadListener.onDownloadFailureCallback();
+                }
             }
             else
             {
@@ -150,8 +185,17 @@ public class FirebaseWrapper
         return sponsorsInfoList;
     }
 
+    /* This function returns all the pradosham information requested via downloadPradoshamDetails()
+     * function. */
     public ArrayList<PradoshamInfo> getPradoshamDetails()
     {
         return pradoshamInfoList;
+    }
+
+    /* This function returns all the Gallery information requested via downloadGalleryInformation()
+     * function. */
+    public GalleryInfo getGalleryInformation()
+    {
+        return galleryInfo;
     }
 }

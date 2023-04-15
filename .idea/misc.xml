@@ -4,7 +4,9 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Avoor app/app/src/main/res/layout/about_screen.xml" value="0.10208333333333333" />
+        <entry key="..\:/Avoor app/app/src/main/res/layout/gallery_about_temple_screen.xml" value="0.264" />
         <entry key="..\:/Avoor app/app/src/main/res/layout/gallery_screen.xml" value="0.25416666666666665" />
+        <entry key="..\:/Avoor app/app/src/main/res/layout/gallery_temple_pathigam_screen.xml" value="0.25416666666666665" />
         <entry key="..\:/Avoor app/app/src/main/res/layout/home_screen.xml" value="0.264" />
         <entry key="..\:/Avoor app/app/src/main/res/layout/landing_screen.xml" value="0.25416666666666665" />
         <entry key="..\:/Avoor app/app/src/main/res/layout/pradosham_dates_screen.xml" value="0.25416666666666665" />

@@ -1,6 +1,5 @@
 package com.example.avoorapp;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -17,7 +16,6 @@ import com.example.avoorapp.support.FirebaseWrapper;
 import com.example.avoorapp.support.PradoshamInfo;
 import com.example.avoorapp.support.SponsorsInfo;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -37,8 +35,6 @@ public class PradoshamDatesSponsorsScreen extends AppCompatActivity
     private ArrayList<PradoshamInfo> pradoshamInfoList;
     private ArrayList<SponsorsInfo> sponsorsInfoList;
     private CustomAlertDialog alertDialog;
-//    private int intFirebaseDownloadModerator = 0;
-//    private final int intNrOfAsyncFirebaseDownloads = 2;
 
     /* This method is called in the background. Set the screen (xml layout) this class is supposed
      * to display and initialize class variables and screen items as desired. */

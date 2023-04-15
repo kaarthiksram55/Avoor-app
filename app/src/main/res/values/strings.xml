@@ -4,6 +4,8 @@
 
     <string name="LandingScreenIntentSponsorInfoKey">LandingScreenIntentKey_Username</string>
     <string name="HomeScreenSponsorInfoIntentKey">HomeScreenSponsorInfoIntentKey</string>
+    <string name="GalleryScreenAboutTempleIntentKey">GalleryScreenAboutTempleIntentKey</string>
+    <string name="GalleryScreenTemplePathigamIntentKey">GalleryScreenTemplePathigamIntentKey</string>
 
     <string name="LandingScreenLogoImgViewDescription">Holds the app logo</string>
     <string name="AboutScreenLogoImgViewDescription">Holds the app logo</string>
@@ -13,6 +15,8 @@
     <string name="PradoshamDatesScreenLogoImgViewDescription">Holds the app logo</string>
     <string name="SankalpamScreenLogoImgViewDescription">Holds the app logo</string>
     <string name="PradoshamDatesSponsorsScreenLogoImgViewDescription">Holds the app logo</string>
+    <string name="GalleryAboutTempleScreenLogoImgViewDescription">Holds the app logo</string>
+    <string name="GalleryTemplePathigamScreenLogoImgViewDescription">Holds the app logo</string>
 
     <string name="LandingScreenTitleEnglish">Avoor Pasupatheeswaram pradosham kainkariyam ppp</string>
     <string name="AvoorAppDisplayNameEnglish">Avoor pradosham app</string>
@@ -22,6 +26,8 @@
     <string name="PradoshamDatesScreenTitleEnglish">Pradosham dates</string>
     <string name="SankalpamScreenTitleEnglish">Sankalpam</string>
     <string name="PradoshamDatesSponsorsScreenTitleEnglish">Pradosham dates and sponsors</string>
+    <string name="GalleryAboutTempleScreenTitleEnglish">About the temple</string>
+    <string name="GalleryTemplePathigamScreenTitleEnglish">Temple pathigam</string>
 
     <string name="LandingScreenTitleTamil">ஏவூர் பசுபதீஸ்வரம் பிரதோஷம் கைங்கரியம் செயலி</string>
     <string name="AvoorAppDisplayNameTamil">ஆவூர் பிரதோஷம் செயலி</string>
@@ -39,7 +45,7 @@
     <string name="MenuItemPradoshamDates">Pradosham dates</string>
     <string name="MenuItemPradoshamSponsors">Pradosham sponsors</string>
     <string name="MenuItemSankalpamDetails">Sankalpam Details</string>
-    <string name="MenuItemPhotosAndVideos">Photos and Videos</string>
+    <string name="MenuItemPhotosAndVideos">Gallery</string>
 
     <string name="ThreeDotsMenuLogoutName">Log out</string>
     <string name="ThreeDotsMenuAboutName">About</string>
@@ -54,6 +60,7 @@
 
     <string name="FirebaseSponsorsInfoCollectionName">Sponsors</string>
     <string name="FirebasePradoshamDetailsCollectionName">Pradosham</string>
+    <string name="FirebaseGalleryInformationCollectionName">Gallery</string>
 
     <string name="PradoshamDatesScreenTableHeaderSNo">SNo</string>
     <string name="PradoshamDatesScreenTableHeaderId">Id</string>
@@ -97,5 +104,11 @@
 
     <string name="PradoshamDatesSponsorsScreenAllSponsorInfoStatusDownloadFailed">Unable to download data of all sponsors.</string>
     <string name="PradoshamDatesSponsorsScreenAllPradoshamInfoStatusDownloadFailed">Unable to download data of all pradoshams.</string>
+
+    <string name="GalleryScreenSubMenuItemAboutTemple">About the temple</string>
+    <string name="GalleryScreenSubMenuItemTemplePathigam">Temple pathigam</string>
+    <string name="GalleryScreenSubMenuItemMedia">Photos and videos</string>
+
+    <string name="GalleryScreenGalleryInfoStatusDownloadFailed">Unable to download gallery information.</string>
 
 </resources>
