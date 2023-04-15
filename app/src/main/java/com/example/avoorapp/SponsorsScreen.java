@@ -54,8 +54,8 @@ public class SponsorsScreen extends AppCompatActivity
         prvObtainSponsorsInfoFromFirebase();
     }
 
-    /* This method is used to obtain the Sponsors information from firebase into the object provided
-     * as input. */
+    /* This method is used to obtain the Sponsors information from firebase. Further actions to be
+     * taken are decided inside the interface provided to the firebase wrapper method.  */
     private void prvObtainSponsorsInfoFromFirebase()
     {
         tempWrapper.downloadAllSponsorsInfo(new FirebaseDownloadListener()
@@ -81,7 +81,7 @@ public class SponsorsScreen extends AppCompatActivity
         for (int i=0; i<sponsorsInfoList.size(); i++)
         {
             TableRow tblrowSponsorInfoRow = new TableRow(this);
-            tblrowSponsorInfoRow.setLayoutParams(new TableRow.LayoutParams()); // TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT
+            tblrowSponsorInfoRow.setLayoutParams(new TableRow.LayoutParams());
             TextView tvSponsorInfoCell;
 
             tvSponsorInfoCell = new TextView(this);

@@ -10,6 +10,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.ArrayList;
 import java.util.List;
 
+/* This class implements wrapper functions to get data from firebase. All firebase related code is
+ * expected to be within this class. The final info required out of the firestore database, like
+ * sponsor info, pradosham info, etc. is returned by this class. */
 public class FirebaseWrapper
 {
     /* member variables. */
@@ -35,6 +38,7 @@ public class FirebaseWrapper
     public void downloadSingleSponsorInfo(String sponsorMobileNumber, FirebaseDownloadListener downloadListener)
     {
         /* Download all sponsor information asynchronously using the firestore class get() method. */
+        sponsorsInfoList = new ArrayList<SponsorsInfo>();
         firestoreDatabase.collection(appContext.getResources().getString(R.string.FirebaseSponsorsInfoCollectionName))
         .document(sponsorMobileNumber)
         .get()
@@ -46,10 +50,6 @@ public class FirebaseWrapper
                 if(sponsorInfo != null)
                 {
                     sponsorInfo.setNumber(sponsorMobileNumber);
-                    for (int i=0; i<sponsorInfo.getFamilyDetails().size(); i++)
-                    {
-                        Log.d("debugFirebase", sponsorInfo.getFamilyDetails().get(i).toString());
-                    }
                     downloadListener.onDownloadCompleteCallback();
                 }
                 else
@@ -71,6 +71,7 @@ public class FirebaseWrapper
         /* Initiate download of the collection in which info of all sponsors is stored. Once this
          * is downloaded, assign the information of each individual sponsor to the Arraylist object
          * to enable the caller to use the corresponding getter method. */
+        sponsorsInfoList = new ArrayList<SponsorsInfo>();
         firestoreDatabase.collection(appContext.getResources().getString(R.string.FirebaseSponsorsInfoCollectionName))
         .get()
         .addOnCompleteListener(task -> {
@@ -108,6 +109,7 @@ public class FirebaseWrapper
         /* Initiate download of the collection in which info of all pradoshams is stored. Once this
          * is downloaded, assign it to the ArrayList object for the same to enable the caller to use
          * the corresponding getter method. */
+        pradoshamInfoList = new ArrayList<PradoshamInfo>();
         firestoreDatabase.collection(appContext.getResources().getString(R.string.FirebasePradoshamDetailsCollectionName))
         .get()
         .addOnCompleteListener(task -> {

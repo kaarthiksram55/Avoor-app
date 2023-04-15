@@ -22,6 +22,9 @@ import androidx.appcompat.widget.Toolbar;
 /* This class represents the home screen which appears after logging in via the Landing screen. */
 public class HomeScreen extends AppCompatActivity
 {
+    /* Member variables. */
+    SponsorsInfo currentSponsorInfo;
+
     /* This method is called in the background. Set the screen (xml layout) this class is supposed
      * to display and initialize class variables and screen items as desired. */
     public void onCreate(Bundle savedInstanceState)
@@ -31,8 +34,7 @@ public class HomeScreen extends AppCompatActivity
         Toolbar tlbarHomeScreenToolbar;
         ArrayList<String> strListViewMenuItemsNamesList = new ArrayList<String>();
         Intent intent = getIntent();
-        final SponsorsInfo currentSponsorInfo = (SponsorsInfo)intent.getSerializableExtra(this.getResources().getString(R.string.LandingScreenIntentSponsorInfoKey));
-//        Log.d("debugHome", String.valueOf(currentSponsorInfo.tempDate.getDate()) + " " + String.valueOf(currentSponsorInfo.tempDate.getMonth()) + " " + String.valueOf(currentSponsorInfo.tempDate.getYear()+1900) + " " + String.valueOf(currentSponsorInfo.tempDate.getDay()));
+        currentSponsorInfo = (SponsorsInfo)intent.getSerializableExtra(this.getResources().getString(R.string.LandingScreenIntentSponsorInfoKey));
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_screen);
@@ -55,6 +57,7 @@ public class HomeScreen extends AppCompatActivity
             strListViewMenuItemsNamesList.add(this.getResources().getString(R.string.MenuItemSponsorsList));
         }
         strListViewMenuItemsNamesList.add(this.getResources().getString(R.string.MenuItemPradoshamDates));
+        strListViewMenuItemsNamesList.add(this.getResources().getString(R.string.MenuItemPradoshamSponsors));
         strListViewMenuItemsNamesList.add(this.getResources().getString(R.string.MenuItemSankalpamDetails));
         strListViewMenuItemsNamesList.add(this.getResources().getString(R.string.MenuItemPhotosAndVideos));
 
@@ -107,6 +110,10 @@ public class HomeScreen extends AppCompatActivity
         {
             openPradoshamDatesScreen();
         }
+        else if (strListItemName.equals(getResources().getString(R.string.MenuItemPradoshamSponsors)))
+        {
+            openPradoshamDatesSponsorsScreen();
+        }
         else if (strListItemName.equals(getResources().getString(R.string.MenuItemSankalpamDetails)))
         {
             openSankalpamScreen();
@@ -130,25 +137,35 @@ public class HomeScreen extends AppCompatActivity
         startActivity(intent);
     }
 
-    /* This method has been implemented for the Sponsors list menu option from the list view. */
+    /* This method has been implemented for the pradoshams list menu option from the list view. */
     private void openPradoshamDatesScreen()
     {
-        /* Make an intent object to go to the Sponsors list screen. User should be able to get back
-         * to the home screen, so do not set any intent flags. */
+        /* Make an intent object to go to the pradoshams list screen. User should be able to get
+         * back to the home screen, so do not set any intent flags. */
          Intent intent = new Intent(this.getApplicationContext(), PradoshamDatesScreen.class);
          startActivity(intent);
     }
 
     /* This method has been implemented for the Sponsors list menu option from the list view. */
-    private void openSankalpamScreen()
+    private void openPradoshamDatesSponsorsScreen()
     {
-        /* Make an intent object to go to the Sponsors list screen. User should be able to get back
-         * to the home screen, so do not set any intent flags. */
-//        Intent intent = new Intent(this.getApplicationContext(), SponsorsScreen.class);
-//        startActivity(intent);
+        /* Make an intent object to go to the Sponsors dates and pradoshams list screen. User should
+         * be able to get back to the home screen, so do not set any intent flags. */
+        Intent intent = new Intent(this.getApplicationContext(), PradoshamDatesSponsorsScreen.class);
+        startActivity(intent);
     }
 
-    /* This method has been implemented for the Sponsors list menu option from the list view. */
+    /* This method has been implemented for the Sponsor family info menu option from the list view. */
+    private void openSankalpamScreen()
+    {
+        /* Make an intent object to go to the Sankalpam screen. User should be able to get back
+         * to the home screen, so do not set any intent flags. */
+        Intent intent = new Intent(this.getApplicationContext(), SankalpamScreen.class);
+        intent.putExtra(getResources().getString(R.string.HomeScreenSponsorInfoIntentKey), currentSponsorInfo);
+        startActivity(intent);
+    }
+
+    /* This method has been implemented for the gallery menu option from the list view. */
     private void openGalleryScreen()
     {
         /* Make an intent object to go to the Sponsors list screen. User should be able to get back
@@ -157,7 +174,7 @@ public class HomeScreen extends AppCompatActivity
         startActivity(intent);
     }
 
-    /* This method has been implemented for the Logout menu option from the ellpisis menu. */
+    /* This method has been implemented for the Logout menu option from the ellipsis menu. */
     private void openLandingScreen()
     {
         /* Make an intent object with the below flags set to prevent going back to the application
@@ -167,7 +184,7 @@ public class HomeScreen extends AppCompatActivity
         startActivity(intent);
     }
 
-    /* This method has been implemented for the about menu option from the ellpisis menu. */
+    /* This method has been implemented for the about menu option from the ellipsis menu. */
     private void openAboutScreen()
     {
         /* Make an intent object to go to the about screen. User should be able to get back to the

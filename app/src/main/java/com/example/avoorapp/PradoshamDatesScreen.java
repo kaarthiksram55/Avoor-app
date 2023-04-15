@@ -23,8 +23,9 @@ import java.util.Map;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-/* This class represents the Pradoshams screen which displays the details of all pradosham sponsors. */
-public class PradoshamDatesScreen extends AppCompatActivity {
+/* This class represents the Pradoshams screen which displays the details of all pradoshams. */
+public class PradoshamDatesScreen extends AppCompatActivity
+{
     /* member variables */
     private TableLayout tblPradoshamDatesScreenPradoshamInfoTable;
     private Spinner spnPradoshamDatesScreenYearDropdown;
@@ -34,7 +35,8 @@ public class PradoshamDatesScreen extends AppCompatActivity {
 
     /* This method is called in the background. Set the screen (xml layout) this class is supposed
      * to display and initialize class variables and screen items as desired. */
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState)
+    {
         Toolbar tlbarPradoshamDatesScreenToolbar;
         TextView tvPradoshamDatesScreenTxtViewAppName, tvPradoshamDatesScreenTxtViewTitleMessage;
 
@@ -72,8 +74,7 @@ public class PradoshamDatesScreen extends AppCompatActivity {
             public void onDownloadCompleteCallback()
             {
                 pradoshamInfoList = tempWrapper.getPradoshamDetails();
-                loadYearSelectDropdownWithInfo();
-//                loadPradoshamInfoTableWithInfo(pradoshamInfoList);
+                prvloadYearSelectDropdownWithInfo();
             }
 
             @Override
@@ -86,7 +87,7 @@ public class PradoshamDatesScreen extends AppCompatActivity {
 
     /* This private function will load the year select dropdown with the downloaded pradosham
      * financial year dates. */
-    private void loadYearSelectDropdownWithInfo()
+    private void prvloadYearSelectDropdownWithInfo()
     {
         ArrayList<String> strYearSelectDropdownList = new ArrayList<>();
 
@@ -102,10 +103,9 @@ public class PradoshamDatesScreen extends AppCompatActivity {
                 /* i corresponds to the selected index, which is in the same order as in the array
                  * of options set to the dropdown. Pass this index so that the corresponding year's
                  * info can be displayed in the table. */
-
                 tblPradoshamDatesScreenPradoshamInfoTable.removeAllViews();
-                loadPradoshamTableHeaders();
-                loadPradoshamInfoTableWithInfo(i);
+                prvLoadPradoshamTableHeaders();
+                prvLoadPradoshamInfoTableWithInfo(i);
             }
 
             @Override
@@ -116,7 +116,7 @@ public class PradoshamDatesScreen extends AppCompatActivity {
     }
 
     /* This private function will load the table with the table headers. */
-    private void loadPradoshamTableHeaders()
+    private void prvLoadPradoshamTableHeaders()
     {
         TableRow tblrowPradoshamInfoRow = new TableRow(this);
         tblrowPradoshamInfoRow.setLayoutParams(new TableRow.LayoutParams());
@@ -152,49 +152,46 @@ public class PradoshamDatesScreen extends AppCompatActivity {
 
     /* This private function will load the table in the screen with the pradosham info retrieved
      * from firebase. */
-    private void loadPradoshamInfoTableWithInfo(int intSelectedYearIndex)
+    private void prvLoadPradoshamInfoTableWithInfo(int intSelectedYearIndex)
     {
         int intSrNo = 1;
+        List<Map<String, String>> tempPradoshamDetailsList = pradoshamInfoList.get(intSelectedYearIndex).getPradoshamDetails();
 
-//        for (int i=0; i<pradoshamInfoList.size(); i++)
-//        {
-            List<Map<String, String>> tempPradoshamDetailsList = pradoshamInfoList.get(intSelectedYearIndex).getPradoshamDetails();
-            for (int j=0; j<tempPradoshamDetailsList.size(); j++)
-            {
-                Map<String, String> tempPradoshamInfoMap = tempPradoshamDetailsList.get(j);
+        for (int j=0; j<tempPradoshamDetailsList.size(); j++)
+        {
+            Map<String, String> tempPradoshamInfoMap = tempPradoshamDetailsList.get(j);
 
-                TableRow tblrowPradoshamInfoRow = new TableRow(this);
-                tblrowPradoshamInfoRow.setLayoutParams(new TableRow.LayoutParams()); // TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT
-                TextView tvPradoshamInfoCell;
+            TableRow tblrowPradoshamInfoRow = new TableRow(this);
+            tblrowPradoshamInfoRow.setLayoutParams(new TableRow.LayoutParams()); // TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT
+            TextView tvPradoshamInfoCell;
 
-                tvPradoshamInfoCell = new TextView(this);
-                tvPradoshamInfoCell.setText(Integer.toString(intSrNo++));
-                tvPradoshamInfoCell.setPadding(10, 10, 10, 10);
-                tblrowPradoshamInfoRow.addView(tvPradoshamInfoCell);
+            tvPradoshamInfoCell = new TextView(this);
+            tvPradoshamInfoCell.setText(Integer.toString(intSrNo++));
+            tvPradoshamInfoCell.setPadding(10, 10, 10, 10);
+            tblrowPradoshamInfoRow.addView(tvPradoshamInfoCell);
 
-                tvPradoshamInfoCell = new TextView(this);
-                tvPradoshamInfoCell.setText(tempPradoshamInfoMap.get(getApplicationContext().getResources().getString(R.string.PradoshamInfoAttributeNameId)));
-                tvPradoshamInfoCell.setPadding(10, 10, 10, 10);
-                tblrowPradoshamInfoRow.addView(tvPradoshamInfoCell);
+            tvPradoshamInfoCell = new TextView(this);
+            tvPradoshamInfoCell.setText(tempPradoshamInfoMap.get(getApplicationContext().getResources().getString(R.string.PradoshamInfoAttributeNameId)));
+            tvPradoshamInfoCell.setPadding(10, 10, 10, 10);
+            tblrowPradoshamInfoRow.addView(tvPradoshamInfoCell);
 
-                tvPradoshamInfoCell = new TextView(this);
-                tvPradoshamInfoCell.setText(tempPradoshamInfoMap.get(getApplicationContext().getResources().getString(R.string.PradoshamInfoAttributeNameTamilDate)));
-                tvPradoshamInfoCell.setPadding(10, 10, 10, 10);
-                tblrowPradoshamInfoRow.addView(tvPradoshamInfoCell);
+            tvPradoshamInfoCell = new TextView(this);
+            tvPradoshamInfoCell.setText(tempPradoshamInfoMap.get(getApplicationContext().getResources().getString(R.string.PradoshamInfoAttributeNameTamilDate)));
+            tvPradoshamInfoCell.setPadding(10, 10, 10, 10);
+            tblrowPradoshamInfoRow.addView(tvPradoshamInfoCell);
 
-                tvPradoshamInfoCell = new TextView(this);
-                tvPradoshamInfoCell.setText(tempPradoshamInfoMap.get(getApplicationContext().getResources().getString(R.string.PradoshamInfoAttributeNameEnglishDate)));
-                tvPradoshamInfoCell.setPadding(10, 10, 10, 10);
-                tblrowPradoshamInfoRow.addView(tvPradoshamInfoCell);
+            tvPradoshamInfoCell = new TextView(this);
+            tvPradoshamInfoCell.setText(tempPradoshamInfoMap.get(getApplicationContext().getResources().getString(R.string.PradoshamInfoAttributeNameEnglishDate)));
+            tvPradoshamInfoCell.setPadding(10, 10, 10, 10);
+            tblrowPradoshamInfoRow.addView(tvPradoshamInfoCell);
 
-                int intDayOfWeek = Integer.parseInt(tempPradoshamInfoMap.get(getApplicationContext().getResources().getString(R.string.PradoshamInfoAttributeNameDay)));
-                tvPradoshamInfoCell = new TextView(this);
-                tvPradoshamInfoCell.setText(PradoshamInfo.getDayName(intDayOfWeek));
-                tvPradoshamInfoCell.setPadding(10, 10, 10, 10);
-                tblrowPradoshamInfoRow.addView(tvPradoshamInfoCell);
+            int intDayOfWeek = Integer.parseInt(tempPradoshamInfoMap.get(getApplicationContext().getResources().getString(R.string.PradoshamInfoAttributeNameDay)));
+            tvPradoshamInfoCell = new TextView(this);
+            tvPradoshamInfoCell.setText(PradoshamInfo.getDayName(intDayOfWeek));
+            tvPradoshamInfoCell.setPadding(10, 10, 10, 10);
+            tblrowPradoshamInfoRow.addView(tvPradoshamInfoCell);
 
-                tblPradoshamDatesScreenPradoshamInfoTable.addView(tblrowPradoshamInfoRow);
-            }
-//        }
+            tblPradoshamDatesScreenPradoshamInfoTable.addView(tblrowPradoshamInfoRow);
+        }
     }
 }

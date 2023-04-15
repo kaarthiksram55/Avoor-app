@@ -2,19 +2,26 @@
     <string name="app_name">AvoorApp</string>
     <string name="app_version">0.1</string>
 
+    <string name="LandingScreenIntentSponsorInfoKey">LandingScreenIntentKey_Username</string>
+    <string name="HomeScreenSponsorInfoIntentKey">HomeScreenSponsorInfoIntentKey</string>
+
     <string name="LandingScreenLogoImgViewDescription">Holds the app logo</string>
     <string name="AboutScreenLogoImgViewDescription">Holds the app logo</string>
     <string name="HomeScreenLogoImgViewDescription">Holds the app logo</string>
     <string name="SponsorsScreenLogoImgViewDescription">Holds the app logo</string>
     <string name="GalleryScreenLogoImgViewDescription">Holds the app logo</string>
     <string name="PradoshamDatesScreenLogoImgViewDescription">Holds the app logo</string>
+    <string name="SankalpamScreenLogoImgViewDescription">Holds the app logo</string>
+    <string name="PradoshamDatesSponsorsScreenLogoImgViewDescription">Holds the app logo</string>
 
-    <string name="LandingScreenTitleEnglish">Avoor Pasupatheeswaram Pradosham Kainkariyam App</string>
-    <string name="AvoorAppDisplayNameEnglish">Avoor Pradosham App</string>
+    <string name="LandingScreenTitleEnglish">Avoor Pasupatheeswaram pradosham kainkariyam ppp</string>
+    <string name="AvoorAppDisplayNameEnglish">Avoor pradosham app</string>
     <string name="HomeScreenTitleEnglish">Avoor Pasupatheeswaram Temple</string>
-    <string name="SponsorsScreenTitleEnglish">List of Sponsors</string>
+    <string name="SponsorsScreenTitleEnglish">List of sponsors</string>
     <string name="GalleryScreenTitleEnglish">Gallery</string>
-    <string name="PradoshamDatesScreenTitleEnglish">Pradosham Dates</string>
+    <string name="PradoshamDatesScreenTitleEnglish">Pradosham dates</string>
+    <string name="SankalpamScreenTitleEnglish">Sankalpam</string>
+    <string name="PradoshamDatesSponsorsScreenTitleEnglish">Pradosham dates and sponsors</string>
 
     <string name="LandingScreenTitleTamil">ஏவூர் பசுபதீஸ்வரம் பிரதோஷம் கைங்கரியம் செயலி</string>
     <string name="AvoorAppDisplayNameTamil">ஆவூர் பிரதோஷம் செயலி</string>
@@ -23,7 +30,6 @@
     <string name="LandingScreenUsernameHintText">Mobile number</string>
     <string name="LandingScreenPasswordHintText">Password</string>
     <string name="LandingScreenLoginButtonText">Login</string>
-    <string name="LandingScreenIntentSponsorInfoKey">LandingScreenIntentKey_Username</string>
 
     <string name="LandingScreenLoginStatusInvalidCredentials">Invalid username or password.</string>
     <string name="LandingScreenLoginStatusCredentialsMismatch">Username and Password do not match.</string>
@@ -31,6 +37,7 @@
 
     <string name="MenuItemSponsorsList">List of sponsors</string>
     <string name="MenuItemPradoshamDates">Pradosham dates</string>
+    <string name="MenuItemPradoshamSponsors">Pradosham sponsors</string>
     <string name="MenuItemSankalpamDetails">Sankalpam Details</string>
     <string name="MenuItemPhotosAndVideos">Photos and Videos</string>
 
@@ -61,4 +68,34 @@
     <string name="PradoshamInfoAttributeNameEnglishDate">englishDate</string>
     <string name="PradoshamInfoAttributeNameTamilDate">tamilDate</string>
     <string name="PradoshamInfoAttributeNameDay">day</string>
+
+    <string name="SponsorFamilyInfoAttributeNameName">name</string>
+    <string name="SponsorFamilyInfoAttributeNameGothram">gothram</string>
+    <string name="SponsorFamilyInfoAttributeNameRasi">rasi</string>
+    <string name="SponsorFamilyInfoAttributeNameStar">star</string>
+
+    <string name="SponsoredPradoshamInfoAttributeYear">year</string>
+    <string name="SponsoredPradoshamInfoAttributeIndices">indices</string>
+
+    <string name="SankalpamScreenPradoshamInfoTableLabel">Pradosham:</string>
+    <string name="SankalpamScreenPradoshamInfoTableHeaderYear">Year</string>
+    <string name="SankalpamScreenPradoshamInfoTableHeaderTamilDate">Tamil Date</string>
+    <string name="SankalpamScreenPradoshamInfoTableHeaderEnglishDate">English Date</string>
+    <string name="SankalpamScreenPradoshamInfoTableHeaderDay">Day</string>
+
+    <string name="SankalpamScreenFamilyInfoTableLabel">Upayathaarar:</string>
+    <string name="SankalpamScreenFamilyInfoTableHeaderName">Name</string>
+    <string name="SankalpamScreenFamilyInfoTableHeaderGothram">Gothram</string>
+    <string name="SankalpamScreenFamilyInfoTableHeaderStar">Star</string>
+    <string name="SankalpamScreenFamilyInfoTableHeaderRasi">Rasi</string>
+
+    <string name="PradoshamDatesSponsorsScreenYearSelectLabelName">Select year:</string>
+    <string name="PradoshamDatesSponsorsScreenSponsorsTableHeaderEnglishDate">Date</string>
+    <string name="PradoshamDatesSponsorsScreenSponsorsTableHeaderDay">Day</string>
+    <string name="PradoshamDatesSponsorsScreenSponsorsTableHeaderName">Name</string>
+    <string name="PradoshamDatesSponsorsScreenSponsorsTableHeaderLocation">Location</string>
+
+    <string name="PradoshamDatesSponsorsScreenAllSponsorInfoStatusDownloadFailed">Unable to download data of all sponsors.</string>
+    <string name="PradoshamDatesSponsorsScreenAllPradoshamInfoStatusDownloadFailed">Unable to download data of all pradoshams.</string>
+
 </resources>
