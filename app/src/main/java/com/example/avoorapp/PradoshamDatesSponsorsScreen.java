@@ -189,9 +189,9 @@ public class PradoshamDatesSponsorsScreen extends AppCompatActivity
         {
             SponsorsInfo tempSponsorInfo = sponsorsInfoList.get(i);
 
-            if (tempSponsorInfo.getTemp().get(tempPradoshamInfo.getYearName()).length() != 0)
+            if (tempSponsorInfo.getSponsoredPradoshams().get(tempPradoshamInfo.getYearName()).length() != 0)
             {
-                String[] strIndicesStringArr = tempSponsorInfo.getTemp().get(tempPradoshamInfo.getYearName()).split(",");
+                String[] strIndicesStringArr = tempSponsorInfo.getSponsoredPradoshams().get(tempPradoshamInfo.getYearName()).split(",");
 
                 for (int j = 0; j < strIndicesStringArr.length; j++) {
                     String[] strTempInfoArr = new String[4];

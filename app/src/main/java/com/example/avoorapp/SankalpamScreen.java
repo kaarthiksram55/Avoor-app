@@ -91,31 +91,26 @@ public class SankalpamScreen extends AppCompatActivity {
      * sponsor. */
     private void prvObtainSponsorPradoshamInfo()
     {
-        List<Map<String, String>> sponsorPradoshamInfoList = currentSponsorInfo.getSponsoredPradoshams();
+        Map<String, String> tempSponsorPradoshamMap = currentSponsorInfo.getSponsoredPradoshams();
 
-        for (int j=0; j<sponsorPradoshamInfoList.size(); j++)
+        for (int j=0; j<pradoshamInfoList.size(); j++)
         {
-            Map<String, String> tempSponsorPradoshamMap = sponsorPradoshamInfoList.get(j);
+            PradoshamInfo tempPradoshamInfo = pradoshamInfoList.get(j);
+            String strIndicesString = tempSponsorPradoshamMap.get(tempPradoshamInfo.getYearName());
 
-            for (int i=0; i<pradoshamInfoList.size(); i++)
+            if (strIndicesString.length() != 0)
             {
-                PradoshamInfo tempPradoshamInfo = pradoshamInfoList.get(i);
-
-                if (tempSponsorPradoshamMap.get(this.getResources().getString(R.string.SponsoredPradoshamInfoAttributeYear)).equals(tempPradoshamInfo.getYearName()))
+                String[] strIndicesStringArr = strIndicesString.split(",");
+                if (strIndicesStringArr.length > 0)
                 {
-                    String strIndicesString = tempSponsorPradoshamMap.get(this.getResources().getString(R.string.SponsoredPradoshamInfoAttributeIndices));
-                    String[] strIndicesStringArr = strIndicesString.split(",");
-                    if (strIndicesStringArr.length > 0)
+                    ArrayList<Map<String, String>> sponsorPradoshamInfoTableEntries = new ArrayList<Map<String, String>>();
+
+                    for (int k=0; k<strIndicesStringArr.length; k++)
                     {
-                        ArrayList<Map<String, String>> sponsorPradoshamInfoTableEntries = new ArrayList<Map<String, String>>();
-
-                        for (int k=0; k<strIndicesStringArr.length; k++)
-                        {
-                            sponsorPradoshamInfoTableEntries.add(tempPradoshamInfo.getPradoshamDetails().get(Integer.parseInt(strIndicesStringArr[k])));
-                        }
-
-                        prvLoadSponsorPradoshamTableWithInfo(tempPradoshamInfo.getYearName(), sponsorPradoshamInfoTableEntries);
+                        sponsorPradoshamInfoTableEntries.add(tempPradoshamInfo.getPradoshamDetails().get(Integer.parseInt(strIndicesStringArr[k])));
                     }
+
+                    prvLoadSponsorPradoshamTableWithInfo(tempPradoshamInfo.getYearName(), sponsorPradoshamInfoTableEntries);
                 }
             }
         }
@@ -201,6 +196,4 @@ public class SankalpamScreen extends AppCompatActivity {
             tblSankalpamScreenFamilyInfoTable.addView(tblRowPradoshamInfoRow);
         }
     }
-
-
 }

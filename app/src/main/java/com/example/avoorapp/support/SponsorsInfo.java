@@ -20,8 +20,7 @@ public class SponsorsInfo implements Serializable {
     private String password;
     private int accessLevel;
     private List<Map<String, String>> familyMembersDetailsList;
-    private List<Map<String, String>> sponsoredPradoshamsList;
-    private Map<String, String> temp;
+    private Map<String, String> sponsoredPradoshamsList;
 
     public static final int ACCESS_LEVEL_NONE = 0;
     public static final int ACCESS_LEVEL_BASE = 1;
@@ -59,14 +58,9 @@ public class SponsorsInfo implements Serializable {
         this.familyMembersDetailsList = (this.familyMembersDetailsList == null) ? familyMembersDetailsList : this.familyMembersDetailsList;
     }
 
-    public void setSponsoredPradoshams(List<Map<String, String>> sponsoredPradoshamsList)
+    public void setSponsoredPradoshams(Map<String, String> sponsoredPradoshamsList)
     {
         this.sponsoredPradoshamsList = (this.sponsoredPradoshamsList == null) ? sponsoredPradoshamsList : this.sponsoredPradoshamsList;
-    }
-
-    public void setTemp(Map<String, String> temp)
-    {
-        this.temp = (this.temp == null) ? temp : this.temp;
     }
 
     /* define public getter methods as all class variables are private. */
@@ -100,13 +94,9 @@ public class SponsorsInfo implements Serializable {
         return familyMembersDetailsList;
     }
 
-    public List<Map<String, String>> getSponsoredPradoshams()
+    public Map<String, String> getSponsoredPradoshams()
     {
         return sponsoredPradoshamsList;
     }
 
-    public Map<String, String> getTemp()
-    {
-        return temp;
-    }
 }
