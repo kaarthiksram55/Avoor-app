@@ -1,6 +1,7 @@
 package com.example.avoorapp;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -30,13 +31,16 @@ public class SankalpamScreen extends AppCompatActivity {
     private ArrayList<PradoshamInfo> pradoshamInfoList;
     private CustomAlertDialog alertDialog;
     private SponsorsInfo currentSponsorInfo;
+//    private String strAppTheme;
+//    private int intBorderColor;
+//    private int intFillColor;
 
     /* This method is called in the background. Set the screen (xml layout) this class is supposed
      * to display and initialize class variables and screen items as desired. */
     public void onCreate(Bundle savedInstanceState)
     {
         Toolbar tlbarSankalpamScreenToolbar;
-        TextView tvSankalpamScreenTxtViewAppName, tvSankalpamScreenTxtViewTitleMessage;
+        TextView tvSankalpamScreenTxtViewAppName, tvSankalpamScreenTxtViewTitleMessage, tvSankalpamScreenTxtViewUpayamName;
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sankalpam_screen);
@@ -45,9 +49,27 @@ public class SankalpamScreen extends AppCompatActivity {
         tblSankalpamScreenFamilyInfoTable = findViewById(R.id.SankalpamScreenFamilyInfoTable);
         tvSankalpamScreenTxtViewAppName = findViewById(R.id.SankalpamScreenTxtViewAppName);
         tvSankalpamScreenTxtViewTitleMessage = findViewById(R.id.SankalpamScreenTxtViewTitleMessage);
+        tvSankalpamScreenTxtViewUpayamName = findViewById(R.id.SankalpamScreenTxtViewUpayamName);
         tlbarSankalpamScreenToolbar = findViewById(R.id.SankalpamScreenToolbar);
         setSupportActionBar(tlbarSankalpamScreenToolbar);
 
+//        strAppTheme = this.getResources().getString(R.string.theme);
+//
+//        if(strAppTheme.equals("Day"))
+//        {
+//            intBorderColor = this.getResources().getColor(R.color.black);
+//            intFillColor = this.getResources().getColor(R.color.white);
+//        }
+//        else
+//        {
+//            intBorderColor = this.getResources().getColor(R.color.white);
+//            intFillColor = this.getResources().getColor(R.color.black);
+//        }
+//
+//        tblSankalpamScreenPradoshamInfoTable.setBackgroundColor(intBorderColor);
+
+        Intent intent = getIntent();
+        currentSponsorInfo = (SponsorsInfo)intent.getSerializableExtra(this.getResources().getString(R.string.HomeScreenSponsorInfoIntentKey));
         tvSankalpamScreenTxtViewAppName.setText(
         getResources()
         .getString(R.string.AvoorAppDisplayNameEnglish)
@@ -56,11 +78,12 @@ public class SankalpamScreen extends AppCompatActivity {
         getResources()
         .getString(R.string.SankalpamScreenTitleEnglish)
         );
+        tvSankalpamScreenTxtViewUpayamName.setText(
+        this.getResources().getString(R.string.SankalpamScreenUpayamLabel) + " " + currentSponsorInfo.getName()
+        );
+
         alertDialog = new CustomAlertDialog(this);
         tempWrapper = new FirebaseWrapper(getApplicationContext());
-
-        Intent intent = getIntent();
-        currentSponsorInfo = (SponsorsInfo)intent.getSerializableExtra(this.getResources().getString(R.string.HomeScreenSponsorInfoIntentKey));
         prvObtainPradoshamInfoFromFirebase();
     }
 
@@ -129,27 +152,27 @@ public class SankalpamScreen extends AppCompatActivity {
 
             tvPradoshamInfoCell = new TextView(this);
             tvPradoshamInfoCell.setText(strYear);
-            tvPradoshamInfoCell.setPadding(10, 10, 10, 10);
-            tvPradoshamInfoCell.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+            tvPradoshamInfoCell.setPadding(4, 4, 4, 4);
+            // tvPradoshamInfoCell.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
             tblRowPradoshamInfoRow.addView(tvPradoshamInfoCell);
 
             tvPradoshamInfoCell = new TextView(this);
             tvPradoshamInfoCell.setText(tempPradoshamInfoMap.get(getApplicationContext().getResources().getString(R.string.PradoshamInfoAttributeNameTamilDate)));
-            tvPradoshamInfoCell.setPadding(10, 10, 10, 10);
-            tvPradoshamInfoCell.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+            tvPradoshamInfoCell.setPadding(4, 4, 4, 4);
+            // tvPradoshamInfoCell.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
             tblRowPradoshamInfoRow.addView(tvPradoshamInfoCell);
 
             tvPradoshamInfoCell = new TextView(this);
             tvPradoshamInfoCell.setText(tempPradoshamInfoMap.get(getApplicationContext().getResources().getString(R.string.PradoshamInfoAttributeNameEnglishDate)));
-            tvPradoshamInfoCell.setPadding(10, 10, 10, 10);
-            tvPradoshamInfoCell.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+            tvPradoshamInfoCell.setPadding(4, 4, 4, 4);
+            // tvPradoshamInfoCell.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
             tblRowPradoshamInfoRow.addView(tvPradoshamInfoCell);
 
             int intDayOfWeek = Integer.parseInt(tempPradoshamInfoMap.get(getApplicationContext().getResources().getString(R.string.PradoshamInfoAttributeNameDay)));
             tvPradoshamInfoCell = new TextView(this);
             tvPradoshamInfoCell.setText(PradoshamInfo.getDayName(intDayOfWeek));
-            tvPradoshamInfoCell.setPadding(10, 10, 10, 10);
-            tvPradoshamInfoCell.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+            tvPradoshamInfoCell.setPadding(4, 4, 4, 4);
+            // tvPradoshamInfoCell.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
             tblRowPradoshamInfoRow.addView(tvPradoshamInfoCell);
 
             tblSankalpamScreenPradoshamInfoTable.addView(tblRowPradoshamInfoRow);
@@ -171,26 +194,26 @@ public class SankalpamScreen extends AppCompatActivity {
 
             tvPradoshamInfoCell = new TextView(this);
             tvPradoshamInfoCell.setText(tempFamilyInfoMap.get(this.getResources().getString(R.string.SponsorFamilyInfoAttributeNameName)));
-            tvPradoshamInfoCell.setPadding(10, 10, 10, 10);
-            tvPradoshamInfoCell.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+            tvPradoshamInfoCell.setPadding(4, 4, 4, 4);
+            // tvPradoshamInfoCell.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
             tblRowPradoshamInfoRow.addView(tvPradoshamInfoCell);
 
             tvPradoshamInfoCell = new TextView(this);
             tvPradoshamInfoCell.setText(tempFamilyInfoMap.get(this.getResources().getString(R.string.SponsorFamilyInfoAttributeNameGothram)));
-            tvPradoshamInfoCell.setPadding(10, 10, 10, 10);
-            tvPradoshamInfoCell.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+            tvPradoshamInfoCell.setPadding(4, 4, 4, 4);
+            // tvPradoshamInfoCell.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
             tblRowPradoshamInfoRow.addView(tvPradoshamInfoCell);
 
             tvPradoshamInfoCell = new TextView(this);
             tvPradoshamInfoCell.setText(tempFamilyInfoMap.get(this.getResources().getString(R.string.SponsorFamilyInfoAttributeNameStar)));
-            tvPradoshamInfoCell.setPadding(10, 10, 10, 10);
-            tvPradoshamInfoCell.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+            tvPradoshamInfoCell.setPadding(4, 4, 4, 4);
+            // tvPradoshamInfoCell.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
             tblRowPradoshamInfoRow.addView(tvPradoshamInfoCell);
 
             tvPradoshamInfoCell = new TextView(this);
             tvPradoshamInfoCell.setText(tempFamilyInfoMap.get(this.getResources().getString(R.string.SponsorFamilyInfoAttributeNameRasi)));
-            tvPradoshamInfoCell.setPadding(10, 10, 10, 10);
-            tvPradoshamInfoCell.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+            tvPradoshamInfoCell.setPadding(4, 4, 4, 4);
+            // tvPradoshamInfoCell.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
             tblRowPradoshamInfoRow.addView(tvPradoshamInfoCell);
 
             tblSankalpamScreenFamilyInfoTable.addView(tblRowPradoshamInfoRow);

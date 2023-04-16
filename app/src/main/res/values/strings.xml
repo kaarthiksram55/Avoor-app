@@ -1,4 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="theme">Day</string>
     <string name="app_name">AvoorApp</string>
     <string name="app_version">0.1</string>
 
@@ -18,18 +20,19 @@
     <string name="GalleryAboutTempleScreenLogoImgViewDescription">Holds the app logo</string>
     <string name="GalleryTemplePathigamScreenLogoImgViewDescription">Holds the app logo</string>
 
-    <string name="LandingScreenTitleEnglish">Avoor Pasupatheeswaram pradosham kainkariyam ppp</string>
-    <string name="AvoorAppDisplayNameEnglish">Avoor pradosham app</string>
-    <string name="HomeScreenTitleEnglish">Avoor Pasupatheeswaram Temple</string>
-    <string name="SponsorsScreenTitleEnglish">List of sponsors</string>
+    <string name="LandingScreenTitleEnglish">Avoor\n Pasupatheecharam\n Pradosha Kainkariyam App</string>
+<!--    <string name="AvoorAppDisplayNameEnglish">Avoor Pasupatheeswaram</string>-->
+    <string name="AvoorAppDisplayNameEnglish">திருஆவூர்ப் பசுபதீச்சரம்</string>
+    <string name="HomeScreenTitleEnglish">Pradosha\nKainkariyam\nApp</string>
+    <string name="SponsorsScreenTitleEnglish">List of Sponsors</string>
     <string name="GalleryScreenTitleEnglish">Gallery</string>
-    <string name="PradoshamDatesScreenTitleEnglish">Pradosham dates</string>
-    <string name="SankalpamScreenTitleEnglish">Sankalpam</string>
-    <string name="PradoshamDatesSponsorsScreenTitleEnglish">Pradosham dates and sponsors</string>
+    <string name="PradoshamDatesScreenTitleEnglish">Pradosham Dates</string>
+    <string name="SankalpamScreenTitleEnglish">Sankalpam Details</string>
+    <string name="PradoshamDatesSponsorsScreenTitleEnglish">Pradosham Sponsors</string>
     <string name="GalleryAboutTempleScreenTitleEnglish">About the temple</string>
     <string name="GalleryTemplePathigamScreenTitleEnglish">Temple pathigam</string>
 
-    <string name="LandingScreenTitleTamil">ஏவூர் பசுபதீஸ்வரம் பிரதோஷம் கைங்கரியம் செயலி</string>
+    <string name="LandingScreenTitleTamil">ஏவூர் பசுபதீச்சரம் பிரதோஷம் கைங்கரியம் செயலி</string>
     <string name="AvoorAppDisplayNameTamil">ஆவூர் பிரதோஷம் செயலி</string>
     <string name="HomeScreenTitleTamil">ஆவூர் பசுபதீஸ்வரம் கோவில்</string>
 
@@ -45,13 +48,13 @@
     <string name="MenuItemPradoshamDates">Pradosham dates</string>
     <string name="MenuItemPradoshamSponsors">Pradosham sponsors</string>
     <string name="MenuItemSankalpamDetails">Sankalpam Details</string>
-    <string name="MenuItemPhotosAndVideos">Gallery</string>
+    <string name="MenuItemPhotosAndVideos">About Temple</string>
 
     <string name="ThreeDotsMenuLogoutName">Log out</string>
     <string name="ThreeDotsMenuAboutName">About</string>
 
     <string name="SponsorScreenTableHeaderName">Name</string>
-    <string name="SponsorScreenTableHeaderMobileNumber">Mobile number</string>
+    <string name="SponsorScreenTableHeaderMobileNumber">Mobile</string>
     <string name="SponsorScreenTableHeaderLocation">Location</string>
 
     <string name="SponsorInfoBasicInfoDocumentName">SponsorInfo</string>
@@ -64,8 +67,8 @@
 
     <string name="PradoshamDatesScreenTableHeaderSNo">SNo</string>
     <string name="PradoshamDatesScreenTableHeaderId">Id</string>
-    <string name="PradoshamDatesScreenTableHeaderTamilDate">TamilDate</string>
-    <string name="PradoshamDatesScreenTableHeaderEnglishDate">EnglishDate</string>
+    <string name="PradoshamDatesScreenTableHeaderTamilDate">Tamil date</string>
+    <string name="PradoshamDatesScreenTableHeaderEnglishDate">English date</string>
     <string name="PradoshamDatesScreenTableHeaderDay">Day</string>
     <string name="PradoshamDatesScreenYearSelectLabelName">Select year:</string>
 
@@ -84,13 +87,15 @@
     <string name="SponsoredPradoshamInfoAttributeYear">year</string>
     <string name="SponsoredPradoshamInfoAttributeIndices">indices</string>
 
-    <string name="SankalpamScreenPradoshamInfoTableLabel">Pradosham:</string>
+    <string name="SankalpamScreenUpayamLabel">Upayam: </string>
+
+    <string name="SankalpamScreenPradoshamInfoTableLabel">Pradoshams sponsored:</string>
     <string name="SankalpamScreenPradoshamInfoTableHeaderYear">Year</string>
     <string name="SankalpamScreenPradoshamInfoTableHeaderTamilDate">Tamil Date</string>
     <string name="SankalpamScreenPradoshamInfoTableHeaderEnglishDate">English Date</string>
     <string name="SankalpamScreenPradoshamInfoTableHeaderDay">Day</string>
 
-    <string name="SankalpamScreenFamilyInfoTableLabel">Upayathaarar:</string>
+    <string name="SankalpamScreenFamilyInfoTableLabel">Upayathaarar Sankalpam List:</string>
     <string name="SankalpamScreenFamilyInfoTableHeaderName">Name</string>
     <string name="SankalpamScreenFamilyInfoTableHeaderGothram">Gothram</string>
     <string name="SankalpamScreenFamilyInfoTableHeaderStar">Star</string>
@@ -105,10 +110,12 @@
     <string name="PradoshamDatesSponsorsScreenAllSponsorInfoStatusDownloadFailed">Unable to download data of all sponsors.</string>
     <string name="PradoshamDatesSponsorsScreenAllPradoshamInfoStatusDownloadFailed">Unable to download data of all pradoshams.</string>
 
-    <string name="GalleryScreenSubMenuItemAboutTemple">About the temple</string>
+    <string name="GalleryScreenSubMenuItemAboutTemple">Temple History</string>
     <string name="GalleryScreenSubMenuItemTemplePathigam">Temple pathigam</string>
-    <string name="GalleryScreenSubMenuItemMedia">Photos and videos</string>
+    <string name="GalleryScreenSubMenuItemMedia">Gallery</string>
 
     <string name="GalleryScreenGalleryInfoStatusDownloadFailed">Unable to download gallery information.</string>
+
+    <string name="GalleryTemplePathigamScreenIntroContent">திருஞானசம்பந்தர் அருளியது</string>
 
 </resources>

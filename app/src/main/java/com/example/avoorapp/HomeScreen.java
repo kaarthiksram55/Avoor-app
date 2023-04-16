@@ -49,7 +49,7 @@ public class HomeScreen extends AppCompatActivity
         tvHomeScreenTxtViewUserInfo.setText("Welcome, " + currentSponsorInfo.getName());
         tvHomeScreenTxtViewAppName.setText(this.getResources().getString(R.string.AvoorAppDisplayNameEnglish));
         tvHomeScreenTxtViewTitleMessage.setText(this.getResources().getString(R.string.HomeScreenTitleEnglish));
-        tvHomeScreenTxtViewPrdshPrtc.setText("Next on: 27th Feb 2023");
+        tvHomeScreenTxtViewPrdshPrtc.setText("");
         setSupportActionBar(tlbarHomeScreenToolbar);
 
         if(currentSponsorInfo.getAccessLevel() == SponsorsInfo.ACCESS_LEVEL_ADMIN)

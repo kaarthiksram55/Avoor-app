@@ -2,6 +2,7 @@ package com.example.avoorapp;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -152,22 +153,30 @@ public class PradoshamDatesSponsorsScreen extends AppCompatActivity
 
         tvPradoshamInfoCell = new TextView(this);
         tvPradoshamInfoCell.setText(getApplicationContext().getResources().getString(R.string.PradoshamDatesSponsorsScreenSponsorsTableHeaderEnglishDate));
-        tvPradoshamInfoCell.setPadding(10, 10, 10, 10);
+        tvPradoshamInfoCell.setPadding(4, 4, 4, 4);
+        tvPradoshamInfoCell.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18f);
+        tvPradoshamInfoCell.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
         tblrowPradoshamInfoRow.addView(tvPradoshamInfoCell);
 
         tvPradoshamInfoCell = new TextView(this);
         tvPradoshamInfoCell.setText(getApplicationContext().getResources().getString(R.string.PradoshamDatesSponsorsScreenSponsorsTableHeaderDay));
-        tvPradoshamInfoCell.setPadding(10, 10, 10, 10);
+        tvPradoshamInfoCell.setPadding(4, 4, 4, 4);
+        tvPradoshamInfoCell.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18f);
+        tvPradoshamInfoCell.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
         tblrowPradoshamInfoRow.addView(tvPradoshamInfoCell);
 
         tvPradoshamInfoCell = new TextView(this);
         tvPradoshamInfoCell.setText(getApplicationContext().getResources().getString(R.string.PradoshamDatesSponsorsScreenSponsorsTableHeaderName));
-        tvPradoshamInfoCell.setPadding(10, 10, 10, 10);
+        tvPradoshamInfoCell.setPadding(4, 4, 4, 4);
+        tvPradoshamInfoCell.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18f);
+        tvPradoshamInfoCell.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
         tblrowPradoshamInfoRow.addView(tvPradoshamInfoCell);
 
         tvPradoshamInfoCell = new TextView(this);
         tvPradoshamInfoCell.setText(getApplicationContext().getResources().getString(R.string.PradoshamDatesSponsorsScreenSponsorsTableHeaderLocation));
-        tvPradoshamInfoCell.setPadding(10, 10, 10, 10);
+        tvPradoshamInfoCell.setPadding(4, 4, 4, 4);
+        tvPradoshamInfoCell.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18f);
+        tvPradoshamInfoCell.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
         tblrowPradoshamInfoRow.addView(tvPradoshamInfoCell);
 
         tblPradoshamDatesSponsorsScreenPradoshamInfoTable.addView(tblrowPradoshamInfoRow);
@@ -220,22 +229,22 @@ public class PradoshamDatesSponsorsScreen extends AppCompatActivity
 
             tvPradoshamInfoCell = new TextView(this);
             tvPradoshamInfoCell.setText(tempPradoshamInfoArr[intIndexEnglishDate]);
-            tvPradoshamInfoCell.setPadding(10, 10, 10, 10);
+            tvPradoshamInfoCell.setPadding(4, 4, 4, 4);
             tblrowPradoshamInfoRow.addView(tvPradoshamInfoCell);
 
             tvPradoshamInfoCell = new TextView(this);
             tvPradoshamInfoCell.setText(tempPradoshamInfoArr[intIndexDay]);
-            tvPradoshamInfoCell.setPadding(10, 10, 10, 10);
+            tvPradoshamInfoCell.setPadding(4, 4, 4, 4);
             tblrowPradoshamInfoRow.addView(tvPradoshamInfoCell);
 
             tvPradoshamInfoCell = new TextView(this);
             tvPradoshamInfoCell.setText(tempPradoshamInfoArr[intIndexName]);
-            tvPradoshamInfoCell.setPadding(10, 10, 10, 10);
+            tvPradoshamInfoCell.setPadding(4, 4, 4, 4);
             tblrowPradoshamInfoRow.addView(tvPradoshamInfoCell);
 
             tvPradoshamInfoCell = new TextView(this);
             tvPradoshamInfoCell.setText(tempPradoshamInfoArr[intIndexLocation]);
-            tvPradoshamInfoCell.setPadding(10, 10, 10, 10);
+            tvPradoshamInfoCell.setPadding(4, 4, 4, 4);
             tblrowPradoshamInfoRow.addView(tvPradoshamInfoCell);
 
             tblPradoshamDatesSponsorsScreenPradoshamInfoTable.addView(tblrowPradoshamInfoRow);

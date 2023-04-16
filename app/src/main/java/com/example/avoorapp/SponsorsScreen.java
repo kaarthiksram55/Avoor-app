@@ -86,17 +86,17 @@ public class SponsorsScreen extends AppCompatActivity
 
             tvSponsorInfoCell = new TextView(this);
             tvSponsorInfoCell.setText(sponsorsInfoList.get(i).getName());
-            tvSponsorInfoCell.setPadding(10, 10, 10, 10);
+            tvSponsorInfoCell.setPadding(4, 4, 4, 4);
             tblrowSponsorInfoRow.addView(tvSponsorInfoCell);
 
             tvSponsorInfoCell = new TextView(this);
             tvSponsorInfoCell.setText(sponsorsInfoList.get(i).getNumber());
-            tvSponsorInfoCell.setPadding(10, 10, 10, 10);
+            tvSponsorInfoCell.setPadding(4, 4, 4, 4);
             tblrowSponsorInfoRow.addView(tvSponsorInfoCell);
 
             tvSponsorInfoCell = new TextView(this);
             tvSponsorInfoCell.setText(sponsorsInfoList.get(i).getLocation());
-            tvSponsorInfoCell.setPadding(10, 10, 10, 10);
+            tvSponsorInfoCell.setPadding(4, 4, 4, 4);
             tblrowSponsorInfoRow.addView(tvSponsorInfoCell);
 
             tblSponsorsScreenSponsorsInfoTable.addView(tblrowSponsorInfoRow);

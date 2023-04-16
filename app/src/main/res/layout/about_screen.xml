@@ -15,7 +15,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="25sp"
             android:layout_centerHorizontal="true"
-            android:src="@mipmap/ic_launcher"
+            android:src="@mipmap/app_logo_round"
             android:contentDescription="@string/AboutScreenLogoImgViewDescription" />
 
         <TextView

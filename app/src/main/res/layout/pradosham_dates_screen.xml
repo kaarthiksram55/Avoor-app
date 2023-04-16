@@ -24,11 +24,10 @@
 
                 <ImageView
                     android:id="@+id/PradoshamDatesScreenImgViewLogo"
-                    android:layout_width="wrap_content"
+                    android:layout_width="40sp"
                     android:layout_height="40sp"
-                    android:layout_margin="10sp"
                     android:contentDescription="@string/PradoshamDatesScreenLogoImgViewDescription"
-                    android:src="@mipmap/ic_launcher_round" />
+                    android:src="@mipmap/app_logo_round" />
 
                 <TextView
                     android:id="@+id/PradoshamDatesScreenTxtViewAppName"
@@ -36,7 +35,8 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="10sp"
                     android:layout_toEndOf="@+id/PradoshamDatesScreenImgViewLogo"
-                    android:textSize="20sp" />
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
             </RelativeLayout>
 
@@ -55,6 +55,7 @@
             android:layout_width="wrap_content"
             android:layout_height="30sp"
             android:layout_margin="10sp"
+            android:paddingVertical="5sp"
             android:layout_below="@id/PradoshamDatesScreenTxtViewTitleMessage"
             android:text="@string/PradoshamDatesScreenYearSelectLabelName"
             android:layout_alignParentStart="true" />
@@ -69,8 +70,8 @@
 
         <TableLayout
             android:id="@+id/PradoshamDatesScreenPradoshamInfoTable"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_margin="10sp"
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/PradoshamDatesScreenYearDropdown" />

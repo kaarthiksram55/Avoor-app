@@ -24,11 +24,10 @@
 
                 <ImageView
                     android:id="@+id/SponsorsScreenImgViewLogo"
-                    android:layout_width="wrap_content"
+                    android:layout_width="40sp"
                     android:layout_height="40sp"
-                    android:layout_margin="10sp"
                     android:contentDescription="@string/SponsorsScreenLogoImgViewDescription"
-                    android:src="@mipmap/ic_launcher_round" />
+                    android:src="@mipmap/app_logo_round" />
 
                 <TextView
                     android:id="@+id/SponsorsScreenTxtViewAppName"
@@ -36,7 +35,8 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="10sp"
                     android:layout_toRightOf="@+id/SponsorsScreenImgViewLogo"
-                    android:textSize="20sp" />
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
             </RelativeLayout>
 
@@ -46,7 +46,7 @@
             android:id="@+id/SponsorsScreenTxtViewTitleMessage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10sp"
+            android:layout_margin="20sp"
             android:textSize="35sp"
             android:layout_below="@+id/SponsorsScreenToolbar" />
 
@@ -54,7 +54,7 @@
             android:id="@+id/SponsorsScreenSponsorsInfoTable"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="10sp"
+            android:layout_margin="20sp"
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/SponsorsScreenTxtViewTitleMessage" >
 
@@ -64,17 +64,20 @@
                 <TextView
                     android:text="@string/SponsorScreenTableHeaderName"
                     android:textSize="20sp"
-                    android:paddingHorizontal="10sp"/>
+                    android:textAlignment="center"
+                    android:paddingHorizontal="5sp" />
 
                 <TextView
                     android:text="@string/SponsorScreenTableHeaderMobileNumber"
                     android:textSize="20sp"
-                    android:paddingHorizontal="10sp" />
+                    android:textAlignment="center"
+                    android:paddingHorizontal="5sp" />
 
                 <TextView
                     android:text="@string/SponsorScreenTableHeaderLocation"
                     android:textSize="20sp"
-                    android:paddingHorizontal="10sp" />
+                    android:textAlignment="center"
+                    android:paddingHorizontal="5sp" />
 
             </TableRow>
 
