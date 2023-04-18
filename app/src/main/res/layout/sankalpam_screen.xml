@@ -68,18 +68,26 @@
             android:text="@string/SankalpamScreenPradoshamInfoTableLabel"
             android:layout_below="@+id/SankalpamScreenTxtViewUpayamName" />
 
-        <TableLayout
-            android:id="@+id/SankalpamScreenPradoshamInfoTable"
+        <ScrollView
+            android:id="@+id/SankalpamScreenPradoshamInfoTableScrollView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10sp"
+            android:scrollbars="none"
             android:layout_centerHorizontal="true"
+            android:layout_margin="10sp"
+            android:layout_weight="1"
             android:layout_below="@+id/SankalpamScreenTxtViewPradoshamLabel" >
 
-            <TableRow
-                tools:ignore="UselessParent" >
+            <TableLayout
+                android:id="@+id/SankalpamScreenPradoshamInfoTable"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:isScrollContainer="true" />
 
-                <TextView
+<!--            <TableRow-->
+<!--                tools:ignore="UselessParent" >-->
+
+                <!-- <TextView
                     android:text="@string/SankalpamScreenPradoshamInfoTableHeaderYear"
                     android:textSize="20sp"
                     android:paddingHorizontal="10sp" />
@@ -97,11 +105,12 @@
                 <TextView
                     android:text="@string/SankalpamScreenPradoshamInfoTableHeaderDay"
                     android:textSize="20sp"
-                    android:paddingHorizontal="10sp" />
+                    android:paddingHorizontal="10sp" /> -->
 
-            </TableRow>
+<!--            </TableRow>-->
 
-        </TableLayout>
+<!--        </TableLayout>-->
+        </ScrollView>
 
         <TextView
             android:id="@+id/SankalpamScreenTxtViewFamilyLabel"
@@ -110,20 +119,29 @@
             android:layout_margin="10sp"
             android:textSize="20sp"
             android:text="@string/SankalpamScreenFamilyInfoTableLabel"
-            android:layout_below="@+id/SankalpamScreenPradoshamInfoTable" />
+            android:layout_below="@+id/SankalpamScreenPradoshamInfoTableScrollView" />
 
-        <TableLayout
-            android:id="@+id/SankalpamScreenFamilyInfoTable"
+        <ScrollView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10sp"
+            android:scrollbars="none"
             android:layout_centerHorizontal="true"
+            android:layout_margin="10sp"
+            android:layout_weight="1"
             android:layout_below="@+id/SankalpamScreenTxtViewFamilyLabel" >
 
-            <TableRow
-                tools:ignore="UselessParent" >
+            <TableLayout
+                android:id="@+id/SankalpamScreenFamilyInfoTable"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:isScrollContainer="true" />
 
-                <TextView
+        </ScrollView>
+<!--
+            <TableRow
+                tools:ignore="UselessParent" >-->
+
+                <!-- <TextView
                     android:text="@string/SankalpamScreenFamilyInfoTableHeaderName"
                     android:textSize="20sp"
                     android:paddingHorizontal="10sp" />
@@ -141,11 +159,11 @@
                 <TextView
                     android:text="@string/SankalpamScreenFamilyInfoTableHeaderRasi"
                     android:textSize="20sp"
-                    android:paddingHorizontal="10sp" />
+                    android:paddingHorizontal="10sp" /> -->
 
-            </TableRow>
+            <!--</TableRow>-->
 
-        </TableLayout>
+<!--        </TableLayout>-->
 
     </RelativeLayout>
 

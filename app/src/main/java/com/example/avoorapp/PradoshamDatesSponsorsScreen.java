@@ -16,6 +16,7 @@ import com.example.avoorapp.support.FirebaseDownloadListener;
 import com.example.avoorapp.support.FirebaseWrapper;
 import com.example.avoorapp.support.PradoshamInfo;
 import com.example.avoorapp.support.SponsorsInfo;
+import com.example.avoorapp.support.TableCell;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -36,6 +37,12 @@ public class PradoshamDatesSponsorsScreen extends AppCompatActivity
     private ArrayList<PradoshamInfo> pradoshamInfoList;
     private ArrayList<SponsorsInfo> sponsorsInfoList;
     private CustomAlertDialog alertDialog;
+    private TableCell tableCell;
+    private int intTableColor;
+    private int intTableCellColor;
+
+    private final float floatTableHeaderSizeSp = 18f;
+    private final float floatTableCellSizeSp = 13f;
 
     /* This method is called in the background. Set the screen (xml layout) this class is supposed
      * to display and initialize class variables and screen items as desired. */
@@ -46,6 +53,16 @@ public class PradoshamDatesSponsorsScreen extends AppCompatActivity
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pradosham_dates_sponsors_screen);
+        if(this.getResources().getString(R.string.theme).equals("Night"))
+        {
+            intTableColor = this.getResources().getColor(R.color.white);
+            intTableCellColor = this.getResources().getColor(R.color.black);
+        }
+        else
+        {
+            intTableColor = this.getResources().getColor(R.color.black);
+            intTableCellColor = this.getResources().getColor(R.color.white);
+        }
 
         tblPradoshamDatesSponsorsScreenPradoshamInfoTable = findViewById(R.id.PradoshamDatesSponsorsScreenPradoshamInfoTable);
         tvPradoshamDatesSponsorsScreenTxtViewAppName = findViewById(R.id.PradoshamDatesSponsorsScreenTxtViewAppName);
@@ -63,6 +80,8 @@ public class PradoshamDatesSponsorsScreen extends AppCompatActivity
         .getString(R.string.PradoshamDatesSponsorsScreenTitleEnglish)
         );
 
+        tblPradoshamDatesSponsorsScreenPradoshamInfoTable.setBackgroundColor(intTableColor);
+        tableCell = new TableCell(this);
         alertDialog = new CustomAlertDialog(this);
         tempWrapper = new FirebaseWrapper(getApplicationContext());
         prvObtainSponsorsInfoFromFirebase();
@@ -149,36 +168,15 @@ public class PradoshamDatesSponsorsScreen extends AppCompatActivity
     {
         TableRow tblrowPradoshamInfoRow = new TableRow(this);
         tblrowPradoshamInfoRow.setLayoutParams(new TableRow.LayoutParams());
-        TextView tvPradoshamInfoCell;
-
-        tvPradoshamInfoCell = new TextView(this);
-        tvPradoshamInfoCell.setText(getApplicationContext().getResources().getString(R.string.PradoshamDatesSponsorsScreenSponsorsTableHeaderEnglishDate));
-        tvPradoshamInfoCell.setPadding(4, 4, 4, 4);
-        tvPradoshamInfoCell.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18f);
-        tvPradoshamInfoCell.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-        tblrowPradoshamInfoRow.addView(tvPradoshamInfoCell);
-
-        tvPradoshamInfoCell = new TextView(this);
-        tvPradoshamInfoCell.setText(getApplicationContext().getResources().getString(R.string.PradoshamDatesSponsorsScreenSponsorsTableHeaderDay));
-        tvPradoshamInfoCell.setPadding(4, 4, 4, 4);
-        tvPradoshamInfoCell.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18f);
-        tvPradoshamInfoCell.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-        tblrowPradoshamInfoRow.addView(tvPradoshamInfoCell);
-
-        tvPradoshamInfoCell = new TextView(this);
-        tvPradoshamInfoCell.setText(getApplicationContext().getResources().getString(R.string.PradoshamDatesSponsorsScreenSponsorsTableHeaderName));
-        tvPradoshamInfoCell.setPadding(4, 4, 4, 4);
-        tvPradoshamInfoCell.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18f);
-        tvPradoshamInfoCell.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-        tblrowPradoshamInfoRow.addView(tvPradoshamInfoCell);
-
-        tvPradoshamInfoCell = new TextView(this);
-        tvPradoshamInfoCell.setText(getApplicationContext().getResources().getString(R.string.PradoshamDatesSponsorsScreenSponsorsTableHeaderLocation));
-        tvPradoshamInfoCell.setPadding(4, 4, 4, 4);
-        tvPradoshamInfoCell.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18f);
-        tvPradoshamInfoCell.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-        tblrowPradoshamInfoRow.addView(tvPradoshamInfoCell);
-
+        
+        String strTableHeaderEnglishDate = this.getResources().getString(R.string.PradoshamDatesSponsorsScreenSponsorsTableHeaderEnglishDate);
+        tblrowPradoshamInfoRow.addView(tableCell.generateCell(strTableHeaderEnglishDate, intTableCellColor, floatTableHeaderSizeSp, true));
+        String strTableHeaderDay = this.getResources().getString(R.string.PradoshamDatesSponsorsScreenSponsorsTableHeaderDay);
+        tblrowPradoshamInfoRow.addView(tableCell.generateCell(strTableHeaderDay, intTableCellColor, floatTableHeaderSizeSp, true));
+        String strTableHeaderName = this.getResources().getString(R.string.PradoshamDatesSponsorsScreenSponsorsTableHeaderName);
+        tblrowPradoshamInfoRow.addView(tableCell.generateCell(strTableHeaderName, intTableCellColor, floatTableHeaderSizeSp, true));
+        String strTableHeaderLocation = this.getResources().getString(R.string.PradoshamDatesSponsorsScreenSponsorsTableHeaderLocation);
+        tblrowPradoshamInfoRow.addView(tableCell.generateCell(strTableHeaderLocation, intTableCellColor, floatTableHeaderSizeSp, true));
         tblPradoshamDatesSponsorsScreenPradoshamInfoTable.addView(tblrowPradoshamInfoRow);
     }
 
@@ -214,38 +212,45 @@ public class PradoshamDatesSponsorsScreen extends AppCompatActivity
                     tempSponsorPradoshamMapping.put(strPradoshamId, strTempInfoArr);
                 }
             }
+            else
+            {
+
+            }
         }
 
         Log.d("debugPradoshamSponsor", pradoshamInfoList.get(intSelectedYearIndex).getYearName());
         List<Map<String, String>> tempPradoshamDetailsList = pradoshamInfoList.get(intSelectedYearIndex).getPradoshamDetails();
 
         for (int j=0; j<tempPradoshamDetailsList.size(); j++) {
+            TableRow tblrowPradoshamInfoRow = new TableRow(this);
+            tblrowPradoshamInfoRow.setLayoutParams(new TableRow.LayoutParams());
+
             String strPradoshamId = tempPradoshamDetailsList.get(j).get(this.getResources().getString(R.string.PradoshamInfoAttributeNameId));
             String[] tempPradoshamInfoArr = tempSponsorPradoshamMapping.get(strPradoshamId);
 
-            TableRow tblrowPradoshamInfoRow = new TableRow(this);
-            tblrowPradoshamInfoRow.setLayoutParams(new TableRow.LayoutParams());
-            TextView tvPradoshamInfoCell;
-
-            tvPradoshamInfoCell = new TextView(this);
-            tvPradoshamInfoCell.setText(tempPradoshamInfoArr[intIndexEnglishDate]);
-            tvPradoshamInfoCell.setPadding(4, 4, 4, 4);
-            tblrowPradoshamInfoRow.addView(tvPradoshamInfoCell);
-
-            tvPradoshamInfoCell = new TextView(this);
-            tvPradoshamInfoCell.setText(tempPradoshamInfoArr[intIndexDay]);
-            tvPradoshamInfoCell.setPadding(4, 4, 4, 4);
-            tblrowPradoshamInfoRow.addView(tvPradoshamInfoCell);
-
-            tvPradoshamInfoCell = new TextView(this);
-            tvPradoshamInfoCell.setText(tempPradoshamInfoArr[intIndexName]);
-            tvPradoshamInfoCell.setPadding(4, 4, 4, 4);
-            tblrowPradoshamInfoRow.addView(tvPradoshamInfoCell);
-
-            tvPradoshamInfoCell = new TextView(this);
-            tvPradoshamInfoCell.setText(tempPradoshamInfoArr[intIndexLocation]);
-            tvPradoshamInfoCell.setPadding(4, 4, 4, 4);
-            tblrowPradoshamInfoRow.addView(tvPradoshamInfoCell);
+            if (tempPradoshamInfoArr == null)
+            {
+                String strTableCellEnglishDate = tempPradoshamDetailsList.get(j).get(this.getResources().getString(R.string.PradoshamInfoAttributeNameEnglishDate));
+                tblrowPradoshamInfoRow.addView(tableCell.generateCell(strTableCellEnglishDate, intTableCellColor, floatTableCellSizeSp, false));
+                int intDayOfWeek = Integer.parseInt(tempPradoshamDetailsList.get(j).get(this.getResources().getString(R.string.PradoshamInfoAttributeNameDay)));
+                String strTableCellDay = PradoshamInfo.getDayName(intDayOfWeek);
+                tblrowPradoshamInfoRow.addView(tableCell.generateCell(strTableCellDay, intTableCellColor, floatTableCellSizeSp, false));
+                String strTableCellName = "";
+                tblrowPradoshamInfoRow.addView(tableCell.generateCell(strTableCellName, intTableCellColor, floatTableCellSizeSp, false));
+                String strTableCellLocation = "";
+                tblrowPradoshamInfoRow.addView(tableCell.generateCell(strTableCellLocation, intTableCellColor, floatTableCellSizeSp, false));
+            }
+            else
+            {
+                String strTableCellEnglishDate = tempPradoshamInfoArr[intIndexEnglishDate];
+                tblrowPradoshamInfoRow.addView(tableCell.generateCell(strTableCellEnglishDate, intTableCellColor, floatTableCellSizeSp, false));
+                String strTableCellDay = tempPradoshamInfoArr[intIndexDay];
+                tblrowPradoshamInfoRow.addView(tableCell.generateCell(strTableCellDay, intTableCellColor, floatTableCellSizeSp, false));
+                String strTableCellName = tempPradoshamInfoArr[intIndexName];
+                tblrowPradoshamInfoRow.addView(tableCell.generateCell(strTableCellName, intTableCellColor, floatTableCellSizeSp, false));
+                String strTableCellLocation = tempPradoshamInfoArr[intIndexLocation];
+                tblrowPradoshamInfoRow.addView(tableCell.generateCell(strTableCellLocation, intTableCellColor, floatTableCellSizeSp, false));
+            }
 
             tblPradoshamDatesSponsorsScreenPradoshamInfoTable.addView(tblrowPradoshamInfoRow);
         }

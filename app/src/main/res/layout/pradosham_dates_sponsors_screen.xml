@@ -68,13 +68,22 @@
             android:layout_below="@id/PradoshamDatesSponsorsScreenTxtViewTitleMessage"
             android:layout_toEndOf="@+id/PradoshamDatesSponsorsScreenYearDropdownLabel"/>
 
-        <TableLayout
-            android:id="@+id/PradoshamDatesSponsorsScreenPradoshamInfoTable"
+        <ScrollView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10sp"
+            android:scrollbars="none"
             android:layout_centerHorizontal="true"
-            android:layout_below="@+id/PradoshamDatesSponsorsScreenYearDropdown" />
+            android:layout_margin="10sp"
+            android:layout_weight="1"
+            android:layout_below="@+id/PradoshamDatesSponsorsScreenYearDropdown" >
+
+            <TableLayout
+                android:id="@+id/PradoshamDatesSponsorsScreenPradoshamInfoTable"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:isScrollContainer="true" />
+
+        </ScrollView>
 
     </RelativeLayout>
 
