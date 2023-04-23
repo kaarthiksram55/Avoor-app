@@ -160,7 +160,17 @@ public class HomeScreen extends AppCompatActivity
     {
         /* Make an intent object to go to the Sankalpam screen. User should be able to get back
          * to the home screen, so do not set any intent flags. */
-        Intent intent = new Intent(this.getApplicationContext(), SankalpamScreen.class);
+        Intent intent;
+
+        if (currentSponsorInfo.getAccessLevel() == SponsorsInfo.ACCESS_LEVEL_ADMIN)
+        {
+            intent = new Intent(this.getApplicationContext(), SankalpamAdminScreen.class);
+        }
+        else
+        {
+            intent = new Intent(this.getApplicationContext(), SankalpamScreen.class);
+        }
+
         intent.putExtra(getResources().getString(R.string.HomeScreenSponsorInfoIntentKey), currentSponsorInfo);
         startActivity(intent);
     }

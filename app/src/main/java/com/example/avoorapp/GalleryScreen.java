@@ -3,6 +3,7 @@ package com.example.avoorapp;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -55,6 +56,7 @@ public class GalleryScreen extends AppCompatActivity {
 
         strGalleryScreenListViewMenuItemsNamesList.add(this.getResources().getString(R.string.GalleryScreenSubMenuItemAboutTemple));
         strGalleryScreenListViewMenuItemsNamesList.add(this.getResources().getString(R.string.GalleryScreenSubMenuItemTemplePathigam));
+        strGalleryScreenListViewMenuItemsNamesList.add(this.getResources().getString(R.string.GalleryScreenSubMenuItemVasthramDetails));
         strGalleryScreenListViewMenuItemsNamesList.add(this.getResources().getString(R.string.GalleryScreenSubMenuItemMedia));
         lvGalleryScreenListViewMenuItems.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, strGalleryScreenListViewMenuItemsNamesList));
         lvGalleryScreenListViewMenuItems.setOnItemClickListener((adapterView, view, position, id) -> {
@@ -81,6 +83,12 @@ public class GalleryScreen extends AppCompatActivity {
         {
             Intent intent = new Intent(this.getApplicationContext(), GalleryTemplePathigamScreen.class);
             intent.putExtra(this.getResources().getString(R.string.GalleryScreenTemplePathigamIntentKey), galleryInfo.getTemplePathigam());
+            startActivity(intent);
+        }
+        else if (strSubMenuName.equals(this.getResources().getString(R.string.GalleryScreenSubMenuItemVasthramDetails)))
+        {
+            Intent intent = new Intent(this.getApplicationContext(), GalleryVasthramDetailsScreen.class);
+            intent.putExtra(this.getResources().getString(R.string.GalleryScreenVasthramDetailsIntentKey), galleryInfo.getVasthramDetails());
             startActivity(intent);
         }
         else if (strSubMenuName.equals(this.getResources().getString(R.string.GalleryScreenSubMenuItemMedia)))

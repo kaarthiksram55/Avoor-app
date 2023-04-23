@@ -28,6 +28,8 @@
         <activity android:name=".PradoshamDatesSponsorsScreen" />
         <activity android:name=".GalleryAboutTempleScreen" />
         <activity android:name=".GalleryTemplePathigamScreen" />
+        <activity android:name=".SankalpamAdminScreen" />
+        <activity android:name=".GalleryVasthramDetailsScreen" />
 
     </application>
 

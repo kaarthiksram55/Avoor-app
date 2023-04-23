@@ -8,6 +8,7 @@
     <string name="HomeScreenSponsorInfoIntentKey">HomeScreenSponsorInfoIntentKey</string>
     <string name="GalleryScreenAboutTempleIntentKey">GalleryScreenAboutTempleIntentKey</string>
     <string name="GalleryScreenTemplePathigamIntentKey">GalleryScreenTemplePathigamIntentKey</string>
+    <string name="GalleryScreenVasthramDetailsIntentKey">GalleryScreenVasthramDetailsIntentKey</string>
 
     <string name="LandingScreenLogoImgViewDescription">Holds the app logo</string>
     <string name="AboutScreenLogoImgViewDescription">Holds the app logo</string>
@@ -19,10 +20,10 @@
     <string name="PradoshamDatesSponsorsScreenLogoImgViewDescription">Holds the app logo</string>
     <string name="GalleryAboutTempleScreenLogoImgViewDescription">Holds the app logo</string>
     <string name="GalleryTemplePathigamScreenLogoImgViewDescription">Holds the app logo</string>
+    <string name="GalleryVasthramDetailsScreenLogoImgViewDescription">Holds the app logo</string>
 
-    <string name="LandingScreenTitleEnglish">Avoor\n Pasupatheecharam\n Pradosha Kainkariyam App</string>
-<!--    <string name="AvoorAppDisplayNameEnglish">Avoor Pasupatheeswaram</string>-->
-    <string name="AvoorAppDisplayNameEnglish">திருஆவூர்ப் பசுபதீச்சரம்</string>
+    <string name="LandingScreenTitleEnglish">Avoor\n Pasupatheecharam\n Pradosha Kainkariyam\n App</string>
+    <string name="AvoorAppDisplayNameEnglish">திருஆவூர் பசுபதீச்சரம்</string>
     <string name="HomeScreenTitleEnglish">Pradosha\nKainkariyam\nApp</string>
     <string name="SponsorsScreenTitleEnglish">List of Sponsors</string>
     <string name="GalleryScreenTitleEnglish">Gallery</string>
@@ -31,6 +32,7 @@
     <string name="PradoshamDatesSponsorsScreenTitleEnglish">Pradosham Sponsors</string>
     <string name="GalleryAboutTempleScreenTitleEnglish">About the temple</string>
     <string name="GalleryTemplePathigamScreenTitleEnglish">Temple pathigam</string>
+    <string name="GalleryVasthramDetailsScreenTitleEnglish">Vasthram details</string>
 
     <string name="LandingScreenTitleTamil">ஏவூர் பசுபதீச்சரம் பிரதோஷம் கைங்கரியம் செயலி</string>
     <string name="AvoorAppDisplayNameTamil">ஆவூர் பிரதோஷம் செயலி</string>
@@ -112,10 +114,13 @@
 
     <string name="GalleryScreenSubMenuItemAboutTemple">Temple History</string>
     <string name="GalleryScreenSubMenuItemTemplePathigam">Temple pathigam</string>
+    <string name="GalleryScreenSubMenuItemVasthramDetails">Vasthram details</string>
     <string name="GalleryScreenSubMenuItemMedia">Gallery</string>
 
     <string name="GalleryScreenGalleryInfoStatusDownloadFailed">Unable to download gallery information.</string>
 
     <string name="GalleryTemplePathigamScreenIntroContent">திருஞானசம்பந்தர் அருளியது</string>
+
+    <string name="SankalpamAdminScreenSponsorSelectLabelName">Select sponsor:</string>
 
 </resources>

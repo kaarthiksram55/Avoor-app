@@ -8,11 +8,13 @@ public class GalleryInfo {
     private String strAboutTemple;
     private String strMediaLink;
     private String strTemplePathigam;
+    private String strVasthramDetails;
 
     /* public setter methods that enable an one-time write to member variables. */
     public void setAboutTemple(String strAboutTemple)
     {
     	this.strAboutTemple = (this.strAboutTemple == null) ? strAboutTemple : this.strAboutTemple;
+        this.strAboutTemple = this.strAboutTemple.replace("\\n", "\n");
     }
 
     public void setMediaLink(String strMediaLink)
@@ -23,6 +25,13 @@ public class GalleryInfo {
     public void setTemplePathigam(String strTemplePathigam)
     {
     	this.strTemplePathigam = (this.strTemplePathigam == null) ? strTemplePathigam : this.strTemplePathigam;
+        this.strTemplePathigam = this.strTemplePathigam.replace("\\n", "\n");
+    }
+
+    public void setVasthramDetails(String strVasthramDetails)
+    {
+        this.strVasthramDetails = (this.strVasthramDetails == null) ? strVasthramDetails : this.strVasthramDetails;
+        this.strVasthramDetails = this.strVasthramDetails.replace("\\n", "\n");
     }
 
     /* public getter methods that allow outside access of data present in the member variables. */
@@ -39,6 +48,11 @@ public class GalleryInfo {
     public String getTemplePathigam()
     {
     	return strTemplePathigam;
+    }
+
+    public String getVasthramDetails()
+    {
+        return strVasthramDetails;
     }
 
 }
