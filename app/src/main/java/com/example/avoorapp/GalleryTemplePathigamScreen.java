@@ -9,6 +9,8 @@ import androidx.appcompat.widget.Toolbar;
 
 /* This class represents the 'temple pathigam' sub-menu of the gallery screen. */
 public class GalleryTemplePathigamScreen extends AppCompatActivity {
+    /* Member variables. */
+    private int intTextViewColor;
 
     /* This method is called in the background. Set the screen (xml layout) this class is supposed
      * to display and initialize class variables and screen items as desired. */
@@ -19,6 +21,14 @@ public class GalleryTemplePathigamScreen extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.gallery_temple_pathigam_screen);
+        if(this.getResources().getString(R.string.theme).equals("Night"))
+        {
+            intTextViewColor = this.getResources().getColor(R.color.white);
+        }
+        else
+        {
+            intTextViewColor = this.getResources().getColor(R.color.black);
+        }
 
         tvGalleryTemplePathigamScreenTxtViewAppName = findViewById(R.id.GalleryTemplePathigamScreenTxtViewAppName);
         tvGalleryTemplePathigamScreenTxtViewTitleMessage = findViewById(R.id.GalleryTemplePathigamScreenTxtViewTitleMessage);
@@ -39,6 +49,7 @@ public class GalleryTemplePathigamScreen extends AppCompatActivity {
 
         Intent intent = getIntent();
         String strTemplePathigam = intent.getStringExtra(this.getResources().getString(R.string.GalleryScreenTemplePathigamIntentKey));
+        tvGalleryTemplePathigamScreenContentBox.setTextColor(intTextViewColor);
         tvGalleryTemplePathigamScreenContentBox.setText(strTemplePathigam);
     }
 }

@@ -19,7 +19,7 @@ public class AboutScreen extends AppCompatActivity
 
     String[] strRevisionsHistoryList =
     {
-        "Proto under progress. "
+        "First version. "
     };
 
     /* This method is called in the background. Set the screen (xml layout) this class is supposed

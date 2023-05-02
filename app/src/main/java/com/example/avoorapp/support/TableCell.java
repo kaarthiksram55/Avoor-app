@@ -1,6 +1,7 @@
 package com.example.avoorapp.support;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.TableRow;
@@ -31,13 +32,23 @@ public class TableCell {
 
         cellTextView.setText(strContentString);
         cellTextView.setBackgroundColor(intColor);
-        cellTextView.setPadding(4, 4, 4, 4);
+        cellTextView.setPadding(12, 2, 12, 2);
         cellTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, floatFontSizeSp);
         cellTextView.setLayoutParams(cellLayoutParams);
 
         if (boolCenterAlign)
         {
             cellTextView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+            cellTextView.setTypeface(null, Typeface.BOLD);
+        }
+
+        if (appContext.getResources().getString(R.string.theme).equals("Day"))
+        {
+            cellTextView.setTextColor(appContext.getResources().getColor(R.color.black));
+        }
+        else
+        {
+            cellTextView.setTextColor(appContext.getResources().getColor(R.color.white));
         }
 
         return cellTextView;

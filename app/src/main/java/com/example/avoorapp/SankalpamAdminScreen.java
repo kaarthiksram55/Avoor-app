@@ -2,6 +2,7 @@ package com.example.avoorapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -41,7 +42,7 @@ public class SankalpamAdminScreen extends AppCompatActivity {
     private int intTableColor;
     private int intTableCellColor;
 
-    private final float floatTableHeaderSizeSp = 18f;
+    private final float floatTableHeaderSizeSp = 13f;
     private final float floatTableCellSizeSp = 13f;
 
     /* This method is called in the background. Set the screen (xml layout) this class is supposed
@@ -120,7 +121,15 @@ public class SankalpamAdminScreen extends AppCompatActivity {
 
         for (int i=0; i<sponsorsInfoList.size(); i++)
         {
-            strYearSelectDropdownList.add(sponsorsInfoList.get(i).getName());
+            if(sponsorsInfoList.get(i).getSponsoredPradoshams() != null)
+            {
+                strYearSelectDropdownList.add(sponsorsInfoList.get(i).getName());
+            }
+            else
+            {
+                sponsorsInfoList.remove(i);
+                i--;
+            }
         }
 
         spnSankalpamAdminScreenSponsorsDropdown.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, strYearSelectDropdownList));
@@ -188,6 +197,7 @@ public class SankalpamAdminScreen extends AppCompatActivity {
             if (strIndicesString.length() != 0)
             {
                 String[] strIndicesStringArr = strIndicesString.split(",");
+
                 if (strIndicesStringArr.length > 0)
                 {
                     ArrayList<Map<String, String>> sponsorPradoshamInfoTableEntries = new ArrayList<Map<String, String>>();
@@ -263,20 +273,25 @@ public class SankalpamAdminScreen extends AppCompatActivity {
     {
         List<Map<String, String>> currentSponsorFamilyInfoList = selectedSponsorInfo.getFamilyDetails();
 
-        for (int i=0; i<currentSponsorFamilyInfoList.size(); i++)
-        {
-            Map<String, String> tempFamilyInfoMap = currentSponsorFamilyInfoList.get(i);
-            TableRow tblRowPradoshamInfoRow = new TableRow(this);
+        if (currentSponsorFamilyInfoList != null) {
+            for (int i = 0; i < currentSponsorFamilyInfoList.size(); i++) {
+                Map<String, String> tempFamilyInfoMap = currentSponsorFamilyInfoList.get(i);
+                TableRow tblRowPradoshamInfoRow = new TableRow(this);
 
-            String strTableCellName = tempFamilyInfoMap.get(this.getResources().getString(R.string.SponsorFamilyInfoAttributeNameName));
-            tblRowPradoshamInfoRow.addView(tableCell.generateCell(strTableCellName, intTableCellColor, floatTableCellSizeSp, false));
-            String strTableCellGothram = tempFamilyInfoMap.get(this.getResources().getString(R.string.SponsorFamilyInfoAttributeNameGothram));
-            tblRowPradoshamInfoRow.addView(tableCell.generateCell(strTableCellGothram, intTableCellColor, floatTableCellSizeSp, false));
-            String strTableCellStar = tempFamilyInfoMap.get(this.getResources().getString(R.string.SponsorFamilyInfoAttributeNameStar));
-            tblRowPradoshamInfoRow.addView(tableCell.generateCell(strTableCellStar, intTableCellColor, floatTableCellSizeSp, false));
-            String strTableCellRasi = tempFamilyInfoMap.get(this.getResources().getString(R.string.SponsorFamilyInfoAttributeNameRasi));
-            tblRowPradoshamInfoRow.addView(tableCell.generateCell(strTableCellRasi, intTableCellColor, floatTableCellSizeSp, false));
-            tblSankalpamScreenFamilyInfoTable.addView(tblRowPradoshamInfoRow);
+                String strTableCellName = tempFamilyInfoMap.get(this.getResources().getString(R.string.SponsorFamilyInfoAttributeNameName));
+                tblRowPradoshamInfoRow.addView(tableCell.generateCell(strTableCellName, intTableCellColor, floatTableCellSizeSp, false));
+                String strTableCellGothram = tempFamilyInfoMap.get(this.getResources().getString(R.string.SponsorFamilyInfoAttributeNameGothram));
+                tblRowPradoshamInfoRow.addView(tableCell.generateCell(strTableCellGothram, intTableCellColor, floatTableCellSizeSp, false));
+                String strTableCellStar = tempFamilyInfoMap.get(this.getResources().getString(R.string.SponsorFamilyInfoAttributeNameStar));
+                tblRowPradoshamInfoRow.addView(tableCell.generateCell(strTableCellStar, intTableCellColor, floatTableCellSizeSp, false));
+                String strTableCellRasi = tempFamilyInfoMap.get(this.getResources().getString(R.string.SponsorFamilyInfoAttributeNameRasi));
+                tblRowPradoshamInfoRow.addView(tableCell.generateCell(strTableCellRasi, intTableCellColor, floatTableCellSizeSp, false));
+                tblSankalpamScreenFamilyInfoTable.addView(tblRowPradoshamInfoRow);
+            }
+        }
+        else
+        {
+            /* Do nothing here. */
         }
     }
 }

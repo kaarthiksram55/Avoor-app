@@ -38,7 +38,7 @@ public class PradoshamDatesScreen extends AppCompatActivity
     private int intTableColor;
     private int intTableCellColor;
     
-    private final float floatTableHeaderSizeSp = 18f;
+    private final float floatTableHeaderSizeSp = 13f;
     private final float floatTableCellSizeSp = 13f;
 
     /* This method is called in the background. Set the screen (xml layout) this class is supposed

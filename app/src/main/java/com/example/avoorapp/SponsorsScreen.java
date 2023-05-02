@@ -10,6 +10,7 @@ import com.example.avoorapp.support.CustomAlertDialog;
 import com.example.avoorapp.support.FirebaseDownloadListener;
 import com.example.avoorapp.support.FirebaseWrapper;
 import com.example.avoorapp.support.SponsorsInfo;
+import com.example.avoorapp.support.TableCell;
 
 import java.util.ArrayList;
 
@@ -25,6 +26,12 @@ public class SponsorsScreen extends AppCompatActivity
     private FirebaseWrapper tempWrapper;
     private ArrayList<SponsorsInfo> sponsorsInfoList;
     private CustomAlertDialog alertDialog;
+    private TableCell tableCell;
+    private int intTableColor;
+    private int intTableCellColor;
+
+    private final float floatTableHeaderSizeSp = 13f;
+    private final float floatTableCellSizeSp = 13f;
 
     /* This method is called in the background. Set the screen (xml layout) this class is supposed
      * to display and initialize class variables and screen items as desired. */
@@ -34,6 +41,16 @@ public class SponsorsScreen extends AppCompatActivity
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sponsors_screen);
+        if(this.getResources().getString(R.string.theme).equals("Night"))
+        {
+            intTableColor = this.getResources().getColor(R.color.white);
+            intTableCellColor = this.getResources().getColor(R.color.black);
+        }
+        else
+        {
+            intTableColor = this.getResources().getColor(R.color.black);
+            intTableCellColor = this.getResources().getColor(R.color.white);
+        }
 
         tblSponsorsScreenSponsorsInfoTable = findViewById(R.id.SponsorsScreenSponsorsInfoTable);
         tvSponsorScreenTxtViewAppName = findViewById(R.id.SponsorsScreenTxtViewAppName);
@@ -49,6 +66,8 @@ public class SponsorsScreen extends AppCompatActivity
             getResources()
             .getString(R.string.SponsorsScreenTitleEnglish)
         );
+        tblSponsorsScreenSponsorsInfoTable.setBackgroundColor(intTableColor);
+        tableCell = new TableCell(this);
         alertDialog = new CustomAlertDialog(this);
         tempWrapper = new FirebaseWrapper(getApplicationContext());
         prvObtainSponsorsInfoFromFirebase();
@@ -64,6 +83,7 @@ public class SponsorsScreen extends AppCompatActivity
             public void onDownloadCompleteCallback()
             {
                 sponsorsInfoList = tempWrapper.getAllSponsorsInfo();
+                loadSponsorInfoTableWithHeader();
                 loadSponsorsInfoTableWithInfo(sponsorsInfoList);
             }
 
@@ -75,31 +95,41 @@ public class SponsorsScreen extends AppCompatActivity
         });
     }
 
+    /* This method fills the sponsors information table with the header row. */
+    private void loadSponsorInfoTableWithHeader()
+    {
+        TableRow tblrowSponsorInfoRow = new TableRow(this);
+        tblrowSponsorInfoRow.setLayoutParams(new TableRow.LayoutParams());
+    
+        String strTableHeaderName = this.getResources().getString(R.string.SponsorScreenTableHeaderName);
+        tblrowSponsorInfoRow.addView(tableCell.generateCell(strTableHeaderName, intTableCellColor, floatTableHeaderSizeSp, true));
+        String strTableHeaderNumber = this.getResources().getString(R.string.SponsorScreenTableHeaderNumber);
+        tblrowSponsorInfoRow.addView(tableCell.generateCell(strTableHeaderNumber, intTableCellColor, floatTableHeaderSizeSp, true));
+        String strTableHeaderLocation = this.getResources().getString(R.string.SponsorScreenTableHeaderLocation);
+        tblrowSponsorInfoRow.addView(tableCell.generateCell(strTableHeaderLocation, intTableCellColor, floatTableHeaderSizeSp, true));
+
+        tblSponsorsScreenSponsorsInfoTable.addView(tblrowSponsorInfoRow);
+    }
+
     /* This method fills the Sponsors Information table with the sponsors data provided as input. */
     private void loadSponsorsInfoTableWithInfo(ArrayList<SponsorsInfo> sponsorsInfoList)
     {
         for (int i=0; i<sponsorsInfoList.size(); i++)
         {
-            TableRow tblrowSponsorInfoRow = new TableRow(this);
-            tblrowSponsorInfoRow.setLayoutParams(new TableRow.LayoutParams());
-            TextView tvSponsorInfoCell;
+            if (sponsorsInfoList.get(i).getSponsoredPradoshams() != null)
+            {
+                TableRow tblrowSponsorInfoRow = new TableRow(this);
+                tblrowSponsorInfoRow.setLayoutParams(new TableRow.LayoutParams());
 
-            tvSponsorInfoCell = new TextView(this);
-            tvSponsorInfoCell.setText(sponsorsInfoList.get(i).getName());
-            tvSponsorInfoCell.setPadding(4, 4, 4, 4);
-            tblrowSponsorInfoRow.addView(tvSponsorInfoCell);
+                String strTableCellName = sponsorsInfoList.get(i).getName();
+                tblrowSponsorInfoRow.addView(tableCell.generateCell(strTableCellName, intTableCellColor, floatTableCellSizeSp, false));
+                String strTableCellNumber = sponsorsInfoList.get(i).getNumber();
+                tblrowSponsorInfoRow.addView(tableCell.generateCell(strTableCellNumber, intTableCellColor, floatTableCellSizeSp, false));
+                String strTableCellLocation = sponsorsInfoList.get(i).getLocation();
+                tblrowSponsorInfoRow.addView(tableCell.generateCell(strTableCellLocation, intTableCellColor, floatTableCellSizeSp, false));
 
-            tvSponsorInfoCell = new TextView(this);
-            tvSponsorInfoCell.setText(sponsorsInfoList.get(i).getNumber());
-            tvSponsorInfoCell.setPadding(4, 4, 4, 4);
-            tblrowSponsorInfoRow.addView(tvSponsorInfoCell);
-
-            tvSponsorInfoCell = new TextView(this);
-            tvSponsorInfoCell.setText(sponsorsInfoList.get(i).getLocation());
-            tvSponsorInfoCell.setPadding(4, 4, 4, 4);
-            tblrowSponsorInfoRow.addView(tvSponsorInfoCell);
-
-            tblSponsorsScreenSponsorsInfoTable.addView(tblrowSponsorInfoRow);
+                tblSponsorsScreenSponsorsInfoTable.addView(tblrowSponsorInfoRow);
+            }
         }
     }
 }

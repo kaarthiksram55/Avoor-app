@@ -41,7 +41,7 @@ public class PradoshamDatesSponsorsScreen extends AppCompatActivity
     private int intTableColor;
     private int intTableCellColor;
 
-    private final float floatTableHeaderSizeSp = 18f;
+    private final float floatTableHeaderSizeSp = 13f;
     private final float floatTableCellSizeSp = 13f;
 
     /* This method is called in the background. Set the screen (xml layout) this class is supposed
@@ -192,11 +192,12 @@ public class PradoshamDatesSponsorsScreen extends AppCompatActivity
         {
             SponsorsInfo tempSponsorInfo = sponsorsInfoList.get(i);
 
-            if (tempSponsorInfo.getSponsoredPradoshams().get(tempPradoshamInfo.getYearName()).length() != 0)
+            if ((tempSponsorInfo.getSponsoredPradoshams() != null) && (tempSponsorInfo.getSponsoredPradoshams().get(tempPradoshamInfo.getYearName()).length() != 0))
             {
                 String[] strIndicesStringArr = tempSponsorInfo.getSponsoredPradoshams().get(tempPradoshamInfo.getYearName()).split(",");
 
-                for (int j = 0; j < strIndicesStringArr.length; j++) {
+                for (int j = 0; j < strIndicesStringArr.length; j++)
+                {
                     String[] strTempInfoArr = new String[4];
                     int intPradoshamIndex = Integer.parseInt(strIndicesStringArr[j]);
                     String strEnglishDateKey = this.getResources().getString(R.string.PradoshamInfoAttributeNameEnglishDate);
@@ -214,7 +215,7 @@ public class PradoshamDatesSponsorsScreen extends AppCompatActivity
             }
             else
             {
-
+                /* Do nothing here. */
             }
         }
 

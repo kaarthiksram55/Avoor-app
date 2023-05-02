@@ -21,6 +21,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class GalleryScreen extends AppCompatActivity {
     /* member variables. */
+    private ListView lvGalleryScreenListViewMenuItems;
     private GalleryInfo galleryInfo;
     private FirebaseWrapper tempWrapper;
     private CustomAlertDialog alertDialog;
@@ -31,7 +32,6 @@ public class GalleryScreen extends AppCompatActivity {
     {
         TextView tvGalleryScreenTxtViewAppName, tvGalleryScreenTxtViewTitleMessage;
         Toolbar tlbarGalleryScreenToolbar;
-        ListView lvGalleryScreenListViewMenuItems;
         ArrayList<String> strGalleryScreenListViewMenuItemsNamesList = new ArrayList<String>();
 
         super.onCreate(savedInstanceState);
@@ -73,28 +73,35 @@ public class GalleryScreen extends AppCompatActivity {
      * sub menu items. */
     private void prvSelectGalleryScreenFromListOption(String strSubMenuName)
     {
-        if (strSubMenuName.equals(this.getResources().getString(R.string.GalleryScreenSubMenuItemAboutTemple)))
+        if(galleryInfo == null)
         {
-            Intent intent = new Intent(this.getApplicationContext(), GalleryAboutTempleScreen.class);
-            intent.putExtra(this.getResources().getString(R.string.GalleryScreenAboutTempleIntentKey), galleryInfo.getAboutTemple());
-            startActivity(intent);
+            alertDialog.displayAlertMessage(getApplicationContext().getResources().getString(R.string.GalleryScreenGalleryInfoStatusDownloadFailed));
         }
-        else if (strSubMenuName.equals(this.getResources().getString(R.string.GalleryScreenSubMenuItemTemplePathigam)))
+        else
         {
-            Intent intent = new Intent(this.getApplicationContext(), GalleryTemplePathigamScreen.class);
-            intent.putExtra(this.getResources().getString(R.string.GalleryScreenTemplePathigamIntentKey), galleryInfo.getTemplePathigam());
-            startActivity(intent);
-        }
-        else if (strSubMenuName.equals(this.getResources().getString(R.string.GalleryScreenSubMenuItemVasthramDetails)))
-        {
-            Intent intent = new Intent(this.getApplicationContext(), GalleryVasthramDetailsScreen.class);
-            intent.putExtra(this.getResources().getString(R.string.GalleryScreenVasthramDetailsIntentKey), galleryInfo.getVasthramDetails());
-            startActivity(intent);
-        }
-        else if (strSubMenuName.equals(this.getResources().getString(R.string.GalleryScreenSubMenuItemMedia)))
-        {
-            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(galleryInfo.getMediaLink()));
-            startActivity(intent);
+            if (strSubMenuName.equals(this.getResources().getString(R.string.GalleryScreenSubMenuItemAboutTemple)))
+            {
+                Intent intent = new Intent(this.getApplicationContext(), GalleryAboutTempleScreen.class);
+                intent.putExtra(this.getResources().getString(R.string.GalleryScreenAboutTempleIntentKey), galleryInfo.getAboutTemple());
+                startActivity(intent);
+            }
+            else if (strSubMenuName.equals(this.getResources().getString(R.string.GalleryScreenSubMenuItemTemplePathigam)))
+            {
+                Intent intent = new Intent(this.getApplicationContext(), GalleryTemplePathigamScreen.class);
+                intent.putExtra(this.getResources().getString(R.string.GalleryScreenTemplePathigamIntentKey), galleryInfo.getTemplePathigam());
+                startActivity(intent);
+            }
+            else if (strSubMenuName.equals(this.getResources().getString(R.string.GalleryScreenSubMenuItemVasthramDetails)))
+            {
+                Intent intent = new Intent(this.getApplicationContext(), GalleryVasthramDetailsScreen.class);
+                intent.putExtra(this.getResources().getString(R.string.GalleryScreenVasthramDetailsIntentKey), galleryInfo.getVasthramDetails());
+                startActivity(intent);
+            }
+            else if (strSubMenuName.equals(this.getResources().getString(R.string.GalleryScreenSubMenuItemMedia)))
+            {
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(galleryInfo.getMediaLink()));
+                startActivity(intent);
+            }
         }
     }
 

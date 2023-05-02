@@ -26,11 +26,11 @@
     <string name="AvoorAppDisplayNameEnglish">திருஆவூர் பசுபதீச்சரம்</string>
     <string name="HomeScreenTitleEnglish">Pradosha\nKainkariyam\nApp</string>
     <string name="SponsorsScreenTitleEnglish">List of Sponsors</string>
-    <string name="GalleryScreenTitleEnglish">Gallery</string>
+    <string name="GalleryScreenTitleEnglish">About the Temple</string>
     <string name="PradoshamDatesScreenTitleEnglish">Pradosham Dates</string>
     <string name="SankalpamScreenTitleEnglish">Sankalpam Details</string>
     <string name="PradoshamDatesSponsorsScreenTitleEnglish">Pradosham Sponsors</string>
-    <string name="GalleryAboutTempleScreenTitleEnglish">About the temple</string>
+    <string name="GalleryAboutTempleScreenTitleEnglish">Greatness of Temple</string>
     <string name="GalleryTemplePathigamScreenTitleEnglish">Temple pathigam</string>
     <string name="GalleryVasthramDetailsScreenTitleEnglish">Vasthram details</string>
 
@@ -46,9 +46,9 @@
     <string name="LandingScreenLoginStatusCredentialsMismatch">Username and Password do not match.</string>
     <string name="LandingScreenLoginStatusDownloadFailed">Unable to verify. Check if username is invalid or internet is unavailable.</string>
 
-    <string name="MenuItemSponsorsList">List of sponsors</string>
-    <string name="MenuItemPradoshamDates">Pradosham dates</string>
-    <string name="MenuItemPradoshamSponsors">Pradosham sponsors</string>
+    <string name="MenuItemSponsorsList">List of Sponsors</string>
+    <string name="MenuItemPradoshamDates">Pradosham Dates</string>
+    <string name="MenuItemPradoshamSponsors">Pradosham Sponsors</string>
     <string name="MenuItemSankalpamDetails">Sankalpam Details</string>
     <string name="MenuItemPhotosAndVideos">About Temple</string>
 
@@ -56,7 +56,7 @@
     <string name="ThreeDotsMenuAboutName">About</string>
 
     <string name="SponsorScreenTableHeaderName">Name</string>
-    <string name="SponsorScreenTableHeaderMobileNumber">Mobile</string>
+    <string name="SponsorScreenTableHeaderNumber">Mobile</string>
     <string name="SponsorScreenTableHeaderLocation">Location</string>
 
     <string name="SponsorInfoBasicInfoDocumentName">SponsorInfo</string>
@@ -68,9 +68,9 @@
     <string name="FirebaseGalleryInformationCollectionName">Gallery</string>
 
     <string name="PradoshamDatesScreenTableHeaderSNo">SNo</string>
-    <string name="PradoshamDatesScreenTableHeaderId">Id</string>
-    <string name="PradoshamDatesScreenTableHeaderTamilDate">Tamil date</string>
-    <string name="PradoshamDatesScreenTableHeaderEnglishDate">English date</string>
+    <string name="PradoshamDatesScreenTableHeaderId">ID</string>
+    <string name="PradoshamDatesScreenTableHeaderTamilDate">Tamil Date</string>
+    <string name="PradoshamDatesScreenTableHeaderEnglishDate">English Date</string>
     <string name="PradoshamDatesScreenTableHeaderDay">Day</string>
     <string name="PradoshamDatesScreenYearSelectLabelName">Select year:</string>
 
@@ -97,7 +97,7 @@
     <string name="SankalpamScreenPradoshamInfoTableHeaderEnglishDate">English Date</string>
     <string name="SankalpamScreenPradoshamInfoTableHeaderDay">Day</string>
 
-    <string name="SankalpamScreenFamilyInfoTableLabel">Upayathaarar Sankalpam List:</string>
+    <string name="SankalpamScreenFamilyInfoTableLabel">Sponsor Sankalpam List:</string>
     <string name="SankalpamScreenFamilyInfoTableHeaderName">Name</string>
     <string name="SankalpamScreenFamilyInfoTableHeaderGothram">Gothram</string>
     <string name="SankalpamScreenFamilyInfoTableHeaderStar">Star</string>
@@ -112,9 +112,9 @@
     <string name="PradoshamDatesSponsorsScreenAllSponsorInfoStatusDownloadFailed">Unable to download data of all sponsors.</string>
     <string name="PradoshamDatesSponsorsScreenAllPradoshamInfoStatusDownloadFailed">Unable to download data of all pradoshams.</string>
 
-    <string name="GalleryScreenSubMenuItemAboutTemple">Temple History</string>
-    <string name="GalleryScreenSubMenuItemTemplePathigam">Temple pathigam</string>
-    <string name="GalleryScreenSubMenuItemVasthramDetails">Vasthram details</string>
+    <string name="GalleryScreenSubMenuItemAboutTemple">Greatness of Temple</string>
+    <string name="GalleryScreenSubMenuItemTemplePathigam">Temple Pathigam</string>
+    <string name="GalleryScreenSubMenuItemVasthramDetails">General Info</string>
     <string name="GalleryScreenSubMenuItemMedia">Gallery</string>
 
     <string name="GalleryScreenGalleryInfoStatusDownloadFailed">Unable to download gallery information.</string>
