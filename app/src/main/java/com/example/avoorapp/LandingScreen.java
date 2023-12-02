@@ -1,6 +1,8 @@
 package com.example.avoorapp;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -21,19 +23,53 @@ public class LandingScreen extends AppCompatActivity
     private EditText etLandingScreenEditTxtUsername, etLandingScreenEditTxtPassword;
     private FirebaseWrapper tempWrapper;
     private CustomAlertDialog alertDialog;
+    private Context appContext;
+    private SharedPreferences sharedPref;
 
     /* This method is called in the background. Set the screen (xml layout) this class is supposed
      * to display and initialize class variables and screen items as desired. */
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.landing_screen);
-
-        etLandingScreenEditTxtUsername = findViewById(R.id.LandingScreenEditTxtUsername);
-        etLandingScreenEditTxtPassword = findViewById(R.id.LandingScreenEditTxtPassword);
-
-        alertDialog = new CustomAlertDialog(this);
+        appContext = getApplicationContext();
+        sharedPref = appContext.getSharedPreferences(appContext.getResources().getString(R.string.SharedPreferencesLoginStatusFileKey), Context.MODE_PRIVATE);
+        alertDialog = new CustomAlertDialog(appContext);
         tempWrapper = new FirebaseWrapper(getApplicationContext());
+
+        if (sharedPref.getBoolean(appContext.getResources().getString(R.string.SharedPreferencesLoginStatusKey), false))
+        {
+            Log.d("debugLoginLand", ""+sharedPref.getBoolean(appContext.getResources().getString(R.string.SharedPreferencesLoginStatusKey), false));
+            String strCurrentUserNumber = sharedPref.getString(appContext.getResources().getString(R.string.SharedPreferencesLoginStatusNumber), "");
+
+            if (!strCurrentUserNumber.equals(""))
+            {
+                tempWrapper.downloadSingleSponsorInfo(strCurrentUserNumber, new FirebaseDownloadListener() {
+                    @Override
+                    public void onDownloadCompleteCallback() {
+                        prvOpenHomeScreen(appContext, tempWrapper.getSingleSponsorInfo());
+                    }
+
+                    @Override
+                    public void onDownloadFailureCallback() {
+                        setContentView(R.layout.landing_screen);
+                        etLandingScreenEditTxtUsername = findViewById(R.id.LandingScreenEditTxtUsername);
+                        etLandingScreenEditTxtPassword = findViewById(R.id.LandingScreenEditTxtPassword);
+                    }
+                });
+            }
+            else
+            {
+                setContentView(R.layout.landing_screen);
+                etLandingScreenEditTxtUsername = findViewById(R.id.LandingScreenEditTxtUsername);
+                etLandingScreenEditTxtPassword = findViewById(R.id.LandingScreenEditTxtPassword);
+            }
+        }
+        else
+        {
+            setContentView(R.layout.landing_screen);
+            etLandingScreenEditTxtUsername = findViewById(R.id.LandingScreenEditTxtUsername);
+            etLandingScreenEditTxtPassword = findViewById(R.id.LandingScreenEditTxtPassword);
+        }
     }
 
     /* This method is called when the button to jump to home screen is clicked. This is for debug
@@ -53,17 +89,25 @@ public class LandingScreen extends AppCompatActivity
                 {
                     final SponsorsInfo singleSponsorInfo = tempWrapper.getSingleSponsorInfo();
 
-//                    if (singleSponsorInfo.getStrSponsorPassword().equals(strPasswordFieldValue)) {
                     if (singleSponsorInfo.getPassword().equals(strPasswordFieldValue))
                     {
+                        /* Save log in status of user so that they do not have to enter password on
+                         * every login. This status will be reset only when they explicitly log out
+                         * using the ellipsis menu. */
+                        SharedPreferences.Editor editor = sharedPref.edit();
+                        editor.putBoolean(appContext.getResources().getString(R.string.SharedPreferencesLoginStatusKey), true);
+                        editor.putString(appContext.getResources().getString(R.string.SharedPreferencesLoginStatusNumber), singleSponsorInfo.getNumber());
+                        editor.apply();
+
                         /* Make an intent object with the below flags set to prevent coming back to
                          * the landing screen from home screen by clicking the back button. Pass the
                          * logged in sponsor information to the home screen. */
-                        Intent intent = new Intent(v.getContext(), HomeScreen.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        String strIntentSponsorInfoKey = getApplicationContext().getResources().getString(R.string.LandingScreenIntentSponsorInfoKey);
-                        intent.putExtra(strIntentSponsorInfoKey, singleSponsorInfo);
-                        startActivity(intent);
+//                        Intent intent = new Intent(v.getContext(), HomeScreen.class);
+//                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//                        String strIntentSponsorInfoKey = getApplicationContext().getResources().getString(R.string.LandingScreenIntentSponsorInfoKey);
+//                        intent.putExtra(strIntentSponsorInfoKey, singleSponsorInfo);
+//                        startActivity(intent);
+                        prvOpenHomeScreen(v.getContext(), singleSponsorInfo);
                     }
                     else
                     {
@@ -85,5 +129,18 @@ public class LandingScreen extends AppCompatActivity
             /* display an alert to the user indicating that the username entered is invalid. */
             alertDialog.displayAlertMessage(getApplicationContext().getResources().getString(R.string.LandingScreenLoginStatusInvalidCredentials));
         }
+    }
+
+    /* This function will pass control to the home screen. */
+    private void prvOpenHomeScreen(Context context, SponsorsInfo singleSponsorInfo)
+    {
+        /* Make an intent object with the below flags set to prevent coming back to
+         * the landing screen from home screen by clicking the back button. Pass the
+         * logged in sponsor information to the home screen. */
+        Intent intent = new Intent(context, HomeScreen.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        String strIntentSponsorInfoKey = getApplicationContext().getResources().getString(R.string.LandingScreenIntentSponsorInfoKey);
+        intent.putExtra(strIntentSponsorInfoKey, singleSponsorInfo);
+        startActivity(intent);
     }
 }

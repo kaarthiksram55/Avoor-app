@@ -26,11 +26,11 @@ public class SponsorsInfo implements Serializable {
     public static final int ACCESS_LEVEL_BASE = 1;
     public static final int ACCESS_LEVEL_ADMIN = 2;
 
-    /* Make public methods for firebase to access the pirvate members and write their values. Write
+    /* Make public methods for firebase to access the private members and write their values. Write
      * them such that the object info can be updated only once and never again. */
     public void setName(String name)
     {
-        this.name = (this.name == null) ? name : this.name;
+        this.name = (this.name == null) ? name.replace("\\n", "\n") : this.name;
     }
     
     public void setNumber(String number)

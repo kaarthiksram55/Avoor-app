@@ -273,12 +273,14 @@ public class SankalpamAdminScreen extends AppCompatActivity {
     {
         List<Map<String, String>> currentSponsorFamilyInfoList = selectedSponsorInfo.getFamilyDetails();
 
-        if (currentSponsorFamilyInfoList != null) {
-            for (int i = 0; i < currentSponsorFamilyInfoList.size(); i++) {
+        if (currentSponsorFamilyInfoList != null)
+        {
+            for (int i = 0; i < currentSponsorFamilyInfoList.size(); i++)
+            {
                 Map<String, String> tempFamilyInfoMap = currentSponsorFamilyInfoList.get(i);
                 TableRow tblRowPradoshamInfoRow = new TableRow(this);
 
-                String strTableCellName = tempFamilyInfoMap.get(this.getResources().getString(R.string.SponsorFamilyInfoAttributeNameName));
+                String strTableCellName = tempFamilyInfoMap.get(this.getResources().getString(R.string.SponsorFamilyInfoAttributeNameName)).replace("\\n", "\n");
                 tblRowPradoshamInfoRow.addView(tableCell.generateCell(strTableCellName, intTableCellColor, floatTableCellSizeSp, false));
                 String strTableCellGothram = tempFamilyInfoMap.get(this.getResources().getString(R.string.SponsorFamilyInfoAttributeNameGothram));
                 tblRowPradoshamInfoRow.addView(tableCell.generateCell(strTableCellGothram, intTableCellColor, floatTableCellSizeSp, false));

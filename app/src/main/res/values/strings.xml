@@ -2,7 +2,7 @@
 <resources>
     <string name="theme">Day</string>
     <string name="app_name">AvoorApp</string>
-    <string name="app_version">0.1</string>
+    <string name="app_version">0.2</string>
 
     <string name="LandingScreenIntentSponsorInfoKey">LandingScreenIntentKey_Username</string>
     <string name="HomeScreenSponsorInfoIntentKey">HomeScreenSponsorInfoIntentKey</string>
@@ -122,5 +122,9 @@
     <string name="GalleryTemplePathigamScreenIntroContent">திருஞானசம்பந்தர் அருளியது</string>
 
     <string name="SankalpamAdminScreenSponsorSelectLabelName">Select sponsor:</string>
+
+    <string name="SharedPreferencesLoginStatusFileKey">login_status_file</string>
+    <string name="SharedPreferencesLoginStatusKey">login_status</string>
+    <string name="SharedPreferencesLoginStatusNumber">mobile_number</string>
 
 </resources>

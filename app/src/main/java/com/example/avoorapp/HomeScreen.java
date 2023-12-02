@@ -1,6 +1,8 @@
 package com.example.avoorapp;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -11,8 +13,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.avoorapp.support.SponsorsInfo;
-
-import org.checkerframework.checker.units.qual.A;
 
 import java.util.ArrayList;
 
@@ -189,8 +189,15 @@ public class HomeScreen extends AppCompatActivity
     {
         /* Make an intent object with the below flags set to prevent going back to the application
          * screens with the back button after opting to log out. */
+        SharedPreferences sharedPref = this.getSharedPreferences(this.getResources().getString(R.string.SharedPreferencesLoginStatusFileKey), Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putBoolean(this.getResources().getString(R.string.SharedPreferencesLoginStatusKey), false);
+        editor.putString(this.getResources().getString(R.string.SharedPreferencesLoginStatusNumber), "");
+        editor.apply();
+
         Intent intent = new Intent(this.getApplicationContext(), LandingScreen.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        Log.d("debugLoginHome", ""+sharedPref.getBoolean(this.getResources().getString(R.string.SharedPreferencesLoginStatusKey), true));
         startActivity(intent);
     }
 

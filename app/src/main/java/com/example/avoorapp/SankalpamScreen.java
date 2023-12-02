@@ -199,20 +199,23 @@ public class SankalpamScreen extends AppCompatActivity {
     {
         List<Map<String, String>> currentSponsorFamilyInfoList = currentSponsorInfo.getFamilyDetails();
 
-        for (int i=0; i<currentSponsorFamilyInfoList.size(); i++)
+        if (currentSponsorFamilyInfoList != null)
         {
-            Map<String, String> tempFamilyInfoMap = currentSponsorFamilyInfoList.get(i);
-            TableRow tblRowPradoshamInfoRow = new TableRow(this);
+            for (int i=0; i<currentSponsorFamilyInfoList.size(); i++)
+            {
+                Map<String, String> tempFamilyInfoMap = currentSponsorFamilyInfoList.get(i);
+                TableRow tblRowPradoshamInfoRow = new TableRow(this);
 
-            String strTableCellName = tempFamilyInfoMap.get(this.getResources().getString(R.string.SponsorFamilyInfoAttributeNameName));
-            tblRowPradoshamInfoRow.addView(tableCell.generateCell(strTableCellName, intTableCellColor, floatTableCellSizeSp, false));
-            String strTableCellGothram = tempFamilyInfoMap.get(this.getResources().getString(R.string.SponsorFamilyInfoAttributeNameGothram));
-            tblRowPradoshamInfoRow.addView(tableCell.generateCell(strTableCellGothram, intTableCellColor, floatTableCellSizeSp, false));
-            String strTableCellStar = tempFamilyInfoMap.get(this.getResources().getString(R.string.SponsorFamilyInfoAttributeNameStar));
-            tblRowPradoshamInfoRow.addView(tableCell.generateCell(strTableCellStar, intTableCellColor, floatTableCellSizeSp, false));
-            String strTableCellRasi = tempFamilyInfoMap.get(this.getResources().getString(R.string.SponsorFamilyInfoAttributeNameRasi));
-            tblRowPradoshamInfoRow.addView(tableCell.generateCell(strTableCellRasi, intTableCellColor, floatTableCellSizeSp, false));
-            tblSankalpamScreenFamilyInfoTable.addView(tblRowPradoshamInfoRow);
+                String strTableCellName = tempFamilyInfoMap.get(this.getResources().getString(R.string.SponsorFamilyInfoAttributeNameName)).replace("\\n", "\n");
+                tblRowPradoshamInfoRow.addView(tableCell.generateCell(strTableCellName, intTableCellColor, floatTableCellSizeSp, false));
+                String strTableCellGothram = tempFamilyInfoMap.get(this.getResources().getString(R.string.SponsorFamilyInfoAttributeNameGothram));
+                tblRowPradoshamInfoRow.addView(tableCell.generateCell(strTableCellGothram, intTableCellColor, floatTableCellSizeSp, false));
+                String strTableCellStar = tempFamilyInfoMap.get(this.getResources().getString(R.string.SponsorFamilyInfoAttributeNameStar));
+                tblRowPradoshamInfoRow.addView(tableCell.generateCell(strTableCellStar, intTableCellColor, floatTableCellSizeSp, false));
+                String strTableCellRasi = tempFamilyInfoMap.get(this.getResources().getString(R.string.SponsorFamilyInfoAttributeNameRasi));
+                tblRowPradoshamInfoRow.addView(tableCell.generateCell(strTableCellRasi, intTableCellColor, floatTableCellSizeSp, false));
+                tblSankalpamScreenFamilyInfoTable.addView(tblRowPradoshamInfoRow);
+            }
         }
     }
 }

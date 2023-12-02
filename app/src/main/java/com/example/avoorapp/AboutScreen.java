@@ -14,12 +14,14 @@ public class AboutScreen extends AppCompatActivity
      * these arrays will be dynamically initialized. */
     String[] strRevisionsList =
     {
-        "0.1"
+        "0.1",
+        "0.2"
     };
 
     String[] strRevisionsHistoryList =
     {
-        "First version. "
+        "First version. ",
+        "Bugfix for log in issues."
     };
 
     /* This method is called in the background. Set the screen (xml layout) this class is supposed

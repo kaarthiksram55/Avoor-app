@@ -23,6 +23,7 @@ public class TableCell {
         appContext = context;
         cellLayoutParams = new TableRow.LayoutParams();
         cellLayoutParams.setMargins(1, 1, 1, 1);
+        cellLayoutParams.height = TableRow.LayoutParams.MATCH_PARENT;
     }
 
     /* This function will return a textView cell with the properties set as desired by the user. */
