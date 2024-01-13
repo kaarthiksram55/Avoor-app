@@ -64,8 +64,8 @@ public class HomeScreen extends AppCompatActivity
         strListViewMenuItemsNamesList.add(this.getResources().getString(R.string.MenuItemPradoshamDates));
         strListViewMenuItemsNamesList.add(this.getResources().getString(R.string.MenuItemPradoshamSponsors));
         strListViewMenuItemsNamesList.add(this.getResources().getString(R.string.MenuItemSankalpamDetails));
-        strListViewMenuItemsNamesList.add(this.getResources().getString(R.string.MenuItemPhotosAndVideos));
         strListViewMenuItemsNamesList.add(this.getResources().getString(R.string.GalleryScreenSubMenuItemVasthramDetails));
+        strListViewMenuItemsNamesList.add(this.getResources().getString(R.string.MenuItemPhotosAndVideos));
 
         lvHomeScreenListViewMenuItems.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, strListViewMenuItemsNamesList));
         lvHomeScreenListViewMenuItems.setOnItemClickListener((adapterView, view, position, id) -> {

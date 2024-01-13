@@ -26,7 +26,7 @@
     <string name="AvoorAppDisplayNameEnglish">திருஆவூர் பசுபதீச்சரம்</string>
     <string name="HomeScreenTitleEnglish">Pradosha\nKainkariyam\nApp</string>
     <string name="SponsorsScreenTitleEnglish">List of Sponsors</string>
-    <string name="GalleryScreenTitleEnglish">About the Temple</string>
+    <string name="GalleryScreenTitleEnglish">General Information</string>
     <string name="PradoshamDatesScreenTitleEnglish">Pradosham Dates</string>
     <string name="SankalpamScreenTitleEnglish">Sankalpam Details</string>
     <string name="PradoshamDatesSponsorsScreenTitleEnglish">Pradosham Sponsors</string>
@@ -50,7 +50,8 @@
     <string name="MenuItemPradoshamDates">Pradosham Dates</string>
     <string name="MenuItemPradoshamSponsors">Pradosham Sponsors</string>
     <string name="MenuItemSankalpamDetails">Sankalpam Details</string>
-    <string name="MenuItemPhotosAndVideos">About Temple</string>
+    <string name="GalleryScreenSubMenuItemVasthramDetails">Vasthram Details</string>
+    <string name="MenuItemPhotosAndVideos">General Info</string>
 
     <string name="ThreeDotsMenuLogoutName">Log out</string>
     <string name="ThreeDotsMenuAboutName">About</string>
@@ -112,9 +113,8 @@
     <string name="PradoshamDatesSponsorsScreenAllSponsorInfoStatusDownloadFailed">Unable to download data of all sponsors.</string>
     <string name="PradoshamDatesSponsorsScreenAllPradoshamInfoStatusDownloadFailed">Unable to download data of all pradoshams.</string>
 
-    <string name="GalleryScreenSubMenuItemAboutTemple">Greatness of Temple</string>
+    <string name="GalleryScreenSubMenuItemAboutTemple">About Temple</string>
     <string name="GalleryScreenSubMenuItemTemplePathigam">Temple Pathigam</string>
-    <string name="GalleryScreenSubMenuItemVasthramDetails">General Info</string>
     <string name="GalleryScreenSubMenuItemMedia">Gallery</string>
 
     <string name="GalleryScreenGalleryInfoStatusDownloadFailed">Unable to download gallery information.</string>
