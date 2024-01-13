@@ -12,6 +12,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.avoorapp.support.CustomAlertDialog;
+import com.example.avoorapp.support.FirebaseDownloadListener;
+import com.example.avoorapp.support.FirebaseWrapper;
 import com.example.avoorapp.support.SponsorsInfo;
 
 import java.util.ArrayList;
@@ -23,7 +26,9 @@ import androidx.appcompat.widget.Toolbar;
 public class HomeScreen extends AppCompatActivity
 {
     /* Member variables. */
-    SponsorsInfo currentSponsorInfo;
+    private SponsorsInfo currentSponsorInfo;
+    private FirebaseWrapper tempWrapper;
+    private CustomAlertDialog alertDialog;
 
     /* This method is called in the background. Set the screen (xml layout) this class is supposed
      * to display and initialize class variables and screen items as desired. */
@@ -60,12 +65,15 @@ public class HomeScreen extends AppCompatActivity
         strListViewMenuItemsNamesList.add(this.getResources().getString(R.string.MenuItemPradoshamSponsors));
         strListViewMenuItemsNamesList.add(this.getResources().getString(R.string.MenuItemSankalpamDetails));
         strListViewMenuItemsNamesList.add(this.getResources().getString(R.string.MenuItemPhotosAndVideos));
+        strListViewMenuItemsNamesList.add(this.getResources().getString(R.string.GalleryScreenSubMenuItemVasthramDetails));
 
         lvHomeScreenListViewMenuItems.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, strListViewMenuItemsNamesList));
         lvHomeScreenListViewMenuItems.setOnItemClickListener((adapterView, view, position, id) -> {
             String strListItemName = adapterView.getItemAtPosition(position).toString();
             prvSelectScreenFromListOption(strListItemName);
         });
+
+        tempWrapper = new FirebaseWrapper(getApplicationContext());
     }
 
     /* This method has been implemented to generate the ellipsis (three dots) menu. */
@@ -121,6 +129,10 @@ public class HomeScreen extends AppCompatActivity
         else if (strListItemName.equals(getResources().getString(R.string.MenuItemPhotosAndVideos)))
         {
             openGalleryScreen();
+        }
+        else if (strListItemName.equals(getResources().getString(R.string.GalleryScreenSubMenuItemVasthramDetails)))
+        {
+            prvObtainGalleryInfoFromFirebase();
         }
         else
         {
@@ -208,5 +220,31 @@ public class HomeScreen extends AppCompatActivity
          * home screen, so do not set any intent flags. */
         Intent intent = new Intent(this.getApplicationContext(), AboutScreen.class);
         startActivity(intent);
+    }
+
+    private void openVasthramDetailsScreen()
+    {
+        /* Make an intent object to go to the Sponsors list screen. User should be able to get back
+         * to the home screen, so do not set any intent flags. Pass the vasthram details string otained
+         * fro Firebase. */
+        Intent intent = new Intent(this.getApplicationContext(), GalleryVasthramDetailsScreen.class);
+        intent.putExtra(this.getResources().getString(R.string.GalleryScreenVasthramDetailsIntentKey),
+                        tempWrapper.getGalleryInformation().getVasthramDetails());
+        startActivity(intent);
+    }
+
+    private void prvObtainGalleryInfoFromFirebase()
+    {
+        tempWrapper.downloadGalleryInformation(new FirebaseDownloadListener() {
+            @Override
+            public void onDownloadCompleteCallback() {
+                openVasthramDetailsScreen();
+            }
+
+            @Override
+            public void onDownloadFailureCallback() {
+                alertDialog.displayAlertMessage(getApplicationContext().getResources().getString(R.string.GalleryScreenGalleryInfoStatusDownloadFailed));
+            }
+        });
     }
 }
