@@ -1,7 +1,9 @@
 package com.example.avoorapp;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -51,5 +53,12 @@ public class GalleryAboutTempleScreen extends AppCompatActivity {
         String strAboutTempleDescription = intent.getStringExtra(this.getResources().getString(R.string.GalleryScreenAboutTempleIntentKey));
         tvGalleryAboutTempleScreenContentBox.setTextColor(intTextViewColor);
         tvGalleryAboutTempleScreenContentBox.setText(strAboutTempleDescription);
+    }
+
+    public void openYoutubeChannel(View v)
+    {
+        String strYoutubeLink = getApplicationContext().getResources().getString(R.string.AvoorGurukkalYoutubeChannelLink);
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(strYoutubeLink));
+        startActivity(intent);
     }
 }

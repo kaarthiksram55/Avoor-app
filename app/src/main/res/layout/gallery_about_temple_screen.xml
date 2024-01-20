@@ -48,6 +48,7 @@
             android:layout_below="@+id/GalleryAboutTempleScreenToolbar" />
 
         <ScrollView
+            android:id="@+id/GalleryAboutTempleScreenContentScrollView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:scrollbars="none"
@@ -63,6 +64,15 @@
                 android:isScrollContainer="true"/>
 
         </ScrollView>
+
+        <ImageView
+            android:id="@+id/GalleryAboutTempleScreenChannelLogo"
+            android:layout_width="150sp"
+            android:layout_height="150sp"
+            android:layout_margin="20sp"
+            android:src="@mipmap/channel_logo"
+            android:onClick="openYoutubeChannel"
+            android:layout_below="@+id/GalleryAboutTempleScreenContentScrollView" />
 
     </RelativeLayout>
 

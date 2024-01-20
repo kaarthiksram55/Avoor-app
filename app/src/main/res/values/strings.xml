@@ -127,4 +127,6 @@
     <string name="SharedPreferencesLoginStatusKey">login_status</string>
     <string name="SharedPreferencesLoginStatusNumber">mobile_number</string>
 
+    <string name="AvoorGurukkalYoutubeChannelLink">https://youtube.com/@Pichaisivachariyar?si=HNSzc62uaElQnhbC</string>
+
 </resources>
