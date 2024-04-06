@@ -1,8 +1,14 @@
 package com.example.avoorapp;
 
+import android.Manifest;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -21,6 +27,9 @@ import java.util.ArrayList;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 /* This class represents the home screen which appears after logging in via the Landing screen. */
 public class HomeScreen extends AppCompatActivity
@@ -30,50 +39,18 @@ public class HomeScreen extends AppCompatActivity
     private FirebaseWrapper tempWrapper;
     private CustomAlertDialog alertDialog;
 
+    private final String CHANNEL_ID = "AVOOR_APP";
+    private final int NOTIFICATION_ID = 0;
+
     /* This method is called in the background. Set the screen (xml layout) this class is supposed
      * to display and initialize class variables and screen items as desired. */
     public void onCreate(Bundle savedInstanceState)
     {
-        TextView tvHomeScreenTxtViewAppName, tvHomeScreenTxtViewTitleMessage, tvHomeScreenTxtViewUserInfo, tvHomeScreenTxtViewPrdshPrtc;
-        ListView lvHomeScreenListViewMenuItems;
-        Toolbar tlbarHomeScreenToolbar;
-        ArrayList<String> strListViewMenuItemsNamesList = new ArrayList<String>();
-        Intent intent = getIntent();
-        currentSponsorInfo = (SponsorsInfo)intent.getSerializableExtra(this.getResources().getString(R.string.LandingScreenIntentSponsorInfoKey));
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_screen);
-
-        tvHomeScreenTxtViewAppName = findViewById(R.id.HomeScreenTxtViewAppName);
-        tvHomeScreenTxtViewTitleMessage = findViewById(R.id.HomeScreenTxtViewTitleMessage);
-        tvHomeScreenTxtViewUserInfo = findViewById(R.id.HomeScreenTxtViewUserInfo);
-        tvHomeScreenTxtViewPrdshPrtc = findViewById(R.id.HomeScreenTxtViewPrdshPrtc);
-        lvHomeScreenListViewMenuItems = findViewById(R.id.HomeScreenListViewMenuItems);
-        tlbarHomeScreenToolbar = findViewById(R.id.HomeScreenToolbar);
-
-        tvHomeScreenTxtViewUserInfo.setText("Welcome, " + currentSponsorInfo.getName());
-        tvHomeScreenTxtViewAppName.setText(this.getResources().getString(R.string.AvoorAppDisplayNameEnglish));
-        tvHomeScreenTxtViewTitleMessage.setText(this.getResources().getString(R.string.HomeScreenTitleEnglish));
-        tvHomeScreenTxtViewPrdshPrtc.setText("");
-        setSupportActionBar(tlbarHomeScreenToolbar);
-
-        if(currentSponsorInfo.getAccessLevel() == SponsorsInfo.ACCESS_LEVEL_ADMIN)
-        {
-            strListViewMenuItemsNamesList.add(this.getResources().getString(R.string.MenuItemSponsorsList));
-        }
-        strListViewMenuItemsNamesList.add(this.getResources().getString(R.string.MenuItemPradoshamDates));
-        strListViewMenuItemsNamesList.add(this.getResources().getString(R.string.MenuItemPradoshamSponsors));
-        strListViewMenuItemsNamesList.add(this.getResources().getString(R.string.MenuItemSankalpamDetails));
-        strListViewMenuItemsNamesList.add(this.getResources().getString(R.string.GalleryScreenSubMenuItemVasthramDetails));
-        strListViewMenuItemsNamesList.add(this.getResources().getString(R.string.MenuItemPhotosAndVideos));
-
-        lvHomeScreenListViewMenuItems.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, strListViewMenuItemsNamesList));
-        lvHomeScreenListViewMenuItems.setOnItemClickListener((adapterView, view, position, id) -> {
-            String strListItemName = adapterView.getItemAtPosition(position).toString();
-            prvSelectScreenFromListOption(strListItemName);
-        });
-
+        Intent intent = getIntent();
         tempWrapper = new FirebaseWrapper(getApplicationContext());
+        prvObtainCurrentSponsorInfo(intent);
     }
 
     /* This method has been implemented to generate the ellipsis (three dots) menu. */
@@ -246,5 +223,110 @@ public class HomeScreen extends AppCompatActivity
                 alertDialog.displayAlertMessage(getApplicationContext().getResources().getString(R.string.GalleryScreenGalleryInfoStatusDownloadFailed));
             }
         });
+    }
+
+    private void createNotificationChannel()
+    {
+        // Create the NotificationChannel, but only on API 26+ because
+        // the NotificationChannel class is not in the Support Library.
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence name = getString(R.string.NotificationChannelName);
+            String description = getString(R.string.NotificationChannelDescription);
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
+            channel.setDescription(description);
+            // Register the channel with the system; you can't change the importance
+            // or other notification behaviors after this.
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
+    }
+
+    private void prvObtainCurrentSponsorInfo(Intent intent)
+    {
+        currentSponsorInfo = (SponsorsInfo)intent.getSerializableExtra(this.getResources().getString(R.string.LandingScreenIntentSponsorInfoKey));
+
+        if(currentSponsorInfo == null)
+        {
+            SharedPreferences sharedPref = getApplicationContext()
+                                          .getSharedPreferences(getApplicationContext()
+                                          .getResources()
+                                          .getString(R.string.SharedPreferencesLoginStatusFileKey), Context.MODE_PRIVATE);
+            String strCurrentUserNumber = sharedPref.getString(getApplicationContext()
+                                          .getResources()
+                                          .getString(R.string.SharedPreferencesLoginStatusNumber), "");
+
+            tempWrapper.downloadSingleSponsorInfo(strCurrentUserNumber, new FirebaseDownloadListener() {
+                @Override
+                public void onDownloadCompleteCallback() {
+                    currentSponsorInfo = tempWrapper.getSingleSponsorInfo();
+                    prvLoadScreen();
+                }
+
+                @Override
+                public void onDownloadFailureCallback() {
+                    setContentView(R.layout.landing_screen);
+                }
+            });
+        }
+        else
+        {
+            prvLoadScreen();
+        }
+    }
+
+    private void prvLoadScreen()
+    {
+        TextView tvHomeScreenTxtViewAppName, tvHomeScreenTxtViewTitleMessage, tvHomeScreenTxtViewUserInfo, tvHomeScreenTxtViewPrdshPrtc;
+        ListView lvHomeScreenListViewMenuItems;
+        Toolbar tlbarHomeScreenToolbar;
+        ArrayList<String> strListViewMenuItemsNamesList = new ArrayList<String>();
+
+        tvHomeScreenTxtViewAppName = findViewById(R.id.HomeScreenTxtViewAppName);
+        tvHomeScreenTxtViewTitleMessage = findViewById(R.id.HomeScreenTxtViewTitleMessage);
+        tvHomeScreenTxtViewUserInfo = findViewById(R.id.HomeScreenTxtViewUserInfo);
+        tvHomeScreenTxtViewPrdshPrtc = findViewById(R.id.HomeScreenTxtViewPrdshPrtc);
+        lvHomeScreenListViewMenuItems = findViewById(R.id.HomeScreenListViewMenuItems);
+        tlbarHomeScreenToolbar = findViewById(R.id.HomeScreenToolbar);
+
+        tvHomeScreenTxtViewUserInfo.setText("Welcome, " + currentSponsorInfo.getName());
+        tvHomeScreenTxtViewAppName.setText(this.getResources().getString(R.string.AvoorAppDisplayNameEnglish));
+        tvHomeScreenTxtViewTitleMessage.setText(this.getResources().getString(R.string.HomeScreenTitleEnglish));
+        tvHomeScreenTxtViewPrdshPrtc.setText("");
+        setSupportActionBar(tlbarHomeScreenToolbar);
+
+        if(currentSponsorInfo.getAccessLevel() == SponsorsInfo.ACCESS_LEVEL_ADMIN)
+        {
+            strListViewMenuItemsNamesList.add(this.getResources().getString(R.string.MenuItemSponsorsList));
+        }
+
+        strListViewMenuItemsNamesList.add(this.getResources().getString(R.string.MenuItemPradoshamDates));
+        strListViewMenuItemsNamesList.add(this.getResources().getString(R.string.MenuItemPradoshamSponsors));
+        strListViewMenuItemsNamesList.add(this.getResources().getString(R.string.MenuItemSankalpamDetails));
+        strListViewMenuItemsNamesList.add(this.getResources().getString(R.string.GalleryScreenSubMenuItemVasthramDetails));
+        strListViewMenuItemsNamesList.add(this.getResources().getString(R.string.MenuItemPhotosAndVideos));
+
+        lvHomeScreenListViewMenuItems.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, strListViewMenuItemsNamesList));
+        lvHomeScreenListViewMenuItems.setOnItemClickListener((adapterView, view, position, id) -> {
+            String strListItemName = adapterView.getItemAtPosition(position).toString();
+            prvSelectScreenFromListOption(strListItemName);
+        });
+
+        createNotificationChannel();
+        Intent Notificationintent = new Intent(this, HomeScreen.class);
+//        Notificationintent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, Notificationintent, PendingIntent.FLAG_IMMUTABLE);
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
+        .setSmallIcon(R.mipmap.app_logo_round)
+        .setContentTitle(this.getResources().getString(R.string.NotificationTitle))
+        .setContentText("Hello!!!")
+        .setStyle(new NotificationCompat.BigTextStyle().bigText("Much longer text that cannot fit one line............................................................................."))
+        .setContentIntent(pendingIntent)
+        .setAutoCancel(true)
+        .setCategory(NotificationCompat.CATEGORY_MESSAGE)
+        .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+
+        NotificationManagerCompat.from(this).notify(NOTIFICATION_ID, builder.build());
     }
 }

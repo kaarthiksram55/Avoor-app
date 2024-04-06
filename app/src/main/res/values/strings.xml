@@ -129,4 +129,8 @@
 
     <string name="AvoorGurukkalYoutubeChannelLink">https://youtube.com/@Pichaisivachariyar?si=HNSzc62uaElQnhbC</string>
 
+    <string name="NotificationTitle">Update!</string>
+    <string name="NotificationChannelName">"AvoorApp"</string>
+    <string name="NotificationChannelDescription">Channel for Avoor App notifications</string>
+
 </resources>
