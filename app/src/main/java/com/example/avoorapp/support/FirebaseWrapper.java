@@ -1,6 +1,7 @@
 package com.example.avoorapp.support;
 
 import android.content.Context;
+import android.os.Build;
 import android.util.Log;
 
 import com.example.avoorapp.R;
@@ -8,6 +9,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 /* This class implements wrapper functions to get data from firebase. All firebase related code is
@@ -86,6 +88,15 @@ public class FirebaseWrapper
                         SponsorsInfo tempInfo = documentSnapshotList.get(i).toObject(SponsorsInfo.class);
                         tempInfo.setNumber(documentSnapshotList.get(i).getId());
                         sponsorsInfoList.add(tempInfo);
+                    }
+
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                        sponsorsInfoList.sort(new Comparator<SponsorsInfo>() {
+                            @Override
+                            public int compare(SponsorsInfo s, SponsorsInfo t1) {
+                                return s.getName().compareTo(t1.getName());
+                            }
+                        }); 
                     }
 
                     downloadListener.onDownloadCompleteCallback();

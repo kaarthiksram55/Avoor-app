@@ -2,7 +2,6 @@ package com.example.avoorapp;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -17,8 +16,6 @@ import com.example.avoorapp.support.FirebaseWrapper;
 import com.example.avoorapp.support.PradoshamInfo;
 import com.example.avoorapp.support.SponsorsInfo;
 import com.example.avoorapp.support.TableCell;
-
-import org.checkerframework.checker.units.qual.A;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -194,7 +191,7 @@ public class SankalpamAdminScreen extends AppCompatActivity {
             PradoshamInfo tempPradoshamInfo = pradoshamInfoList.get(j);
             String strIndicesString = tempSponsorPradoshamMap.get(tempPradoshamInfo.getYearName());
 
-            if (strIndicesString.length() != 0)
+            if ((strIndicesString != null) && (strIndicesString.length() != 0))
             {
                 String[] strIndicesStringArr = strIndicesString.split(",");
 

@@ -121,7 +121,7 @@ public class SankalpamScreen extends AppCompatActivity {
             PradoshamInfo tempPradoshamInfo = pradoshamInfoList.get(j);
             String strIndicesString = tempSponsorPradoshamMap.get(tempPradoshamInfo.getYearName());
 
-            if (strIndicesString.length() != 0)
+            if ((strIndicesString != null) && (strIndicesString.length() != 0))
             {
                 String[] strIndicesStringArr = strIndicesString.split(",");
                 if (strIndicesStringArr.length > 0)
